@@ -1,0 +1,6 @@
+*~
+*.root
+FillHistograms
+obj/
+*.pyc
+.nfs*
