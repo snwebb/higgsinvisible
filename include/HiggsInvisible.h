@@ -2,6 +2,7 @@
 #define _HiggsInvisible_h_
 #define XXX std::cout << "I am here: " << __LINE__ << std::endl << std::endl;
 #include "BuildTreeBase.h"
+#include "Plotter.h"
 #include "CmdLine.h"
 #include <cstring>
 #include <time.h>
@@ -39,6 +40,7 @@ class HiggsInvisible: public BuildTreeBase {
   /* std::string _out_directory; */
   std::string _filein;
   std::string _fileout;
+  TFile * _fout;
 
   TDirectory * _origDir ;	
   int _max_events;
@@ -48,9 +50,15 @@ class HiggsInvisible: public BuildTreeBase {
   typedef std::map< std::string, TH1D* > histmap;
   typedef std::map< std::string, histmap > clonemap;
   typedef std::map< std::string, double > doublemap;
+  //  typedef std::map< std::string, bool > boolmap;
 
   clonemap _cloned_hists;
   doublemap _event_variables;
+  //  boolmap _cuts;
+
+  bool _wln = false;
+  bool _znn = false;
+  bool _zll = false;
 
  public:
 
@@ -69,13 +77,21 @@ class HiggsInvisible: public BuildTreeBase {
 
   void Fill();
 
-  //  void CalculateTriggerCellVariables();
-
   void FillAllHists( std::string name );
+
+  void CalculateVariables( );
+
+  bool CalculateCuts( std::string name );
 
   bool FileExists( std::string file );
 
   void Save();
+
+
+
+  void LoadAllHistograms();
+  void PlotAllHistograms();
+
 };
 
 #endif

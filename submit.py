@@ -6,14 +6,12 @@ import sys
 
 ########   YOU ONLY NEED TO FILL THE AREA BELOW   #########
 ########   customization  area #########
-NumberOfJobs= 30
+NumberOfJobs= 1
 # number of jobs to be submitted
-interval = 1 # number files to be processed in a single job, take care to split your file so that you run on all files. The last job might be with smaller number of files (the ones that remain).
+interval = 5 # number files to be processed in a single job, take care to split your file so that you run on all files. The last job might be with smaller number of files (the ones that remain).
 Date = "190312"
 
 InputDirList = [ 
-
-#   "ZJetsToNuNu_HT-1200To2500_13TeV-madgraph/MC_ZJetsToNuNu_HT-1200To2500-new-pmx/190312_143621/0000",
 
 "ZJetsToNuNu_HT-800To1200_13TeV-madgraph/MC_ZJetsToNuNu_HT-800To1200/190312_143831/0000",
 "ZJetsToNuNu_HT-600To800_13TeV-madgraph/MC_ZJetsToNuNu_HT-600To800-new-pmx/190312_143807/0000",
@@ -26,29 +24,29 @@ InputDirList = [
 "WJetsToLNu_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_0J_TuneCP5-amcatnloFXFX/190312_143531/0000",
 "WJetsToLNu_2J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_2J_TuneCP5-amcatnloFXFX/190312_143507/0000",
 
-"WJetsToLNu_HT-800To1200_13TeV-madgraph/MC_WJetsToLNu_HT-800To1200_TuneCP5/190312_143442/0000",
-# "WJetsToLNu_HT-70To100_13TeV-madgraph/MC_WJetsToLNu_HT-70To100_TuneCP5/190312_143418/0000",
-# "WJetsToLNu_HT-600To800_13TeV-madgraph/MC_WJetsToLNu_HT-600To800_TuneCP5/190312_143353/0000",
-# "WJetsToLNu_HT-400To600_13TeV-madgraph/MC_WJetsToLNu_HT-400To600_TuneCP5/190312_143327/0000",
-# "WJetsToLNu_HT-2500ToInf_13TeV-madgraph/MC_WJetsToLNu_HT-2500ToInf_TuneCP5/190312_143303/0000",
-# "WJetsToLNu_HT-200To400_13TeV-madgraph/MC_WJetsToLNu_HT-200To400_TuneCP5/190312_143231/0000",
-# "WJetsToLNu_HT-1200To2500_13TeV-madgraph/MC_WJetsToLNu_HT-1200To2500_TuneCP5/190312_143205/0000",
-# "WJetsToLNu_HT-100To200_13TeV-madgraph/MC_WJetsToLNu_HT-100To200_TuneCP5/190312_143141/0000",
+"WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-800To1200_TuneCP5/190312_143442/0000",
+"WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-70To100_TuneCP5/190312_143418/0000",
+"WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-600To800_TuneCP5/190312_143353/0000",
+"WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-400To600_TuneCP5/190312_143327/0000",
+"WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-2500ToInf_TuneCP5/190312_143303/0000",
+"WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-200To400_TuneCP5/190312_143231/0000",
+"WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-1200To2500_TuneCP5/190312_143205/0000",
+"WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-100To200_TuneCP5/190312_143141/0000",
 
-# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX/190312_143114/0000",
-# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX-ext/190312_143051/0000",
+"DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX/190312_143114/0000",
+"DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX-ext/190312_143051/0000",
 
-# "DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-800to1200/190312_143025/0000",
-# "DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-70to100/190312_142955/0000",
-# "DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-600to800/190312_142925/0000",
-# "DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600/190312_142857/0000",
-# "DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600-ext/190312_142828/0000",
-# "DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-2500toInf/190312_142757/0000",
-# "DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400/190312_142731/0000",
-# "DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400-ext/190312_142702/0000",
-# "DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-1200to2500/190312_142636/0000",
-# "DYJetsToLL_M-50_HT-100to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200/190312_142610/0000",
-# "DYJetsToLL_M-50_HT-100to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200-ext/190312_142547/0000",   
+"DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-800to1200/190312_143025/0000",
+"DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-70to100/190312_142955/0000",
+"DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-600to800/190312_142925/0000",
+"DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600/190312_142857/0000",
+"DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600-ext/190312_142828/0000",
+"DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-2500toInf/190312_142757/0000",
+"DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400/190312_142731/0000",
+"DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400-ext/190312_142702/0000",
+"DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-1200to2500/190312_142636/0000",
+"DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200/190312_142610/0000",
+"DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200-ext/190312_142547/0000",   
    ]
 
 
@@ -82,12 +80,20 @@ def main():
       print
 
       os.chdir(outdir+"/tmp/")
+
+#      numjobs = subprocess.check_output("srmls srm://gfe02.grid.hep.ph.ic.ac.uk/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/sawebb/"+ Date + "/" + indir + " | wc -l");
+      numjobs = commands.getoutput("srmls srm://gfe02.grid.hep.ph.ic.ac.uk/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/sawebb/"+ Date + "/" + indir );
+      intnum =  numjobs.count('\n')
+
+      NumberOfJobs = int(numjobs.count('\n'))
+
    ##### loop for creating and sending jobs #####
       for x in range(1, int(NumberOfJobs)+1):
       ##### creates directory and file list for job #######
    #      os.system("mkdir "+outdir+"/tmp/"+str(x))
 
-      #os.system("sed '"+str(1+interval*(x-1))+","+str(interval*x)+"!d' ../../"+FileList+" > list.txt ")
+#         os.system("sed '"+str(1+interval*(x-1))+","+str(interval*x)+"!d' ../../"+FileList+" > list.txt ")
+#         os.system("sed '"+str(1+interval*(x-1))+","+str(interval*x)+"!d' ../../"+" > list.txt ")
 
       ##### creates jobs #######
          with open('job_'+str(x)+'.sh', 'w') as fout:                  

@@ -1,7 +1,7 @@
 SRCDIR = src
 SRCS  := $(wildcard $(SRCDIR)/*.cxx)
 
-PROGS=FillHistograms
+PROGS=FillHistograms PlotHistograms
 
 OBJDIR = obj
 OBJS  := $(SRCS:$(SRCDIR)/%.cxx=$(OBJDIR)/%.o)
@@ -18,7 +18,7 @@ PWD = $(shell pwd)
 MKDIR_P = mkdir -p
 
 COMMONOBJS1 =  $(OBJS)
-COMMONOBJS = $(filter-out $(OBJDIR)/FillHistograms.o, $(COMMONOBJS1))
+COMMONOBJS = $(filter-out $(OBJDIR)/FillHistograms.o $(OBJDIR)/PlotHistograms.o, $(COMMONOBJS1))
 
 
 all: $(PROGS)
