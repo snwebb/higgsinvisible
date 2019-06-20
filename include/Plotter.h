@@ -9,6 +9,7 @@
 #include "TH1.h"
 #include "TCanvas.h"
 #include "TLatex.h"
+#include <iostream>
 
 class Plotter{
 
@@ -90,8 +91,12 @@ class Plotter{
   }
 
   template< class T > void DrawRatio( T hist1, T hist2, TString legend = "", TString savename = "temp"){
+    std::cout << hist2->GetName() << std::endl;
+    std::cout << hist1->GetName() << std::endl;
+    std::cout << hist2->GetName() << std::endl;
     
     T Ratio = (T) hist1->Clone( TString(hist1->GetName()) + TString(hist2->GetName()) );
+
     Ratio->Divide(hist2);
     Ratio->SetMaximum(2.8);
     Ratio->SetMinimum(0.3);

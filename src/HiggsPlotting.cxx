@@ -15,7 +15,7 @@ HiggsPlotting::~HiggsPlotting() {
 
   for(auto &it1 : _cloned_hists) {
     for(auto &it2 : it1.second) {
-      it2.second->Delete();
+      if (it2.second)  it2.second->Delete();
     }
   }
 
@@ -27,7 +27,7 @@ void HiggsPlotting::LoadAllHistograms(){
     //map of short name and filename
 
   std::map<TString,TString> filenames;
-
+  /*
   filenames[ "ZLL-NLO-orig" ]     = "MC_DYJetsToLL_M-50-amcatnloFXFX.root";
   filenames[ "ZLL-NLO-ext" ] = "MC_DYJetsToLL_M-50-amcatnloFXFX-ext.root";
   filenames[ "ZLL-LO-70-100" ] = "MC_DYJetsToLL_M-50_HT-70to100.root";
@@ -41,9 +41,15 @@ void HiggsPlotting::LoadAllHistograms(){
   filenames[ "ZLL-LO-800-1200" ] = "MC_DYJetsToLL_M-50_HT-800to1200.root";
   filenames[ "ZLL-LO-1200-2500" ] = "MC_DYJetsToLL_M-50_HT-1200to2500.root";
   filenames[ "ZLL-LO-2500-Inf" ] = "MC_DYJetsToLL_M-50_HT-2500toInf.root";
-
+  */
   filenames[ "WLN-NLO-0J" ] = "MC_WJetsToLNu_0J_TuneCP5-amcatnloFXFX.root";
+  filenames[ "WLN-NLO-1J" ] = "MC_WJetsToLNu_1J_TuneCP5-amcatnloFXFX-Skimmed.root";
   filenames[ "WLN-NLO-2J" ] = "MC_WJetsToLNu_2J_TuneCP5-amcatnloFXFX.root";
+  
+  filenames[ "WLN-NLO-Pt-100-250" ] = "MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8.root";
+  filenames[ "WLN-NLO-Pt-250-400" ] = "MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8.root";
+  
+
   filenames[ "WLN-LO-70-100" ] = "MC_WJetsToLNu_HT-70To100_TuneCP5.root";
   filenames[ "WLN-LO-100-200" ] = "MC_WJetsToLNu_HT-100To200_TuneCP5.root";
   filenames[ "WLN-LO-200-400" ] = "MC_WJetsToLNu_HT-200To400_TuneCP5.root";
@@ -52,18 +58,29 @@ void HiggsPlotting::LoadAllHistograms(){
   filenames[ "WLN-LO-800-1200" ] = "MC_WJetsToLNu_HT-800To1200_TuneCP5.root";
   filenames[ "WLN-LO-1200-2500" ] = "MC_WJetsToLNu_HT-1200To2500_TuneCP5.root";
   filenames[ "WLN-LO-2500-Inf" ] = "MC_WJetsToLNu_HT-2500ToInf_TuneCP5.root";
+
+
+  filenames[ "WLN-LO-Pt-100-200" ] = "MC_WJetsToLNu_Pt-100To200-madgraphMLM-pythia8.root";
+  filenames[ "WLN-LO-Pt-200-Inf" ] = "MC_WJetsToLNu_Pt-200ToInf-madgraphMLM-pythia8.root";
+
   
-  filenames[ "ZNN-LO-100-200" ] = "MC_ZJetsToNuNu_HT-100To200.root";
-  filenames[ "ZNN-LO-200-400" ] = "MC_ZJetsToNuNu_HT-200To400.root";
-  filenames[ "ZNN-LO-400-600" ] = "MC_ZJetsToNuNu_HT-400To600-new-pmx.root";
-  filenames[ "ZNN-LO-600-800" ] = "MC_ZJetsToNuNu_HT-600To800-new-pmx.root";
-  filenames[ "ZNN-LO-800-1200" ] = "MC_ZJetsToNuNu_HT-800To1200.root";
-  filenames[ "ZNN-LO-1200-2500" ] = "MC_ZJetsToNuNu_HT-1200To2500-new-pmx.root";
-  filenames[ "ZNN-LO-2500ToInf" ] = "MC_ZJetsToNuNu_HT-2500ToInf.root";
+  // filenames[ "ZNN-LO-100-200" ] = "MC_ZJetsToNuNu_HT-100To200.root";
+  // filenames[ "ZNN-LO-200-400" ] = "MC_ZJetsToNuNu_HT-200To400.root";
+  // filenames[ "ZNN-LO-400-600" ] = "MC_ZJetsToNuNu_HT-400To600-new-pmx.root";
+  // filenames[ "ZNN-LO-600-800" ] = "MC_ZJetsToNuNu_HT-600To800-new-pmx.root";
+  // filenames[ "ZNN-LO-800-1200" ] = "MC_ZJetsToNuNu_HT-800To1200.root";
+  // filenames[ "ZNN-LO-1200-2500" ] = "MC_ZJetsToNuNu_HT-1200To2500-new-pmx.root";
+  // filenames[ "ZNN-LO-2500ToInf" ] = "MC_ZJetsToNuNu_HT-2500ToInf.root";
 
 
   std::vector<std::string> plots = {"gen_boson_pt", "gen_boson_eta", "gen_mjj", "gen_detajj", "gen_dphijj", "gen_mindphi_jetmet", "LHE_HT", "gen_events", "gen_weight"};
-  std::vector<std::string> histoSets = { "Default", "All", "Default-Mjj-200-500" };
+
+  //std::vector<std::string> plots = {"gen_boson_pt"};
+
+
+  //  std::vector<std::string> histoSets = { "Default", "All", "Default-Mjj-200-500" };
+  //  std::vector<std::string> histoSets = { "Default", "All" };
+  std::vector<std::string> histoSets = { "Default", "All", "1JPt150" };
 
   //then load into clonemap with short name and list of hists
 
@@ -104,6 +121,17 @@ void HiggsPlotting::Rebin(){
   RebinValues[ "Default_gen_boson_dphijj" ] = 1;
   RebinValues[ "Default_gen_mindphi_jetmet" ] = 1;
   RebinValues[ "Default_LHE_HT" ] = 20;
+
+
+  RebinValues[ "1JPt150_gen_boson_pt" ] = 5;
+  RebinValues[ "1JPt150_gen_boson_eta" ] = 1;
+  RebinValues[ "1JPt150_gen_mjj" ] = 20;
+  RebinValues[ "1JPt150_gen_boson_detajj" ] = 1;
+  RebinValues[ "1JPt150_gen_boson_dphijj" ] = 1;
+  RebinValues[ "1JPt150_gen_mindphi_jetmet" ] = 1;
+  RebinValues[ "1JPt150_LHE_HT" ] = 20;
+
+
   RebinValues[ "All_LHE_HT" ] = 5;
 
   double bins[10] = {120,170,220,270,320,370,470,650,800,1000};
@@ -155,24 +183,39 @@ void HiggsPlotting::CombineHistograms(){
 
 
   _xs[ "WLN-LO-70-100" ] = 1.47E+01;
+  //  _xs[ "WLN-LO-70-100" ] = 0;
   _xs[ "WLN-LO-100-200"] = 1.39E+03;
   _xs[ "WLN-LO-200-400"] = 4.03E+02;
   _xs[ "WLN-LO-400-600"] = 5.82E+01;
   _xs[ "WLN-LO-600-800"] = 1.29E+01;
   _xs[ "WLN-LO-800-1200"] = 5.49E+00;
-  _xs[ "WLN-LO-1200-2500"] = 1.09E+00;
+  _xs[ "WLN-LO-1200-2500"] = 1.092E+00;
   _xs[ "WLN-LO-2500-Inf"] = 8.19E-03;
 
+  _xs[ "WLN-LO-Pt-100-200"] = 459 ;
+  _xs[ "WLN-LO-Pt-200-Inf"] = 50.71;
 
-  _xs[ "WLN-NLO-0J"] = 55470 ;
-  _xs[ "WLN-NLO-2J"] = 1940 ;
+  // _xs[ "WLN-NLO-0J"] = 55470 ;
+  // _xs[ "WLN-NLO-1J"] = 1940 ;
+  // _xs[ "WLN-NLO-2J"] = 1940 ;
+  _xs[ "WLN-NLO-0J"] = 1 ;
+  _xs[ "WLN-NLO-1J"] = 1 ;
+  _xs[ "WLN-NLO-2J"] = 1 ;
+
+  // _xs[ "WLN-NLO-Pt-100-250"] = 676.3 * 0.41;
+  // _xs[ "WLN-NLO-Pt-250-400"] = 23.94 * 0.43;
+
+  // _xs[ "WLN-NLO-Pt-100-250"] = 676.3 ;
+  // _xs[ "WLN-NLO-Pt-250-400"] = 23.94 ;
+
+  _xs[ "WLN-NLO-Pt-100-250"] = 1 ;
+  _xs[ "WLN-NLO-Pt-250-400"] = 1 ;
 
   for (auto & histset : _cloned_hists ){
     _sum[ histset.first ] = ((histset.second)[ "All_gen_events" ])->GetBinContent( 2 );
     std::cout << histset.first << " - " << ((histset.second)[ "All_gen_events" ])->GetBinContent( 2 ) << std::endl;
   }
   
-
   for (auto const& histset : _cloned_hists["ZLL-LO-70-100"]){
     
     _cloned_hists["ZLL-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "ZLL-LO_" + histset.first );   
@@ -230,17 +273,46 @@ void HiggsPlotting::CombineHistograms(){
     _cloned_hists["WLN-NLO"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN-NLO-0J_" + histset.first  );   
     _cloned_hists["WLN-NLO"][ histset.first ]->Reset();
 
-    // _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-0J" ][histset.first]  , 1E3 * _xs["WLN-NLO-0J"     ] / _sum["WLN-NLO-0J"     ] );
-    // _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-2J" ][histset.first]  , 1E3 * _xs["WLN-NLO-2J"      ] / _sum["WLN-NLO-2J"      ] );
+    _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-0J" ][histset.first]  , 1E6 * _xs["WLN-NLO-0J"     ] / _sum["WLN-NLO-0J"     ] );
+    _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-1J" ][histset.first]  , 1E6 * _xs["WLN-NLO-1J"      ] / _sum["WLN-NLO-1J"      ] );
+    _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-2J" ][histset.first]  , 1E6 * _xs["WLN-NLO-2J"      ] / (_sum["WLN-NLO-2J"      ] ) );
 
 
-    _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-0J"][histset.first]   ,  1  );
-    _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-2J" ][histset.first]  ,  1  );
+    // _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-0J"][histset.first]   ,  1  );
+    // _cloned_hists["WLN-NLO"][ histset.first ]->Add( _cloned_hists["WLN-NLO-2J" ][histset.first]  ,  1  );
     
+  }
+
+
+  
+  for (auto const& histset : _cloned_hists["WLN-NLO-Pt-100-250"]){
+    
+    _cloned_hists["WLN-NLO-Pt"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN-NLO-Pt-100-250_" + histset.first  );   
+    _cloned_hists["WLN-NLO-Pt"][ histset.first ]->Reset();
+
+    _cloned_hists["WLN-NLO-Pt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-Pt-100-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-Pt-100-250"     ] / _sum["WLN-NLO-Pt-100-250"     ] );
+    _cloned_hists["WLN-NLO-Pt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-Pt-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-Pt-250-400"     ] / _sum["WLN-NLO-Pt-250-400"     ] );
+   
   }
   
 
+
+
+
+  for (auto const& histset : _cloned_hists["WLN-LO-Pt-100-200"]){
+    
+    _cloned_hists["WLN-LO-Pt"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN-LO-Pt-100-200_" + histset.first  );   
+    _cloned_hists["WLN-LO-Pt"][ histset.first ]->Reset();
+
+    _cloned_hists["WLN-LO-Pt"][ histset.first ]->Add( _cloned_hists["WLN-LO-Pt-100-200" ][histset.first]  , 1E3 * _xs["WLN-LO-Pt-100-200"     ] / _sum["WLN-LO-Pt-100-200"     ] );
+    _cloned_hists["WLN-LO-Pt"][ histset.first ]->Add( _cloned_hists["WLN-LO-Pt-200-Inf" ][histset.first]  , 1E3 * _xs["WLN-LO-Pt-200-Inf"     ] / _sum["WLN-LO-Pt-200-Inf"     ] );
+   
+  }
   
+
+
+
+
 }
 
 
@@ -267,6 +339,11 @@ void HiggsPlotting::PlotAllHistograms(){
   // plotter.Draw( _cloned_hists["ZLL-LO-1200-2500"]["All_gen_events"] , "", "1200-2500" );
   // plotter.Draw( _cloned_hists["ZLL-LO-2500-Inf"]["All_gen_events"] , "", "2500-Inf" );
 
+
+
+
+
+
   for (auto const& histset : _cloned_hists["ZLL-NLO"]){
     plotter.Draw( histset.second , "", "ZLL-NLO-" + histset.first );
   }
@@ -282,9 +359,30 @@ void HiggsPlotting::PlotAllHistograms(){
   for (auto const& histset : _cloned_hists["WLN-NLO"]){
     plotter.Draw( histset.second , "", "WLN-NLO-" + histset.first );
   }
+
+  for (auto const& histset : _cloned_hists["WLN-NLO-Pt"]){
+    plotter.Draw( histset.second , "", "WLN-NLO-Pt-" + histset.first );
+  }
+
   for (auto const& histset : _cloned_hists["WLN-NLO"]){
+    std::cout << histset.first << std::endl;
+    std::cout <<histset.second->GetName()  << std::endl;
+    std::cout << _cloned_hists["WLN-LO"][ histset.first ]->GetName() << std::endl;
+
     plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "Ratio-WLN-" + histset.first );
   }
+
+
+  for (auto const& histset : _cloned_hists["WLN-NLO-Pt"]){
+    plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "Ratio-WLN-Pt-" + histset.first );
+  }
+
+
+  for (auto const& histset : _cloned_hists["WLN-NLO-Pt"]){
+    plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO-Pt"][ histset.first ], "", "Ratio-WLN-BothPt-" + histset.first );
+  }
+
+
 
 
   std::vector< TH1D*> z = {_cloned_hists["ZLL-NLO"]["Default_gen_boson_pt"], _cloned_hists["ZLL-LO"]["Default_gen_boson_pt"]};
@@ -297,11 +395,16 @@ void HiggsPlotting::PlotAllHistograms(){
   std::vector< TString > zleg = {"NLO", "LO"};
   std::vector< TString > loleg = {"z", "w"};
 
-  plotter.Draw( z , zleg, "z-pt" , true);
+  //  plotter.Draw( z , zleg, "z-pt" , true);
   plotter.Draw( w , zleg, "w-pt" , true);
 
-  plotter.Draw( z , zleg, "z-pt"  );
+  //  plotter.Draw( z , zleg, "z-pt"  );
   plotter.Draw( w , zleg, "w-pt" );
+
+
+
+
+
 
   // plotter.Draw( lo , loleg, "lo-pt" , true);
   // plotter.Draw( lo , loleg, "lo-pt" );

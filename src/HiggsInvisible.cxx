@@ -11,13 +11,16 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
 
   TH1::SetDefaultSumw2();
   _HistoSets.push_back( "Default" );
-  _HistoSets.push_back( "Default2ndLep" );
-  _HistoSets.push_back( "All" );
+  // _HistoSets.push_back( "Default2ndLep" );
+   _HistoSets.push_back( "All" );
 
-  _HistoSets.push_back( "Default-Mjj-200-500" );
-  _HistoSets.push_back( "Default-Mjj-500-1000" );
-  _HistoSets.push_back( "Default-Mjj-1000-1500" );
-  _HistoSets.push_back( "Default-Mjj-1500-5000" );
+
+   _HistoSets.push_back( "1JPt150" );
+
+  // _HistoSets.push_back( "Default-Mjj-200-500" );
+  // _HistoSets.push_back( "Default-Mjj-500-1000" );
+  // _HistoSets.push_back( "Default-Mjj-1000-1500" );
+  // _HistoSets.push_back( "Default-Mjj-1500-5000" );
 
 
   if ( _filein.find("WJetsToLNu")!=std::string::npos ) _wln = true;
@@ -93,6 +96,7 @@ void HiggsInvisible::Loop( ){
   fChain->SetBranchStatus("gen_detajj",1);
   fChain->SetBranchStatus("gen_dphijj",1);
   fChain->SetBranchStatus("gen_mindphi_jetmet",1);
+  fChain->SetBranchStatus("LHE_Njets",1);
   fChain->SetBranchStatus("LHE_HT",1);
 
   fChain->SetBranchStatus("GenJet_pt",1);
@@ -109,8 +113,11 @@ void HiggsInvisible::Loop( ){
   fChain->SetBranchStatus("GenPart_pdgId",1);
   fChain->SetBranchStatus("GenPart_mass",1);
   fChain->SetBranchStatus("GenPart_statusFlags",1);
+  fChain->SetBranchStatus("GenPart_status",1);
   fChain->SetBranchStatus("GenPart_genPartIdxMother",1);
   fChain->SetBranchStatus("GenPart_phi",1);
+  fChain->SetBranchStatus("GenPart_pt",1);
+  fChain->SetBranchStatus("GenPart_eta",1);
   
 
 
@@ -133,6 +140,9 @@ void HiggsInvisible::Loop( ){
     CalculateVariables();
 
     for (auto& names : _HistoSets ){
+      
+      //      std::cout << names << " - " << CalculateCuts(names) << std::endl;
+
       if ( CalculateCuts( names ) ){
 	FillAllHists( names );
       }

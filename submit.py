@@ -13,46 +13,72 @@ Date = "190312"
 
 InputDirList = [ 
 
-"ZJetsToNuNu_HT-800To1200_13TeV-madgraph/MC_ZJetsToNuNu_HT-800To1200/190312_143831/0000",
-"ZJetsToNuNu_HT-600To800_13TeV-madgraph/MC_ZJetsToNuNu_HT-600To800-new-pmx/190312_143807/0000",
-"ZJetsToNuNu_HT-400To600_13TeV-madgraph/MC_ZJetsToNuNu_HT-400To600-new-pmx/190312_143741/0000",
-"ZJetsToNuNu_HT-2500ToInf_13TeV-madgraph/MC_ZJetsToNuNu_HT-2500ToInf/190312_143713/0000",
-"ZJetsToNuNu_HT-200To400_13TeV-madgraph/MC_ZJetsToNuNu_HT-200To400/190312_143646/0000",
-"ZJetsToNuNu_HT-1200To2500_13TeV-madgraph/MC_ZJetsToNuNu_HT-1200To2500-new-pmx/190312_143621/0000",
-"ZJetsToNuNu_HT-100To200_13TeV-madgraph/MC_ZJetsToNuNu_HT-100To200/190312_143554/0000",
+"DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0001",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0002",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0003",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0004",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0005",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0006",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0007",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0008",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed/190531_104132/0009",
 
-"WJetsToLNu_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_0J_TuneCP5-amcatnloFXFX/190312_143531/0000",
-"WJetsToLNu_2J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_2J_TuneCP5-amcatnloFXFX/190312_143507/0000",
+#   "CRAB_UserFiles/MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-TEST-Skimmed/190521_124423"
+# "WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8/190430_095246",
+# "WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8/190430_095210",
 
-"WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-800To1200_TuneCP5/190312_143442/0000",
-"WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-70To100_TuneCP5/190312_143418/0000",
-"WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-600To800_TuneCP5/190312_143353/0000",
-"WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-400To600_TuneCP5/190312_143327/0000",
-"WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-2500ToInf_TuneCP5/190312_143303/0000",
-"WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-200To400_TuneCP5/190312_143231/0000",
-"WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-1200To2500_TuneCP5/190312_143205/0000",
-"WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-100To200_TuneCP5/190312_143141/0000",
+# "WJetsToLNu_Wpt-100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_Pt-100To200-madgraphMLM-pythia8/190430_095320",
+# "WJetsToLNu_Wpt-200toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_Pt-200ToInf-madgraphMLM-pythia8/190430_095355",
 
-"DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX/190312_143114/0000",
-"DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX-ext/190312_143051/0000",
+# "ZJetsToNuNu_HT-800To1200_13TeV-madgraph/MC_ZJetsToNuNu_HT-800To1200/190312_143831",
+# "ZJetsToNuNu_HT-600To800_13TeV-madgraph/MC_ZJetsToNuNu_HT-600To800-new-pmx/190312_143807",
+# "ZJetsToNuNu_HT-400To600_13TeV-madgraph/MC_ZJetsToNuNu_HT-400To600-new-pmx/190312_143741",
+# "ZJetsToNuNu_HT-2500ToInf_13TeV-madgraph/MC_ZJetsToNuNu_HT-2500ToInf/190312_143713",
+# "ZJetsToNuNu_HT-200To400_13TeV-madgraph/MC_ZJetsToNuNu_HT-200To400/190312_143646",
+# "ZJetsToNuNu_HT-1200To2500_13TeV-madgraph/MC_ZJetsToNuNu_HT-1200To2500-new-pmx/190312_143621",
+# "ZJetsToNuNu_HT-100To200_13TeV-madgraph/MC_ZJetsToNuNu_HT-100To200/190312_143554",
 
-"DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-800to1200/190312_143025/0000",
-"DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-70to100/190312_142955/0000",
-"DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-600to800/190312_142925/0000",
-"DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600/190312_142857/0000",
-"DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600-ext/190312_142828/0000",
-"DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-2500toInf/190312_142757/0000",
-"DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400/190312_142731/0000",
-"DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400-ext/190312_142702/0000",
-"DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-1200to2500/190312_142636/0000",
-"DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200/190312_142610/0000",
-"DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200-ext/190312_142547/0000",   
+# "WJetsToLNu_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_0J_TuneCP5-amcatnloFXFX/190312_143531",
+# "WJetsToLNu_2J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_2J_TuneCP5-amcatnloFXFX/190312_143507",
+# "WJetsToLNu_1J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_1J_TuneCP5-amcatnloFXFX-Skimmed/190531_093825",
+   
+
+# "WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-800To1200_TuneCP5/190312_143442",
+# "WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-70To100_TuneCP5/190312_143418",
+# "WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-600To800_TuneCP5/190312_143353",
+# "WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-400To600_TuneCP5/190312_143327",
+# "WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-2500ToInf_TuneCP5/190312_143303",
+# "WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-200To400_TuneCP5/190312_143231",
+# "WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-1200To2500_TuneCP5/190312_143205",
+# "WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-100To200_TuneCP5/190312_143141",
+
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX/190312_143114",
+# "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX-ext/190312_143051",
+
+# "DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-800to1200/190312_143025",
+# "DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-70to100/190312_142955",
+# "DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-600to800/190312_142925",
+# "DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600/190312_142857",
+# "DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600-ext/190312_142828",
+# "DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-2500toInf/190312_142757",
+# "DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400/190312_142731",
+# "DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400-ext/190312_142702",
+# "DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-1200to2500/190312_142636",
+# "DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200/190312_142610",
+# "DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200-ext/190312_142547",   
+
+
+
    ]
 
+# count = 0;
+# OutputDirList=[]
+# for i in InputDirList:
+#    OutputDirList.append( "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[1] + str(count) )
+#    count+=1;
 
-OutputDirList = [
-   "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[1] for i in InputDirList
- ]
+OutputDirList=[  "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[1] for i in InputDirList ]
 
 #FileList = "filelist.txt" # list with all the file directories
 ########   customization end   #########
@@ -81,21 +107,38 @@ def main():
 
       os.chdir(outdir+"/tmp/")
 
-#      numjobs = subprocess.check_output("srmls srm://gfe02.grid.hep.ph.ic.ac.uk/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/sawebb/"+ Date + "/" + indir + " | wc -l");
-      numjobs = commands.getoutput("srmls srm://gfe02.grid.hep.ph.ic.ac.uk/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/sawebb/"+ Date + "/" + indir );
-      intnum =  numjobs.count('\n')
+      #      numjobs = subprocess.check_output("srmls srm://gfe02.grid.hep.ph.ic.ac.uk/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/sawebb/"+ Date + "/" + indir + " | wc -l");
+      
 
-      NumberOfJobs = int(numjobs.count('\n'))
+      numdir = commands.getoutput("srmls srm://gfe02.grid.hep.ph.ic.ac.uk/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/sawebb/"+ Date + "/" + indir  );
 
-   ##### loop for creating and sending jobs #####
+      # intnum =  numjobs.count('\n')
+      # intnum *= 9;
+      NumberOfDirs = int(numdir.count('\n')) - 2
+      NumberOfJobs = 0
+
+      for d in range(0, NumberOfDirs):
+         numjobs = commands.getoutput("srmls srm://gfe02.grid.hep.ph.ic.ac.uk/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/sawebb/"+ Date + "/" + indir + "/000"+str(d) );         
+         NumberOfJobs += int(numjobs.count('\n')) - 1
+
+      print ("ndirs = " + str(NumberOfDirs))
+      print ("njobs = " + str(NumberOfJobs))
+
+      dirnum = 0
+      ##### loop for creating and sending jobs #####
       for x in range(1, int(NumberOfJobs)+1):
       ##### creates directory and file list for job #######
-   #      os.system("mkdir "+outdir+"/tmp/"+str(x))
+      #      os.system("mkdir "+outdir+"/tmp/"+str(x))
 
-#         os.system("sed '"+str(1+interval*(x-1))+","+str(interval*x)+"!d' ../../"+FileList+" > list.txt ")
-#         os.system("sed '"+str(1+interval*(x-1))+","+str(interval*x)+"!d' ../../"+" > list.txt ")
+      #         os.system("sed '"+str(1+interval*(x-1))+","+str(interval*x)+"!d' ../../"+FileList+" > list.txt ")
+      #         os.system("sed '"+str(1+interval*(x-1))+","+str(interval*x)+"!d' ../../"+" > list.txt ")
 
-      ##### creates jobs #######
+
+         if ( x % 1000 == 0 ):
+            dirnum+=1
+         s_dirnum = str(dirnum);
+
+         ##### creates jobs #######
          with open('job_'+str(x)+'.sh', 'w') as fout:                  
 
             fout.write("#!/bin/sh\n")
@@ -114,7 +157,7 @@ def main():
             fout.write("cd /home/hep/snwebb/invisible/CMSSW_9_4_10/src\n")
             fout.write("eval `scramv1 runtime -sh`\n")
             fout.write("cd /home/hep/snwebb/invisible/analysis\n")
-            fout.write("./FillHistograms --filein root://gfe02.grid.hep.ph.ic.ac.uk:1096//store/user/sawebb/"+ Date +"/"+indir + "/tree_"+str(x)+".root --fileout " + OutputFileNames +"_"+str(x)+".root \n")
+            fout.write("./FillHistograms --filein root://gfe02.grid.hep.ph.ic.ac.uk:1096//store/user/sawebb/"+ Date +"/"+indir + "/000"+s_dirnum+"/tree_"+str(x)+".root --fileout " + OutputFileNames +"_"+str(x)+".root \n")
             fout.write("echo 'STOP---------------'\n")
             fout.write("echo\n")
             fout.write("echo\n")
