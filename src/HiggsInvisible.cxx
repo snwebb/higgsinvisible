@@ -12,16 +12,26 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   TH1::SetDefaultSumw2();
   _HistoSets.push_back( "Default" );
   // _HistoSets.push_back( "Default2ndLep" );
-   _HistoSets.push_back( "All" );
+  _HistoSets.push_back( "All" );
 
+  _HistoSets.push_back( "MJJ-200-500" );
+  _HistoSets.push_back( "MJJ-500-1000" );
+  _HistoSets.push_back( "MJJ-1000-1500" );
+  _HistoSets.push_back( "MJJ-1500-5000" );
 
-   _HistoSets.push_back( "1JPt150" );
+  _HistoSets.push_back( "NJET1" );
+  _HistoSets.push_back( "NJET2" );
+  _HistoSets.push_back( "NJET3" ); 
+  
+  _HistoSets.push_back( "1JPt150" );
+
+  _HistoSets.push_back( "non-VBF" );
+
 
   // _HistoSets.push_back( "Default-Mjj-200-500" );
   // _HistoSets.push_back( "Default-Mjj-500-1000" );
   // _HistoSets.push_back( "Default-Mjj-1000-1500" );
   // _HistoSets.push_back( "Default-Mjj-1500-5000" );
-
 
   if ( _filein.find("WJetsToLNu")!=std::string::npos ) _wln = true;
   if ( _filein.find("ZJetsToNuNu")!=std::string::npos ) _znn = true;
@@ -53,23 +63,31 @@ void HiggsInvisible::SetupFillHistograms(){
   _fout = new TFile( TString(_fileout), "RECREATE" );
 
   _chain   = new TChain ( "Events" );
+  _runchain   = new TChain ( "Runs" );
 
   //  std::string remotedir = "root://cms-xrd-global.cern.ch//store/user/sawebb/SingleGammaPt25Eta1p6_2p8/crab_SingleGammaPt25_PU0-stc/181025_100629/0000/";
 
   for ( int i = 0; i < 1; i++ ){
     _chain  ->Add ( TString(_filein) );
+    _runchain  ->Add ( TString(_filein) );
   }
 
 
   MakeAllHistograms( _HistoSets );
 
-
-
+  _fout->mkdir("All");
+  _fout->cd("All");
+  _cloned_hists[ "All" ] [ "nRuns" ] = new TH1D ( ("All_nRuns"), ";;Number of Events", 1,0.5,1.5 );  
+  
 
 
 }
 
 void HiggsInvisible::Fill(){
+
+
+  InitRuns(  _runchain );
+  LoopRuns( );
 
   Init(  _chain );
   Loop( );
@@ -88,6 +106,8 @@ void HiggsInvisible::Loop( ){
 
   Long64_t nentries = fChain->GetEntries();
   Long64_t nbytes = 0, nb = 0;
+
+  nRuns /= double ( fChain->GetEntries() );
 
   fChain->SetBranchStatus("*",0);
   fChain->SetBranchStatus("gen_boson_pt",1);
@@ -118,6 +138,11 @@ void HiggsInvisible::Loop( ){
   fChain->SetBranchStatus("GenPart_phi",1);
   fChain->SetBranchStatus("GenPart_pt",1);
   fChain->SetBranchStatus("GenPart_eta",1);
+
+  fChain->SetBranchStatus("LHEScaleWeight",1);
+  fChain->SetBranchStatus("LHEPdfWeight",1);
+  // fChain->SetBranchStatus("event",1);
+  // fChain->SetBranchStatus("nLHEScaleWeight",1);
   
 
 
@@ -153,6 +178,18 @@ void HiggsInvisible::Loop( ){
   }
 
 
+}
+
+
+
+void HiggsInvisible::LoopRuns(){
+
+  if (fChain == 0) return;
+  nRuns = fChain->GetEntries();
+
+  _cloned_hists[ "All" ] [ "nRuns" ] -> Fill( 1, double(nRuns) );
+
+  std::cout << "nRuns = " << nRuns << std::endl;
 }
 
 

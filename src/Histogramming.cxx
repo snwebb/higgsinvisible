@@ -4,7 +4,7 @@ Samuel Webb
 Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2019-06-06 10:20:09 (snwebb)>
+// Time-stamp: <2019-10-29 15:42:48 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -34,7 +34,7 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
     _cloned_hists[ name ] [ "gen_dphijj" ] = new TH1D ( (name + "_gen_dphijj").c_str(), ";#Delta#phi_{jj};Number of Events", 50,0, M_PI );  
     _cloned_hists[ name ] [ "gen_mindphi_jetmet" ] = new TH1D ( (name + "_gen_mindphi_jetmet").c_str(), ";min-#Delta#phi(j,p_{T}^{V});Number of Events", 50,0, M_PI );  
     _cloned_hists[ name ] [ "LHE_HT" ] = new TH1D ( (name + "_LHE_HT").c_str(), ";HT;Number of Events",3000,0,3000);  
-    _cloned_hists[ name ] [ "gen_weight" ] = new TH1D ( (name + "_gen_weight").c_str(), ";weight;Number of Events",100,-15000,15000);  
+    _cloned_hists[ name ] [ "gen_weight" ] = new TH1D ( (name + "_gen_weight").c_str(), ";weight;Number of Events",100,-100000,100000);  
     _cloned_hists[ name ] [ "gen_jetpt0" ] = new TH1D ( (name + "_gen_jetpt0").c_str(), ";jet 0 p_{T};Number of Events", 100,0,200 );  
 
     _cloned_hists[ name ] [ "n_jets" ] = new TH1D ( (name + "_n_jets").c_str(), ";nJets;Number of Events", 10,-0.5,9.5 );  
@@ -45,7 +45,7 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
   }
 
   if ( name == "All" ){
-    _cloned_hists[ name ] [ "gen_events" ] = new TH1D ( (name + "_gen_events").c_str(), ";;Number of Events",2,0.5,2.5 );  
+    _cloned_hists[ name ] [ "gen_events" ] = new TH1D ( (name + "_gen_events").c_str(), ";;Number of Events",3,0.5,3.5 );  
     // _cloned_hists[ name ] [ "LHE_HT" ] = new TH1D ( (name + "_LHE_HT").c_str(), ";HT;Number of Events",3000,0,3000);  
     // _cloned_hists[ name ] [ "gen_weight" ] = new TH1D ( (name + "_gen_weight").c_str(), ";weight;Number of Events",100,-15000,15000);  
     // _cloned_hists[ name ] [ "gen_boson_eta" ] = new TH1D ( (name + "_gen_boson_eta").c_str(), ";Boson #eta;Number of Events", 40,-8,8 );  
@@ -56,34 +56,56 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
     
   }
 
-  if ( name.find("Mjj")!=std::string::npos ){
+  if ( name.find("Mjj")!=std::string::npos || name.find("MJJ")!=std::string::npos ){
 
     _cloned_hists[ name ] [ "gen_boson_pt" ] = new TH1D ( (name + "_gen_boson_pt").c_str(), ";Boson p_{T};Number of Events", 110,0,1100 );  
     
   }
+  if ( name.find("NJET")!=std::string::npos ){
 
+    _cloned_hists[ name ] [ "gen_boson_pt" ] = new TH1D ( (name + "_gen_boson_pt").c_str(), ";Boson p_{T};Number of Events", 110,0,1100 );  
+    
+  }
+  if ( name == "Default" || name.find("MJJ")!=std::string::npos){
+    
+    for ( int i = 0;i<9;i++){
+      _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] = new TH1D ( (name + "_gen_boson_pt_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Number of Events", 110,0,1100 );  
+    }
+    for ( int i = 0;i<102;i++){
+      _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] = new TH1D ( (name + "_gen_boson_pt_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Number of Events", 110,0,1100 );  
+    }
+
+  }
+
+  if ( name == "non-VBF" ){
+
+    _cloned_hists[ name ] [ "gen_boson_pt" ] = new TH1D ( (name + "_gen_boson_pt").c_str(), ";Boson p_{T};Number of Events", 110,0,1100 );  
+    _cloned_hists[ name ] [ "gen_jetpt0" ] = new TH1D ( (name + "_gen_jetpt0").c_str(), ";jet 0 p_{T};Number of Events", 110,0,1100 );  
+
+
+    for ( int i = 0;i<9;i++){
+      _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] = new TH1D ( (name + "_gen_boson_pt_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Number of Events", 110,0,1100 );  
+      _cloned_hists[ name ] [ "gen_jetpt0_Scale_"+std::to_string(i) ] = new TH1D ( (name + "_gen_jetpt0_Scale_" + std::to_string(i) ).c_str(), ";jet 0 p_{T};Number of Events", 110,0,1100 );  
+    }
+    for ( int i = 0;i<102;i++){
+      _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] = new TH1D ( (name + "_gen_boson_pt_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Number of Events", 110,0,1100 );  
+      _cloned_hists[ name ] [ "gen_jetpt0_PDF_"+std::to_string(i) ] = new TH1D ( (name + "_gen_jetpt0_PDF_" + std::to_string(i) ).c_str(), ";jet 0 p_{T};Number of Events", 110,0,1100 );  
+    }
+
+
+  }
 
 
 }
 
 
-// void HiggsInvisible::CalculateTriggerCellVariables(  ){
-
-//   _event_variables[  "ex_sum_forward"  ] = exsum_forward;
-
-// }
-
 
 
 void HiggsInvisible::FillAllHists( std::string name ){
   
-  //  CalculateTriggerCellVariables();
-  
   double weight = genWeight;
-
   //  double weight = 1;
 
-  //  std::cout << "weight == " << weight << std::endl;
   //  if ( name == "Default" ||  name == "1JPt150" ){
   if ( name == "Default" ||  name == "1JPt150" || name == "All"){
     //  if ( name == "Default" ){
@@ -111,6 +133,7 @@ void HiggsInvisible::FillAllHists( std::string name ){
   if ( name == "All" ){
     _cloned_hists[ name ] [ "gen_events" ] -> Fill( 1 );
     _cloned_hists[ name ] [ "gen_events" ] -> Fill( 2, weight );
+    _cloned_hists[ name ] [ "gen_events" ] -> Fill( 3, double(nRuns) );
     // _cloned_hists[ name ] [ "LHE_HT" ] -> Fill( LHE_HT, weight );
     // _cloned_hists[ name ] [ "gen_weight" ] -> Fill( genWeight );
     // _cloned_hists[ name ] [ "gen_boson_eta" ] -> Fill( gen_boson_eta, weight );
@@ -122,6 +145,43 @@ void HiggsInvisible::FillAllHists( std::string name ){
 
   if ( name.find( "Mjj" )!=std::string::npos ){
     _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( gen_boson_pt, weight );
+  }
+
+
+  if ( name.find( "NJET" )!=std::string::npos ){
+    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( gen_boson_pt, weight );
+  }
+
+  if ( name.find( "non-VBF" )!=std::string::npos ){
+    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( gen_boson_pt, weight );
+    _cloned_hists[ name ] [ "gen_jetpt0" ] -> Fill( GenJet_pt[0], weight );
+
+    for ( int i = 0;i<9;i++){
+      double scaled_weight = weight * LHEScaleWeight[i];
+      _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] -> Fill( gen_boson_pt, scaled_weight );
+    }
+    for ( int i = 0;i<102;i++){
+      double scaled_weight = weight * LHEPdfWeight[i];
+      _cloned_hists[ name ] [ "gen_jetpt0_PDF_"+std::to_string(i) ] -> Fill( GenJet_pt[0], scaled_weight );
+    }
+
+  }
+
+  if ( name == "Default" || name.find("MJJ")!=std::string::npos ){
+
+    for ( int i = 0;i<9;i++){
+      double scaled_weight = weight * LHEScaleWeight[i];
+      _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] -> Fill( gen_boson_pt, scaled_weight );
+    }
+    for ( int i = 0;i<102;i++){
+      double scaled_weight = weight * LHEPdfWeight[i];
+      _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] -> Fill( gen_boson_pt, scaled_weight );
+    }
+
+  }
+
+  if (name.find("MJJ")!=std::string::npos ){
+    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( _event_variables["gen_boson_pt"], weight );
   }
 
 }
@@ -256,7 +316,7 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
   
   //  std::cout << _zll << " - " << _wln << std::endl;
   //  if ( name.find ("Default") !=std::string::npos ){
-  if ( name == "Default" ){
+  if ( name == "Default" || name.find("MJJ")!=std::string::npos || name.find("NJET")!=std::string::npos){
 
     //Delta phi between jet and boson
 
@@ -271,10 +331,8 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
     for (unsigned int g = 0; g<(nGenJet<3?nGenJet:3); g++){
       if ( GenJet_pt[g] > 30 ){
     	jet.SetPtEtaPhiM( GenJet_pt[g], GenJet_eta[g], GenJet_phi[g], GenJet_mass[g] );
-	//	std::cout << std::abs(boson.DeltaPhi( jet )) << std::endl;
     	if ( std::abs(boson.DeltaPhi( jet )) < 0.5 ){ 
 	  pass_mindphi_jetbos = false;
-	  //	  std::cout << g << " - " <<  GenJet_pt[g] << std::endl;
 	  break;
 	}
       }
@@ -282,32 +340,50 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
     
     if ( GenJet_pt[0] > 80 
 	 && GenJet_pt[1] > 40 
-	 
-	 && GenJet_eta[0] *  GenJet_eta[1] < 0 &&
+	 && GenJet_eta[0] *  GenJet_eta[1] < 0 
 	 //	 (std::abs(GenJet_eta[0]) < 3 || std::abs(GenJet_eta[1])<3 )
-	 &&	 (gen_mindphi_jetmet) > 0.5 
-
+	 //	 &&	 (gen_mindphi_jetmet) > 0.5 
 	 &&	 pass_mindphi_jetbos
 	 && gen_dphijj < 1.5 && 
 	 gen_mjj > 200 && 
 	 gen_detajj > 1 
-	 
-
-	 
-	 // //for k-factors
-	 
+	 	 
+	 // //for k-factors	 
 	 // //	 (  (_zll||_wln) ? (std::abs(GenDressedLepton_eta[0]) < 2.4) : true) 
 	 // //	 GenDressedLepton_pt[0] > 20//think
-	 
 
-	 
-
-	 
-	 && LHE_HT>100
+	 && LHE_HT>70
+	 &&   _event_variables["gen_boson_pt"]>70
+	 //	 && LHE_HT>70
 	 ){
-      //      std::cout << "Getting here "<< std::endl;
+
       passcut = true;
+
+      if ( name == "MJJ-200-500" ){
+	if (  gen_mjj < 200 || gen_mjj > 500 ) passcut = false;
+      }
+      if ( name == "MJJ-500-1000" ){
+	if (  gen_mjj < 500 || gen_mjj > 1000 ) passcut = false;
+      }
+      if ( name == "MJJ-1000-1500" ){
+	if (  gen_mjj < 1000 || gen_mjj > 1500 ) passcut = false;
+      }
+      if ( name == "MJJ-1500-5000" ){
+	if (  gen_mjj < 1500 || gen_mjj > 5000 ) passcut = false;
+      }
+
+
+      if ( name == "NJET1" ){
+	if (  LHE_Njets !=1 ) passcut = false;
+      }
+      if ( name == "NJET2" ){
+	if (  LHE_Njets !=2 ) passcut = false;
+      }
+      if ( name == "NJET3" ){
+	if (  LHE_Njets !=3 ) passcut = false;
+      }
       
+
     }
   }
 
@@ -329,27 +405,22 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
       }
     }
 
-    if ( GenJet_pt[0] > 80 &&
+    if ( GenJet_pt[0] > 80
 	 
-	 //	 && GenJet_eta[0] *  GenJet_eta[1] < 0 &&
+	 && GenJet_eta[0] *  GenJet_eta[1] < 0
 	 //	 (std::abs(GenJet_eta[0]) < 3 ) &&
-       	 (gen_mindphi_jetmet) > 0.5 &&
+	 //       	 (gen_mindphi_jetmet) > 0.5 &&
 	 
-	 pass_mindphi_jetbos
-	 //	 gen_dphijj < 1.5 && 
-	 //gen_mjj > 200 && 
-	 //	 gen_detajj > 1 
+	 && pass_mindphi_jetbos
+	 && gen_dphijj < 1.5 && 
+	 gen_mjj > 200 && 
+	 gen_detajj > 1 
 
 	 ){
       passcut = true;
       
     }
 
-
-
-    //    std::cout << "passcut  " << GenJet_pt[0] << " - " << GenJet_pt[1] << " - " <<  GenJet_eta[0] << " - " << GenJet_eta[1]  << std::endl;
-    //    std::cout << "passcut  " << pass_mindphi_jetbos << " - " << gen_dphijj << " - " <<  gen_mjj << " - " << gen_detajj  << std::endl;
-    //    std::cout << "PASSSSSS -= " << passcut << std::endl;
 
     if ( name == "Default2ndLep" ){
       bool pass_additional = false;
@@ -391,10 +462,32 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
   }
 
 
-  if ( name == "All" ){
-    if (  LHE_HT>100 ){
-      passcut = true;
+  if ( name == "non-VBF" ){
+
+    TLorentzVector jet,ht;
+    for (unsigned int g = 0; g<nGenJet; g++){
+      if ( GenJet_pt[g] > 30 ){
+    	jet.SetPtEtaPhiM( GenJet_pt[g], GenJet_eta[g], GenJet_phi[g], GenJet_mass[g] );
+	ht+=jet;
+      }
     }
+    
+    if ( GenJet_pt[0] > 80
+	 && _event_variables["gen_boson_pt"] > 200
+         &&  ht.Pt() > 200
+         &&  ht.Pt()/_event_variables["gen_boson_pt"]  < 1.2
+	 ){
+      passcut = true;
+      
+    }
+  }
+    
+  if ( name == "All" ){
+    // if (  LHE_HT>100 
+    // 	  &&   _event_variables["gen_boson_pt"]>100
+    // 	  ){
+      passcut = true;
+      //    }
   }
   
 
