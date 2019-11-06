@@ -4,7 +4,7 @@ Samuel Webb
 Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2019-10-29 15:42:48 (snwebb)>
+// Time-stamp: <2019-11-06 10:59:54 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -140,29 +140,31 @@ void HiggsInvisible::FillAllHists( std::string name ){
   }
 
   if ( name == "Default2ndLep" ){
-    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( gen_boson_pt, weight );
+    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( _event_variables["gen_boson_pt"], weight );
   }
 
   if ( name.find( "Mjj" )!=std::string::npos ){
-    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( gen_boson_pt, weight );
+    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill(_event_variables["gen_boson_pt"], weight );
   }
 
 
   if ( name.find( "NJET" )!=std::string::npos ){
-    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( gen_boson_pt, weight );
+    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( _event_variables["gen_boson_pt"], weight );
   }
 
   if ( name.find( "non-VBF" )!=std::string::npos ){
-    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( gen_boson_pt, weight );
+    _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( _event_variables["gen_boson_pt"], weight );
     _cloned_hists[ name ] [ "gen_jetpt0" ] -> Fill( GenJet_pt[0], weight );
 
     for ( int i = 0;i<9;i++){
       double scaled_weight = weight * LHEScaleWeight[i];
-      _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] -> Fill( gen_boson_pt, scaled_weight );
+      _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], scaled_weight );
+      _cloned_hists[ name ] [ "gen_jetpt0_Scale_"+std::to_string(i) ] -> Fill( GenJet_pt[0], scaled_weight );
     }
     for ( int i = 0;i<102;i++){
       double scaled_weight = weight * LHEPdfWeight[i];
       _cloned_hists[ name ] [ "gen_jetpt0_PDF_"+std::to_string(i) ] -> Fill( GenJet_pt[0], scaled_weight );
+      _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], scaled_weight );
     }
 
   }
@@ -171,16 +173,17 @@ void HiggsInvisible::FillAllHists( std::string name ){
 
     for ( int i = 0;i<9;i++){
       double scaled_weight = weight * LHEScaleWeight[i];
-      _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] -> Fill( gen_boson_pt, scaled_weight );
+      _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], scaled_weight );
     }
     for ( int i = 0;i<102;i++){
       double scaled_weight = weight * LHEPdfWeight[i];
-      _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] -> Fill( gen_boson_pt, scaled_weight );
+      _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], scaled_weight );
     }
 
   }
 
   if (name.find("MJJ")!=std::string::npos ){
+    std::cout << "name = " << name << ", sw = 1" << std::endl;
     _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( _event_variables["gen_boson_pt"], weight );
   }
 
