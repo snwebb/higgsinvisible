@@ -13,10 +13,16 @@ print
 NumberOfJobs= 30
 # number of jobs to be submitted
 interval = 1 # number files to be processed in a single job, take care to split your file so that you run on all files. The last job might be with smaller number of files (the ones that remain).
-Date = "190312"
+Date = "190708"
+
+#count = 0;
+# OutputDirList=[]
+# for i in InputDirList:
+#    OutputDirList.append( "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[1] + str(count) )
+#    count+=1;
 
 OutputDirList = [
-   "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[1] for i in InputDirList
+   "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[2] for i in InputDirList
  ]
 
 #FileList = "filelist.txt" # list with all the file directories

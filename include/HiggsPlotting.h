@@ -1,7 +1,7 @@
 #ifndef _HiggsPlotting_h_
 #define _HiggsPlotting_h_
-#define XXX std::cout << "I am here: " << __LINE__ << std::endl << std::endl;
 #include "Plotter.h"
+#include "Helpers.h"
 #include "CmdLine.h"
 #include <cstring>
 #include <time.h>
@@ -46,7 +46,7 @@ class HiggsPlotting{
 
   clonemap _cloned_hists;
 
-  
+  Helpers _helper;
 
  public:
 
@@ -58,6 +58,7 @@ class HiggsPlotting{
   void LoadAllHistograms();
   void Rebin();
   void CombineHistograms();
+  void EvaluateUncertainties();
   void PlotAllHistograms();
 
   void MakeTar();

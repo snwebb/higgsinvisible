@@ -1,6 +1,5 @@
 #ifndef _HiggsInvisible_h_
 #define _HiggsInvisible_h_
-#define XXX std::cout << "I am here: " << __LINE__ << std::endl << std::endl;
 #include "BuildTreeBase.h"
 #include "Plotter.h"
 #include "CmdLine.h"
@@ -45,7 +44,8 @@ class HiggsInvisible: public BuildTreeBase {
   TDirectory * _origDir ;	
   int _max_events;
   std::vector<std::string> _HistoSets;
-  TChain * _chain    ;
+  TChain * _chain    ;  
+  TChain * _runchain   ;
 
   typedef std::map< std::string, TH1D* > histmap;
   typedef std::map< std::string, histmap > clonemap;
@@ -59,6 +59,8 @@ class HiggsInvisible: public BuildTreeBase {
   bool _wln = false;
   bool _znn = false;
   bool _zll = false;
+
+  int nRuns = 0;
 
  public:
 
@@ -75,9 +77,13 @@ class HiggsInvisible: public BuildTreeBase {
 
   void Loop();
 
+  void LoopRuns();
+
   void Fill();
 
   void FillAllHists( std::string name );
+
+  void ResetVariables( );
 
   void CalculateVariables( );
 

@@ -16,14 +16,18 @@ int main( int argc, char ** argv ){
   higgs->Rebin();
 
 
+
+
+
+
   higgs->CombineHistograms();
 
 
+  higgs->EvaluateUncertainties();
+
   higgs->PlotAllHistograms();
-
   higgs->MakeTar();
-
-  delete higgs;
+  //  delete higgs;
 
   return 0;
 

@@ -57,9 +57,9 @@ class BuildTreeBase {
    Float_t         genWeight;
    Float_t         LHEWeight_originalXWGTUP;
    UInt_t          nLHEPdfWeight;
-   Float_t         LHEPdfWeight[1];   //[nLHEPdfWeight]
+   Float_t         LHEPdfWeight[102];   //[nLHEPdfWeight]
    UInt_t          nLHEScaleWeight;
-   Float_t         LHEScaleWeight[1];   //[nLHEScaleWeight]
+   Float_t         LHEScaleWeight[9];   //[nLHEScaleWeight]
    Float_t         LHE_HT;
    Float_t         LHE_HTIncoming;
    Float_t         LHE_Vpt;
@@ -185,6 +185,7 @@ class BuildTreeBase {
    virtual Int_t    GetEntry(Long64_t entry);
    virtual Long64_t LoadTree(Long64_t entry);
    virtual void     Init(TTree *tree);
+   virtual void     InitRuns(TTree *tree);
    virtual void     Loop();
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
@@ -322,6 +323,18 @@ void BuildTreeBase::Init(TTree *tree)
    fChain->SetBranchAddress("gen_mindphi_jetmet", &gen_mindphi_jetmet, &b_gen_mindphi_jetmet);
    Notify();
 }
+
+void BuildTreeBase::InitRuns(TTree *tree)
+{
+   if (!tree) return;
+   fChain = tree;
+   fCurrent = -1;
+   fChain->SetMakeClass(1);
+
+   fChain->SetBranchAddress("run", &run, &b_run);
+   Notify();
+}
+
 
 Bool_t BuildTreeBase::Notify()
 {
