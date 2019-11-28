@@ -10,7 +10,9 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   _max_events =  _cmd->int_val( "--max_events"  , -1);
 
   TH1::SetDefaultSumw2();
+  //  TH1::AddDirectory(kFALSE);
   _HistoSets.push_back( "Default" );
+  _HistoSets.push_back( "Default_BARE" );
   // _HistoSets.push_back( "Default2ndLep" );
   _HistoSets.push_back( "All" );
 
@@ -19,11 +21,16 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   _HistoSets.push_back( "MJJ-1000-1500" );
   _HistoSets.push_back( "MJJ-1500-5000" );
 
-  _HistoSets.push_back( "NJET1" );
-  _HistoSets.push_back( "NJET2" );
-  _HistoSets.push_back( "NJET3" ); 
+  _HistoSets.push_back( "MJJ-200-500_BARE" );
+  _HistoSets.push_back( "MJJ-500-1000_BARE" );
+  _HistoSets.push_back( "MJJ-1000-1500_BARE" );
+  _HistoSets.push_back( "MJJ-1500-5000_BARE" );
+
+  // _HistoSets.push_back( "NJET1" );
+  // _HistoSets.push_back( "NJET2" );
+  // _HistoSets.push_back( "NJET3" ); 
   
-  _HistoSets.push_back( "1JPt150" );
+  //  _HistoSets.push_back( "1JPt150" );
 
   _HistoSets.push_back( "non-VBF" );
 
@@ -141,13 +148,17 @@ void HiggsInvisible::Loop( ){
 
   fChain->SetBranchStatus("LHEScaleWeight",1);
   fChain->SetBranchStatus("LHEPdfWeight",1);
-  // fChain->SetBranchStatus("event",1);
+
+
+  fChain->SetBranchStatus("event",1);
   // fChain->SetBranchStatus("nLHEScaleWeight",1);
   
 
 
 
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
+
+    ResetVariables();
 
     Long64_t ientry = LoadTree(jentry);
     if (ientry < 0) break;
@@ -158,7 +169,7 @@ void HiggsInvisible::Loop( ){
     }
 
     if ( _max_events != -1 ){
-      if ( jentry > _max_events ) break;
+      if ( jentry == _max_events ) break;
     }
 
 

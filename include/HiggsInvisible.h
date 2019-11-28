@@ -83,6 +83,8 @@ class HiggsInvisible: public BuildTreeBase {
 
   void FillAllHists( std::string name );
 
+  void ResetVariables( );
+
   void CalculateVariables( );
 
   bool CalculateCuts( std::string name );
