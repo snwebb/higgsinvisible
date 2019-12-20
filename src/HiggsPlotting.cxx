@@ -215,11 +215,15 @@ void HiggsPlotting::Rebin(){
 
   RebinValues[ "All_LHE_HT" ] = 1;
 
+  RebinValues[ "non-VBF_gen_jetpt0"] = 2;
+
   //  double bins[13] = {0,70,120,170,220,270,320,370,470,600,750,900,1050};
 
 
   double bins[15] = {0,70,100,120,150,170,220,270,320,370,470,600,750,900,1050};
 
+  double bins_nonvbf_bosonpt[18] = {0,70,100,120,150,170,200,225,250,275,300,350,400,450,600,750,900,1050};
+  //  double bins_nonvbf_jetpt[] = {};
   //  double binsmjj[12] = {0,100,200,300,400,500,750,1000,1500,2000,3000,3500};
   for(auto &histsets : _cloned_hists) {
     for(auto &plot : histsets.second) {
@@ -229,8 +233,16 @@ void HiggsPlotting::Rebin(){
       }
       
       else if ( std::string(plot.first).find("gen_boson_pt")!=std::string::npos ){
-	plot.second =  (TH1D*) plot.second->Rebin( 14, plot.first + "_rebinnned" , bins ) ;
-	plot.second->Scale( 1,"width" );
+	
+	if ( std::string(plot.first).find("non-VBF")!=std::string::npos ){
+	  plot.second =  (TH1D*) plot.second->Rebin( 17, plot.first + "_rebinnned" , bins_nonvbf_bosonpt ) ;
+	  plot.second->Scale( 1,"width" );
+	}
+	else{
+	  plot.second =  (TH1D*) plot.second->Rebin( 14, plot.first + "_rebinnned" , bins ) ;
+	  plot.second->Scale( 1,"width" );
+	}
+
       }
       else if ( plot.first == "Default_gen_mjj" ){
 	  //	  plot.second =  (TH1D*) plot.second->Rebin( 11, plot.first + "_rebinnned" , binsmjj ) ;
@@ -960,35 +972,8 @@ void HiggsPlotting::PlotAllHistograms(){
       plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "Ratio-WLN-" + histset.first );
     }
   }
-  /*  
-  for (auto const& histset : _cloned_hists["WLN-NLO-Pt"]){
-    if ( histset.first == "Default_gen_boson_pt" || histset.first == "Default_gen_mjj" || histset.first == "MJJ-200-500"){
-      //Set LO stats to zero
-      for (int i = 1;i<_cloned_hists["WLN-LO"][ histset.first ]->GetNbinsX()+1;i++)    
-	_cloned_hists["WLN-LO"][ histset.first ]->SetBinError(i,0);
-      //    plotter.SaveToFile(plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "Ratio-WLN-Pt-" + histset.first ), "NLO_kFac_WLN-Pt-binned-" +  histset.first );
-    }
-  }
 
-  for (auto const& histset : _cloned_hists["WLN-NLO-Pt"]){
-    if ( histset.first == "MJJ-200-500"){
-      for (int i = 1;i<_cloned_hists["WLN-LO"][ histset.first ]->GetNbinsX()+1;i++)    
-	_cloned_hists["WLN-LO"][ histset.first ]->SetBinError(i,0);
-      //      plotter.SaveToFile(plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "RatioMJJ200-WLN-Pt-" + histset.first ), "kfactor_vbf_mjj_200_500" );
-    }
-  }
 
-  for (auto const& histset : _cloned_hists["ZLL-NLO-Pt"]){
-    if ( histset.first == "Default_gen_boson_pt" || histset.first == "Default_gen_mjj"){
-      
-      for (int i = 1;i<_cloned_hists["WLN-LO"][ histset.first ]->GetNbinsX()+1;i++)    
-	_cloned_hists["ZLL-LO"][ histset.first ]->SetBinError(i,0);
-      //      plotter.SaveToFile(plotter.DrawRatio( histset.second , _cloned_hists["ZLL-LO"][ histset.first ], "", "Ratio-ZLL-Pt-" + histset.first ), "NLO_kFac_ZLL-Pt-binned-" +  histset.first );
-      
-    }
-  }
-
-  */
   //// LHE PT k-factors
   //  std::vector<TString> sets = {"LHEPt"};
   std::vector<TString> sets = {"Pt", "LHEPt"};
@@ -1042,7 +1027,10 @@ void HiggsPlotting::PlotAllHistograms(){
       if ( std::string(histset.first).find("Scale")!=std::string::npos )
 	start = 150;
       TF1 * pol3 = new TF1("pol3","pol3",start,split);
-      TF1 * pol0 = new TF1("pol0","pol0",split,1050);
+      TF1 * pol0 = new TF1("pol0","pol0",split,1050);     
+      TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
+
+
       histo_fit->Fit(pol0, "LRQ0"); 
       for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
@@ -1054,18 +1042,28 @@ void HiggsPlotting::PlotAllHistograms(){
 	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
       }
 
+      polcomb->SetParameter(0,pol3->GetParameter(0));
+      polcomb->SetParameter(1,pol3->GetParameter(1));
+      polcomb->SetParameter(2,pol3->GetParameter(2));
+      polcomb->SetParameter(3,pol0->GetParameter(0));
+
+      ratio->Fit(polcomb, "LRQ"); 
 
 	if ( setname == "LHEPt" ){	
 	  plotter.SaveToFile(ratio, savename, "kfactor_VBF_wjet", systname );
 	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "kfactor_VBF_wjet", systname );
-	  if ( std::string(histset.first).find("Scale")==std::string::npos  )
+	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
 	    plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_VBF_wjet", systname );
+	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_VBF_wjet", systname );
+	  }
 	}
 	else if ( setname == "Pt" ){
 	  plotter.SaveToFile(ratio, savename, "PtBinned_kfactor_VBF_wjet", systname );
 	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "PtBinned_kfactor_VBF_wjet", systname );	  
-	  if ( std::string(histset.first).find("Scale")==std::string::npos  )
+	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
 	    plotter.SaveToFile(histo_fit, savename+"_fit", "PtBinned_kfactor_VBF_wjet", systname );	  
+	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "PtBinned_kfactor_VBF_wjet", systname );
+	  }
 	}
       }
     }
@@ -1111,6 +1109,7 @@ void HiggsPlotting::PlotAllHistograms(){
 
       TF1 * pol3 = new TF1("pol3","pol3",start,split);
       TF1 * pol0 = new TF1("pol0","pol0",split,1050);
+      TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
       histo_fit->Fit(pol0, "LRQ0"); 
       for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
@@ -1122,10 +1121,18 @@ void HiggsPlotting::PlotAllHistograms(){
 	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
       }
 
+      polcomb->SetParameter(0,pol3->GetParameter(0));
+      polcomb->SetParameter(1,pol3->GetParameter(1));
+      polcomb->SetParameter(2,pol3->GetParameter(2));
+      polcomb->SetParameter(3,pol0->GetParameter(0));
+      ratio->Fit(polcomb, "LRQ"); 
 
       plotter.SaveToFile(ratio, savename, "kfactor_nonVBF_wjet", systname );
       plotter.SaveToFile(histo_smoothed, savename + "_smoothed", "kfactor_nonVBF_wjet", systname );
-      if ( std::string(histset.first).find("Scale")==std::string::npos  )  plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_nonVBF_wjet", systname );
+      if ( std::string(histset.first).find("Scale")==std::string::npos  )  {
+	plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_nonVBF_wjet", systname );
+	plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_nonVBF_wjet", systname );
+      }
     }
   }
 
@@ -1182,6 +1189,7 @@ void HiggsPlotting::PlotAllHistograms(){
 
       TF1 * pol3 = new TF1("pol3","pol3",start,split);
       TF1 * pol0 = new TF1("pol0","pol0",split,1050);
+      TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
       histo_fit->Fit(pol0, "LRQ0"); 
       for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
@@ -1192,19 +1200,28 @@ void HiggsPlotting::PlotAllHistograms(){
 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
 	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
       }
+      polcomb->SetParameter(0,pol3->GetParameter(0));
+      polcomb->SetParameter(1,pol3->GetParameter(1));
+      polcomb->SetParameter(2,pol3->GetParameter(2));
+      polcomb->SetParameter(3,pol0->GetParameter(0));
 
+      ratio->Fit(polcomb, "LRQ"); 
 
 	if ( setname == "LHEPt" ){	
 	  plotter.SaveToFile(ratio, savename, "kfactor_VBF_zjet", systname );
 	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "kfactor_VBF_zjet", systname );
-	  if ( std::string(histset.first).find("Scale")==std::string::npos  )
+	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
 	    plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_VBF_zjet", systname );
+	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_VBF_zjet", systname );
+	  }
 	}
 	else if ( setname == "Pt" ){
 	  plotter.SaveToFile(ratio, savename, "PtBinned_kfactor_VBF_zjet", systname );
 	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "PtBinned_kfactor_VBF_zjet", systname );	  
-	  if ( std::string(histset.first).find("Scale")==std::string::npos  )
+	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
 	    plotter.SaveToFile(histo_fit, savename+"_fit", "PtBinned_kfactor_VBF_zjet", systname );	  
+	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "PtBinned_kfactor_VBF_zjet", systname );
+	  }
 	}
 
 
@@ -1250,6 +1267,8 @@ void HiggsPlotting::PlotAllHistograms(){
 
       TF1 * pol3 = new TF1("pol3","pol3",start,split);
       TF1 * pol0 = new TF1("pol0","pol0",split,1050);
+
+      TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
       histo_fit->Fit(pol0, "LRQ0"); 
       for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
@@ -1260,12 +1279,19 @@ void HiggsPlotting::PlotAllHistograms(){
 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
 	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
       }
+      polcomb->SetParameter(0,pol3->GetParameter(0));
+      polcomb->SetParameter(1,pol3->GetParameter(1));
+      polcomb->SetParameter(2,pol3->GetParameter(2));
+      polcomb->SetParameter(3,pol0->GetParameter(0));
 
+      ratio->Fit(polcomb, "LRQ"); 
 
       plotter.SaveToFile(ratio, savename, "kfactor_nonVBF_zjet", systname );
       plotter.SaveToFile(histo_smoothed, savename + "_smoothed", "kfactor_nonVBF_zjet", systname);
-      if ( std::string(histset.first).find("Scale")==std::string::npos  )
+      if ( std::string(histset.first).find("Scale")==std::string::npos  ){
 	plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_nonVBF_zjet", systname );
+	plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_nonVBF_zjet", systname );
+      }
     }
   }
   

@@ -243,6 +243,12 @@ class Plotter{
     Ratio->SetMaximum(2.8);
     Ratio->SetMinimum(0.3);
 
+
+    for (int i = 1;i<Ratio->GetNbinsX()+1;i++){
+      if ( Ratio->GetBinContent(i) <= 0 )
+	Ratio->SetBinContent(i,1);
+    }
+
     Draw( Ratio, legend, savename, false );
     //Ratio->Delete();
     return Ratio;

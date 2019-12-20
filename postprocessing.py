@@ -4,7 +4,8 @@ from math import sqrt
 
 di="kfactors_shape"    
 bins = ["200_500","500_1000","1500_5000"]
-uncerts = ["","_Renorm_Up","_Renorm_Down","_Fact_Up","_Fact_Down","_PDF_Up","_PDF_Down"]
+#uncerts = ["","_Renorm_Up","_Renorm_Down","_Fact_Up","_Fact_Down","_PDF_Up","_PDF_Down"]
+uncerts = ["","_Renorm_Up","_Renorm_Down","_Fact_Up","_Fact_Down"]
 cols = [1,2,4]
 cols = cols[:len(bins)]
 base = "kfactor_vbf_mjj_"
@@ -16,32 +17,37 @@ def main():
         fin = ROOT.TFile.Open("plots/"+sys.argv[1]+"/kfactor_" + fn + ".root","UPDATE")
         allh_fit = []
         allh = []
+        allf = []
         #histtype = "_fit"
         histtype = ""
 
         for uncert in uncerts:
             temp = []
+            tempf = []
             temp_fit = []
             for i,c in enumerate(cols): 
                 h = fin.Get("%s%s/%s%s%s"%(di,uncert,base,bins[i],""))
                 temp.append(h)
                 if ( uncert == "" ):
                     h_fit = fin.Get("%s%s/%s%s%s"%(di,uncert,base,bins[i],"_fit"))
+                    f = fin.Get("%s%s/%s%s%s"%(di,uncert,base,bins[i],"_fitfunc"))
                     temp_fit.append(h_fit)
-            allh.append(temp)
-            if ( uncert == "" ):
-                allh_fit.append(temp)
+                    allf.append(f)
 
-        calculateUncertainty(allh)
-        appendFittedUncertaintyToFile(allh,allh_fit,fin)
+            allh.append(temp)
+
+            if ( uncert == "" ):
+                allh_fit.append(temp_fit)
+
+#        calculateUncertainty(allh)
+        appendFittedUncertaintyToFile(allh,allh_fit,allf,fin)
 
     reTar()
 
 def reTar():
 
-    cmd = "cd plots; tar -zcf " + sys.argv[1] + ".tar.gz " + sys.argv[1] + ";  cd ../plots"
+    cmd = "cd plots;rm "+ sys.argv[1] + ".tar.gz; tar -zcf " + sys.argv[1] + ".tar.gz " + sys.argv[1] + ";  cd ../plots"
     subprocess.call( cmd, shell=True );
-
 
 
 
@@ -93,7 +99,8 @@ def calculateUncertainty(lists):
     lists.append(totaldown)
         
 
-def getUncertaintyRatios(hists,region,maxi=7):
+#def getUncertaintyRatios(hists,region,maxi=7):
+def getUncertaintyRatios(hists,region,maxi=5):
 
     default = list(zip(*hists))[region]
     ratios = []
@@ -113,7 +120,11 @@ def getUncertaintyRatios(hists,region,maxi=7):
     return ratios
     
   
-def appendFittedUncertaintyToFile(hists,hists_fit,filein):
+def appendFittedUncertaintyToFile(hists,hists_fit,funcs,filein):
+ 
+        
+        
+
 
     for i,uncert in enumerate(bins):
         ratios = getUncertaintyRatios(hists,i)
@@ -125,8 +136,18 @@ def appendFittedUncertaintyToFile(hists,hists_fit,filein):
             for b in range(1,hist.GetNbinsX()+1):
                 hist.SetBinContent(b,pol2.Eval(hist.GetBinCenter(b)))
             hist.Multiply(ratios_fit[0])
+            #            func[i]*pol2
+
+
+            def multiplyFunc(x):
+                val = funcs[i].Eval(x[0])*pol2.Eval(x[0])
+                return val 
+ 
+            funcMultiplied = ROOT.TF1("funcMultiplied",multiplyFunc,0,1050)
+
             filein.cd("kfactors_shape" + uncerts[j])
             hist.Write( base + uncert + "_fit")
+            funcMultiplied.Write( base + uncert + "_fitfunc")
             filein.cd("..")
   
         
