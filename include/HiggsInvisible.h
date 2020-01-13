@@ -54,7 +54,12 @@ class HiggsInvisible: public BuildTreeBase {
 
   clonemap _cloned_hists;
   doublemap _event_variables;
-  //  boolmap _cuts;
+  //  boolmap _cuts;  
+
+  std::vector<double> GenJet_eta_or; 
+  std::vector<double> GenJet_mass_or; 
+  std::vector<double> GenJet_phi_or; 
+  std::vector<double> GenJet_pt_or; 
 
   bool _wln = false;
   bool _znn = false;

@@ -129,18 +129,18 @@ def appendFittedUncertaintyToFile(hists,hists_fit,funcs,filein):
     for i,uncert in enumerate(bins):
         ratios = getUncertaintyRatios(hists,i)
         ratios_fit = getUncertaintyRatios(hists_fit,i,1)
-        pol2 = ROOT.TF1("pol2","pol1",170,470)
+        pol1 = ROOT.TF1("pol1","pol1",170,470)
         for j,hist in enumerate(ratios):
             if (j==0): continue
-            hist.Fit(pol2,"LRQ0")
+            hist.Fit(pol1,"LRQ0")
             for b in range(1,hist.GetNbinsX()+1):
-                hist.SetBinContent(b,pol2.Eval(hist.GetBinCenter(b)))
+                hist.SetBinContent(b,pol1.Eval(hist.GetBinCenter(b)))
             hist.Multiply(ratios_fit[0])
-            #            func[i]*pol2
+            #            func[i]*pol1
 
 
             def multiplyFunc(x):
-                val = funcs[i].Eval(x[0])*pol2.Eval(x[0])
+                val = funcs[i].Eval(x[0])*pol1.Eval(x[0])
                 return val 
  
             funcMultiplied = ROOT.TF1("funcMultiplied",multiplyFunc,0,1050)

@@ -29,6 +29,9 @@ void HiggsPlotting::LoadAllHistograms(){
   //  filenames[ "ZLL-NLO-orig" ]     = "MC_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8-Skimmed.root";
   filenames[ "ZLL-NLO-orig" ]     = "MC_DYJetsToLL_M-50-amcatnloFXFX.root";
   filenames[ "ZLL-NLO-ext" ] = "MC_DYJetsToLL_M-50-amcatnloFXFX-ext.root";
+
+  //LEADING ORDER
+  //OLD
   filenames[ "ZLL-LO-70-100" ] = "MC_DYJetsToLL_M-50_HT-70to100.root";
   filenames[ "ZLL-LO-100-200" ] = "MC_DYJetsToLL_M-50_HT-100to200.root";
   filenames[ "ZLL-LO-100-200-ext" ] = "MC_DYJetsToLL_M-50_HT-100to200-ext.root";
@@ -40,6 +43,44 @@ void HiggsPlotting::LoadAllHistograms(){
   filenames[ "ZLL-LO-800-1200" ] = "MC_DYJetsToLL_M-50_HT-800to1200.root";
   filenames[ "ZLL-LO-1200-2500" ] = "MC_DYJetsToLL_M-50_HT-1200to2500.root";
   filenames[ "ZLL-LO-2500-Inf" ] = "MC_DYJetsToLL_M-50_HT-2500toInf.root";
+
+  filenames[ "WLN-LO-70-100" ] = "MC_WJetsToLNu_HT-70To100_TuneCP5.root";
+  filenames[ "WLN-LO-100-200" ] = "MC_WJetsToLNu_HT-100To200_TuneCP5.root";
+  filenames[ "WLN-LO-200-400" ] = "MC_WJetsToLNu_HT-200To400_TuneCP5.root";
+  filenames[ "WLN-LO-400-600" ] = "MC_WJetsToLNu_HT-400To600_TuneCP5.root";
+  filenames[ "WLN-LO-600-800" ] = "MC_WJetsToLNu_HT-600To800_TuneCP5.root";
+  filenames[ "WLN-LO-800-1200" ] = "MC_WJetsToLNu_HT-800To1200_TuneCP5.root";
+  filenames[ "WLN-LO-1200-2500" ] = "MC_WJetsToLNu_HT-1200To2500_TuneCP5.root";
+  filenames[ "WLN-LO-2500-Inf" ] = "MC_WJetsToLNu_HT-2500ToInf_TuneCP5.root";
+
+  //LEADING ORDER
+  //ANDREAS
+
+  filenames[ "ZLL-LO-70-100" ] = "MC_DYJetsToLL_M-50_HT-70to100_madgraphMLM_pythia8.root";
+  filenames[ "ZLL-LO-100-200" ] = "MC_DYJetsToLL_M-50_HT-100to200_madgraphMLM_pythia8.root";
+  filenames[ "ZLL-LO-100-200-ext" ] = "MC_DYJetsToLL_M-50_HT-100to200_madgraphMLM_pythia8-ext1.root";
+  filenames[ "ZLL-LO-200-400" ] = "MC_DYJetsToLL_M-50_HT-200to400_madgraphMLM_pythia8.root";
+  filenames[ "ZLL-LO-200-400-ext" ] = "MC_DYJetsToLL_M-50_HT-200to400_madgraphMLM_pythia8-ext1.root";
+  filenames[ "ZLL-LO-400-600" ] = "MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8.root";
+  filenames[ "ZLL-LO-400-600-ext" ] = "MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8-ext1.root";
+  filenames[ "ZLL-LO-600-800" ] = "MC_DYJetsToLL_M-50_HT-600to800_madgraphMLM_pythia8.root";
+  filenames[ "ZLL-LO-800-1200" ] = "MC_DYJetsToLL_M-50_HT-800to1200_madgraphMLM_pythia8.root";
+  filenames[ "ZLL-LO-1200-2500" ] = "MC_DYJetsToLL_M-50_HT-1200to2500_madgraphMLM_pythia8.root";
+  filenames[ "ZLL-LO-2500-Inf" ] = "MC_DYJetsToLL_M-50_HT-2500toInf_madgraphMLM_pythia8.root";
+
+  filenames[ "WLN-LO-70-100" ] = "MC_WJetsToLNu_HT-70To100_madgraphMLM_pythia8.root";
+  filenames[ "WLN-LO-100-200" ] = "MC_WJetsToLNu_HT-100To200_madgraphMLM_pythia8.root";
+  filenames[ "WLN-LO-200-400" ] = "MC_WJetsToLNu_HT-200To400_madgraphMLM_pythia8.root";
+  filenames[ "WLN-LO-400-600" ] = "MC_WJetsToLNu_HT-400To600_madgraphMLM_pythia8.root";
+  filenames[ "WLN-LO-600-800" ] = "MC_WJetsToLNu_HT-600To800_madgraphMLM_pythia8.root";
+  filenames[ "WLN-LO-800-1200" ] = "MC_WJetsToLNu_HT-800To1200_madgraphMLM_pythia8.root";
+  filenames[ "WLN-LO-1200-2500" ] = "MC_WJetsToLNu_HT-1200To2500_madgraphMLM_pythia8.root";
+  filenames[ "WLN-LO-2500-Inf" ] = "MC_WJetsToLNu_HT-2500ToInf_madgraphMLM_pythia8.root";
+
+
+
+
+
 
   filenames[ "ZLL-NLO-Pt-100-250-ext1" ]     = "MC_DYJetsToLL_Pt-100To250-amcatnloFXFX-pythia8-ext1.root";
   filenames[ "ZLL-NLO-Pt-100-250-ext2" ]     = "MC_DYJetsToLL_Pt-100To250-amcatnloFXFX-pythia8-ext2.root";
@@ -68,14 +109,6 @@ void HiggsPlotting::LoadAllHistograms(){
   filenames[ "WLN-NLO-Pt-400-600-ext1" ] = "MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8-ext1.root";
   filenames[ "WLN-NLO-Pt-600-Inf-ext1" ] = "MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8-ext1.root";
 
-  filenames[ "WLN-LO-70-100" ] = "MC_WJetsToLNu_HT-70To100_TuneCP5.root";
-  filenames[ "WLN-LO-100-200" ] = "MC_WJetsToLNu_HT-100To200_TuneCP5.root";
-  filenames[ "WLN-LO-200-400" ] = "MC_WJetsToLNu_HT-200To400_TuneCP5.root";
-  filenames[ "WLN-LO-400-600" ] = "MC_WJetsToLNu_HT-400To600_TuneCP5.root";
-  filenames[ "WLN-LO-600-800" ] = "MC_WJetsToLNu_HT-600To800_TuneCP5.root";
-  filenames[ "WLN-LO-800-1200" ] = "MC_WJetsToLNu_HT-800To1200_TuneCP5.root";
-  filenames[ "WLN-LO-1200-2500" ] = "MC_WJetsToLNu_HT-1200To2500_TuneCP5.root";
-  filenames[ "WLN-LO-2500-Inf" ] = "MC_WJetsToLNu_HT-2500ToInf_TuneCP5.root";
 
   // filenames[ "WLN-LO-Pt-100-200" ] = "MC_WJetsToLNu_Pt-100To200-madgraphMLM-pythia8.root";
   // filenames[ "WLN-LO-Pt-200-Inf" ] = "MC_WJetsToLNu_Pt-200ToInf-madgraphMLM-pythia8.root";
@@ -123,7 +156,9 @@ void HiggsPlotting::LoadAllHistograms(){
   //  filenames[ "WLN-NLO-LHEPt-2J-400-Inf-ext1" ]     = "MC_W2JetsToLNu_LHEWpT_400-inf_amcnloFXFX-pythia8-ext1.root";
 
 
-  std::vector<std::string> plots = {"gen_boson_pt", "gen_boson_eta", "gen_mjj", "gen_detajj", "gen_dphijj", "gen_mindphi_jetmet", "LHE_HT", "gen_events","n_jets", "gen_jetpt0"};
+  //  std::vector<std::string> plots = {"gen_boson_pt", "gen_boson_eta", "gen_mjj", "gen_detajj", "gen_dphijj", "gen_mindphi_jetmet", "LHE_HT", "gen_events","n_jets", "gen_jetpt0"};
+
+  std::vector<std::string> plots = {"gen_boson_pt", "gen_events", "gen_jetpt0"};
 
   //  std::vector<std::string> histoSets = { "Default", "All", "Default-Mjj-200-500" };
   std::vector<std::string> histoSets = { "Default", "All" ,  "MJJ-200-500",  "MJJ-500-1000",  "MJJ-1000-1500", "MJJ-1500-5000", "non-VBF"};
@@ -142,11 +177,11 @@ void HiggsPlotting::LoadAllHistograms(){
     
     for ( auto histoset : histoSets ){
       std::string getname = histoset;
-      //      if ( histoset == "Default" ) getname = "Default_BARE";
-      // if ( histoset == "MJJ-200-500" ) getname = "MJJ-200-500_BARE";
-      // if ( histoset == "MJJ-500-1000" ) getname = "MJJ-500-1000_BARE";
-      // if ( histoset == "MJJ-1000-1500" ) getname = "MJJ-1000-1500_BARE";
-      // if ( histoset == "MJJ-1500-5000" ) getname = "MJJ-1500-5000_BARE";
+      if ( histoset == "Default" ) getname = "Default_BARE";
+      if ( histoset == "MJJ-200-500" ) getname = "MJJ-200-500_BARE";
+      if ( histoset == "MJJ-500-1000" ) getname = "MJJ-500-1000_BARE";
+      if ( histoset == "MJJ-1000-1500" ) getname = "MJJ-1000-1500_BARE";
+      if ( histoset == "MJJ-1500-5000" ) getname = "MJJ-1500-5000_BARE";
 
       for ( auto plotname : plots ){
 	loadHist = 0;
@@ -170,10 +205,6 @@ void HiggsPlotting::LoadAllHistograms(){
 	  loadHist = (TH1D*) loadFile->Get( loadname.c_str() );
 	  if ( loadHist != 0 ){ 
 	    _cloned_hists[ filename.first ][ histoset + "_" + syst+"_Scale_" + std::to_string(i) ]  = (TH1D*) loadHist->Clone( ( filename.first + histoset + "_"+syst+"_Scale_" + std::to_string(i) ) );
-	  }
-	  else{
-	    
-	    //	    std::cout << "getname err = " << loadname << " - " << filename.first << std::endl;
 	  }
 	}
 
@@ -215,20 +246,31 @@ void HiggsPlotting::Rebin(){
 
   RebinValues[ "All_LHE_HT" ] = 1;
 
-  RebinValues[ "non-VBF_gen_jetpt0"] = 2;
+  //  RebinValues[ "non-VBF_gen_jetpt0"] = 2;
 
   //  double bins[13] = {0,70,120,170,220,270,320,370,470,600,750,900,1050};
 
+  double bins[15] = {0, 40, 80, 120, 160, 200, 240, 280, 320, 400, 520, 640, 760, 880,1100}; //andreas's binnings
+  //  double bins[15] = {0,70,100,120,150,170,220,270,320,370,470,600,750,900,1050};
 
-  double bins[15] = {0,70,100,120,150,170,220,270,320,370,470,600,750,900,1050};
+  //  double bins[51] = {0, 40, 80,100, 120,130,140,150, 160,170,180,190, 200,210,220,230, 240,250,260,270, 280,290,300,310, 320,340,360,380, 400,420,440,460,480,500, 520,540,560,580,600,620, 640,680,720,760,800,840,880,950,1000,1050,1100}; //fine binnings
 
+
+  //  double bins[40] = {0, 40, 80,100, 120,130,140,150, 160,170,180,190, 200,210,220,230, 240,250,260,270, 280,290,300,310, 320,340,360,380, 400,420,440,460,480,500,600,700,800,900,1000,1100}; //fine binnings
+
+
+  //  double bins[33] = {0, 40, 80,100,120,130,140,150, 160,170,180,190, 200,210,220,230, 240,250,260,270, 280,290,300,350,400,450,500,600,700,800,900,1000,1100}; //fine binnings
+
+  //double bins[22] = {0, 40, 80,100,120,140,160,180,200,225,250,300,350,400,450,500,600,700,800,900,1000,1100}; //fine binnings
+  //First of all find the peak then this is the "split" value
   double bins_nonvbf_bosonpt[18] = {0,70,100,120,150,170,200,225,250,275,300,350,400,450,600,750,900,1050};
   //  double bins_nonvbf_jetpt[] = {};
   //  double binsmjj[12] = {0,100,200,300,400,500,750,1000,1500,2000,3000,3500};
   for(auto &histsets : _cloned_hists) {
     for(auto &plot : histsets.second) {
 
-      if ( std::string(plot.first).find("gen_boson_pt")==std::string::npos &&  plot.first != "Default_gen_mjj"){
+
+      if ( std::string(plot.first).find("gen_boson_pt")==std::string::npos && std::string(plot.first).find("gen_jetpt0")==std::string::npos && plot.first != "Default_gen_mjj"){
 	if ( RebinValues.count(plot.first)>0 )   plot.second->Rebin( RebinValues[ plot.first ]  ) ;
       }
       
@@ -239,8 +281,13 @@ void HiggsPlotting::Rebin(){
 	  plot.second->Scale( 1,"width" );
 	}
 	else{
-	  plot.second =  (TH1D*) plot.second->Rebin( 14, plot.first + "_rebinnned" , bins ) ;
-	  plot.second->Scale( 1,"width" );
+	  	  plot.second =  (TH1D*) plot.second->Rebin( 14, plot.first + "_rebinnned" , bins ) ;
+	  //	  plot.second =  (TH1D*) plot.second->Rebin( 50, plot.first + "_rebinnned" , bins ) ;
+	  //	  plot.second =  (TH1D*) plot.second->Rebin( 39, plot.first + "_rebinnned" , bins ) ;
+	  //	  plot.second =  (TH1D*) plot.second->Rebin( 32, plot.first + "_rebinnned" , bins ) ;
+	  //	  plot.second =  (TH1D*) plot.second->Rebin( 21, plot.first + "_rebinnned" , bins ) ;
+		  	  plot.second->Scale( 1,"width" );
+		  //  plot.second->Scale( 1,"" );
 	}
 
       }
@@ -249,6 +296,9 @@ void HiggsPlotting::Rebin(){
 	  //	  plot.second->Scale( 1,"width" );
       }
 
+      else if ( std::string(plot.first).find("gen_jetpt0")!=std::string::npos ){
+	plot.second->Rebin( 2 );
+      }
     }
   }
   
@@ -314,14 +364,14 @@ void HiggsPlotting::CombineHistograms(){
 
 
 
-std::cout << std::fixed <<  "ZLL-NLO-LHEPt-1J-50-150-TOT "       <<     _num[      "ZLL-NLO-LHEPt-1J-50-150-TOT"  ]  << std::endl;
-std::cout << std::fixed <<  "ZLL-NLO-LHEPt-1J-150-250-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-1J-150-250-TOT"	  ]  << std::endl;
-std::cout << std::fixed <<  "ZLL-NLO-LHEPt-1J-250-400-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-1J-250-400-TOT"	  ]  << std::endl;
-std::cout << std::fixed <<  "ZLL-NLO-LHEPt-1J-400-Inf-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-1J-400-Inf-TOT"	  ]  << std::endl;
-std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-50-150-TOT " 	 << 	_num[   "ZLL-NLO-LHEPt-2J-50-150-TOT" 	  ]  << std::endl;
-std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-150-250-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-2J-150-250-TOT"	  ]  << std::endl;
-std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-250-400-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-2J-250-400-TOT"	  ]  << std::endl;
-std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-400-Inf-TOT "      <<     _num[     "ZLL-NLO-LHEPt-2J-400-Inf-TOT"  ]  << std::endl;
+// std::cout << std::fixed <<  "ZLL-NLO-LHEPt-1J-50-150-TOT "       <<     _num[      "ZLL-NLO-LHEPt-1J-50-150-TOT"  ]  << std::endl;
+// std::cout << std::fixed <<  "ZLL-NLO-LHEPt-1J-150-250-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-1J-150-250-TOT"	  ]  << std::endl;
+// std::cout << std::fixed <<  "ZLL-NLO-LHEPt-1J-250-400-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-1J-250-400-TOT"	  ]  << std::endl;
+// std::cout << std::fixed <<  "ZLL-NLO-LHEPt-1J-400-Inf-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-1J-400-Inf-TOT"	  ]  << std::endl;
+// std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-50-150-TOT " 	 << 	_num[   "ZLL-NLO-LHEPt-2J-50-150-TOT" 	  ]  << std::endl;
+// std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-150-250-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-2J-150-250-TOT"	  ]  << std::endl;
+// std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-250-400-TOT "	 << 	_num[   "ZLL-NLO-LHEPt-2J-250-400-TOT"	  ]  << std::endl;
+// std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-400-Inf-TOT "      <<     _num[     "ZLL-NLO-LHEPt-2J-400-Inf-TOT"  ]  << std::endl;
 
   for (auto const& histset : _cloned_hists["ZLL-NLO-LHEPt-1J-50-150"]){
     _cloned_hists["ZLL-NLO-LHEPt"][ histset.first ] = (TH1D*) histset.second->Clone( "ZLL-NLO-LHEPt-1J-50-150_" + histset.first  );   
@@ -568,18 +618,31 @@ std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-400-Inf-TOT "      <<     _num[   
 
 
   ///////  Z  /////////  
+  //ORGINAL
+  // _xs[ "ZLL-LO-70-100" ] = 1.47E+02;
+  // _xs[ "ZLL-LO-100-200"] = 1.62E+02;
+  // _xs[ "ZLL-LO-100-200-ext"] = 1.61E+02;
+  // _xs[ "ZLL-LO-200-400"] = 4.84E+01;
+  // _xs[ "ZLL-LO-200-400-ext"] = 4.85E+01;
+  // _xs[ "ZLL-LO-400-600"] = 7.06E+00;
+  // _xs[ "ZLL-LO-400-600-ext"] = 7.03E+00;
+  // _xs[ "ZLL-LO-600-800"] = 1.75E+00;
+  // _xs[ "ZLL-LO-800-1200"] = 7.96E-01;
+  // _xs[ "ZLL-LO-1200-2500"] = 1.93E-01;
+  // _xs[ "ZLL-LO-2500-Inf"] = 3.47E-03;
 
-  _xs[ "ZLL-LO-70-100" ] = 1.47E+02;
-  _xs[ "ZLL-LO-100-200"] = 1.62E+02;
-  _xs[ "ZLL-LO-100-200-ext"] = 1.61E+02;
-  _xs[ "ZLL-LO-200-400"] = 4.84E+01;
-  _xs[ "ZLL-LO-200-400-ext"] = 4.85E+01;
-  _xs[ "ZLL-LO-400-600"] = 7.06E+00;
-  _xs[ "ZLL-LO-400-600-ext"] = 7.03E+00;
-  _xs[ "ZLL-LO-600-800"] = 1.75E+00;
-  _xs[ "ZLL-LO-800-1200"] = 7.96E-01;
-  _xs[ "ZLL-LO-1200-2500"] = 1.93E-01;
-  _xs[ "ZLL-LO-2500-Inf"] = 3.47E-03;
+  //ANDREAS
+  _xs[ "ZLL-LO-70-100" ] = 147.0;
+  _xs[ "ZLL-LO-100-200"] = 161.3;
+  _xs[ "ZLL-LO-100-200-ext"] = 160.7;
+  _xs[ "ZLL-LO-200-400"] = 48.61;
+  _xs[ "ZLL-LO-200-400-ext"] = 48.44;
+  _xs[ "ZLL-LO-400-600"] = 7.033;
+  _xs[ "ZLL-LO-400-600-ext"] = 7.033;
+  _xs[ "ZLL-LO-600-800"] = 1.745;
+  _xs[ "ZLL-LO-800-1200"] = 0.8077;
+  _xs[ "ZLL-LO-1200-2500"] = 0.192;
+  _xs[ "ZLL-LO-2500-Inf"] = 0.003477;
 
   _sum["ZLL-LO-100-200-TOT"    ] =  _sum["ZLL-LO-100-200"    ] + _sum["ZLL-LO-100-200-ext"];
   _sum["ZLL-LO-200-400-TOT"    ] =  _sum["ZLL-LO-200-400"    ] + _sum["ZLL-LO-200-400-ext"];
@@ -592,7 +655,7 @@ std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-400-Inf-TOT "      <<     _num[   
     
     _cloned_hists["ZLL-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "ZLL-LO_" + histset.first );   
     _cloned_hists["ZLL-LO"][ histset.first ] ->Reset();
-    //    _cloned_hists["ZLL-LO"][ histset.first ]->Add( _cloned_hists["ZLL-LO-70-100"     ][histset.first], 1E3* _xs["ZLL-LO-70-100"     ] / _sum["ZLL-LO-70-100"     ]);
+    _cloned_hists["ZLL-LO"][ histset.first ]->Add( _cloned_hists["ZLL-LO-70-100"     ][histset.first], 1E3* _xs["ZLL-LO-70-100"     ] / _sum["ZLL-LO-70-100"     ]);
     _cloned_hists["ZLL-LO"][ histset.first ]->Add( _cloned_hists["ZLL-LO-100-200"    ][histset.first], 1E3* _xs["ZLL-LO-100-200"    ] / _sum["ZLL-LO-100-200-TOT"    ]);
     _cloned_hists["ZLL-LO"][ histset.first ]->Add( _cloned_hists["ZLL-LO-100-200-ext"][histset.first], 1E3* _xs["ZLL-LO-100-200-ext"] / _sum["ZLL-LO-100-200-TOT"]);
     _cloned_hists["ZLL-LO"][ histset.first ]->Add( _cloned_hists["ZLL-LO-200-400"    ][histset.first], 1E3* _xs["ZLL-LO-200-400"    ] / _sum["ZLL-LO-200-400-TOT"    ]);
@@ -608,20 +671,31 @@ std::cout << std::fixed <<  "ZLL-NLO-LHEPt-2J-400-Inf-TOT "      <<     _num[   
 
   ///////  W  /////////
 
-  _xs[ "WLN-LO-70-100" ] = 1.47E+01;
-  _xs[ "WLN-LO-100-200"] = 1.39E+03;
-  _xs[ "WLN-LO-200-400"] = 4.03E+02;
-  _xs[ "WLN-LO-400-600"] = 5.82E+01;
-  _xs[ "WLN-LO-600-800"] = 1.29E+01;
-  _xs[ "WLN-LO-800-1200"] = 5.49E+00;
-  _xs[ "WLN-LO-1200-2500"] = 1.092E+00;
-  _xs[ "WLN-LO-2500-Inf"] = 8.19E-03;
+  //ORIGINAL
+  // _xs[ "WLN-LO-70-100" ] = 1.47E+01;
+  // _xs[ "WLN-LO-100-200"] = 1.39E+03;
+  // _xs[ "WLN-LO-200-400"] = 4.03E+02;
+  // _xs[ "WLN-LO-400-600"] = 5.82E+01;
+  // _xs[ "WLN-LO-600-800"] = 1.29E+01;
+  // _xs[ "WLN-LO-800-1200"] = 5.49E+00;
+  // _xs[ "WLN-LO-1200-2500"] = 1.092E+00;
+  // _xs[ "WLN-LO-2500-Inf"] = 8.19E-03;
+
+  //ANDREAS
+  _xs[ "WLN-LO-70-100" ] = 1291.0;
+  _xs[ "WLN-LO-100-200"] = 1405.0;
+  _xs[ "WLN-LO-200-400"] = 411.1;
+  _xs[ "WLN-LO-400-600"] = 57.96;
+  _xs[ "WLN-LO-600-800"] = 13.06;
+  _xs[ "WLN-LO-800-1200"] = 5.419;
+  _xs[ "WLN-LO-1200-2500"] = 1.082;
+  _xs[ "WLN-LO-2500-Inf"] = 0.008111;
 
   for (auto const& histset : _cloned_hists["WLN-LO-70-100"]){ 
     
     _cloned_hists["WLN-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN-LO_" + histset.first );   
     _cloned_hists["WLN-LO"][ histset.first ] ->Reset();
-    //    _cloned_hists["WLN-LO"][ histset.first ]->Add( _cloned_hists["WLN-LO-70-100"     ][histset.first],  1E3 * _xs["WLN-LO-70-100"     ] / _sum["WLN-LO-70-100"     ]);
+    _cloned_hists["WLN-LO"][ histset.first ]->Add( _cloned_hists["WLN-LO-70-100"     ][histset.first],  1E3 * _xs["WLN-LO-70-100"     ] / _sum["WLN-LO-70-100"     ]);
     _cloned_hists["WLN-LO"][ histset.first ]->Add( _cloned_hists["WLN-LO-100-200"    ][histset.first],  1E3 * _xs["WLN-LO-100-200"    ] / _sum["WLN-LO-100-200"    ]);
     _cloned_hists["WLN-LO"][ histset.first ]->Add( _cloned_hists["WLN-LO-200-400"    ][histset.first],  1E3 * _xs["WLN-LO-200-400"    ] / _sum["WLN-LO-200-400"    ]);
     _cloned_hists["WLN-LO"][ histset.first ]->Add( _cloned_hists["WLN-LO-400-600"    ][histset.first],  1E3 * _xs["WLN-LO-400-600"    ] / _sum["WLN-LO-400-600"    ]);
@@ -680,7 +754,6 @@ void HiggsPlotting::EvaluateUncertainties(){
 	list = {"1","3","5","7"};
 
       for ( auto &j : list ) {
-	//	std::cout << setname << " - " << histoset + "_" + syst + "_ScaleUncorrelated_" + j << " - " << std::endl;	
 	_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleUncorrelated_" + setname + j);
 	_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleCorrelated_" + setname + j);
 	_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleZup_" + setname + j);
@@ -706,11 +779,6 @@ void HiggsPlotting::EvaluateUncertainties(){
 	    r = wnom / znom;
 	    double r_zup = (wnom/2) / zu;
 	    double r_wup = wu / (znom/2);
-
-	    // std::cout << setname << " - " << histoset + "_" + syst + nominal << " - " << j << std::endl;
-	    // std::cout << "bin " << i << " - ratio " << r << " ( "<<wnom/2<<"/"<<(znom/2)<<" ) " << " , " << r_wup << " ( "<<wu<<"/"<<zu<<" ) " << std::endl;
-
-
 
 	    double val_uncorrelated = 1;
 	    double val_correlated = 1;
@@ -777,9 +845,6 @@ void HiggsPlotting::EvaluateUncertainties(){
 	  double sd =  std::sqrt( sd_pdf*sd_pdf + sd_alphas*sd_alphas );
 	  //double sd =  std::sqrt( sd_pdf*sd_pdf  );
 	  
-	  // std::cout << "WLN-NLO-" + setname << " - " <<  histoset + "_" + syst + "_PDF" << std::endl;	  
-	  // std::cout << "PT:::: sumpdf, alhpas " << sd_pdf << " - " << sd_alphas << std::endl;
-	  
 	  if ( _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
 	    _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
 	}
@@ -827,7 +892,6 @@ void HiggsPlotting::EvaluateUncertainties(){
 	  double sum2_pdf = 0;
 	  for ( int j = 1; j < 31; j++){	    
 	    sum2_pdf += std::pow( 2*_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) - 2*_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i), 2);
-	    //	    std::cout << "aaaaaaa: " << 2*_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) << " - " << _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) << std::endl;
 	  }
 	  double sd_alphas = 2*(_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i) - _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i))/2;
 
@@ -975,327 +1039,455 @@ void HiggsPlotting::PlotAllHistograms(){
 
 
   //// LHE PT k-factors
-  //  std::vector<TString> sets = {"LHEPt"};
-  std::vector<TString> sets = {"Pt", "LHEPt"};
-  //  std::vector<TString> sets = {"Pt"};
-  for ( auto setname : sets  ){
-    for (auto const& histset : _cloned_hists["WLN-NLO-" + setname]){
-      if (std::string(histset.first).find("non-VBF")!=std::string::npos) continue;
-      //      if ( std::string(histset.first).find("MJJ")!=std::string::npos && std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
-      if ( (std::string(histset.first).find("MJJ")!=std::string::npos||std::string(histset.first).find("Default")!=std::string::npos) && std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
-	if (std::string(histset.first).find("PDF")!=std::string::npos && std::string(histset.first).find("PDF_Up")==std::string::npos && std::string(histset.first).find("PDF_Down")==std::string::npos) continue;
-	
-	for (int i = 1;i<_cloned_hists["WLN-LO"][ histset.first ]->GetNbinsX()+1;i++)    
-	  _cloned_hists["WLN-LO"][ histset.first ]->SetBinError(i,0);
-	std::string savename = "kfactor_vbf_mjj_";
-	if ( std::string(histset.first).find("MJJ-200-500_gen_boson_pt" )!=std::string::npos ) savename += "200_500";
-	if ( std::string(histset.first).find("MJJ-500-1000_gen_boson_pt" )!=std::string::npos ) savename += "500_1000";
-	if ( std::string(histset.first).find("MJJ-1000-1500_gen_boson_pt" )!=std::string::npos ) savename += "1000_1500";
-	if ( std::string(histset.first).find("MJJ-1500-5000_gen_boson_pt" )!=std::string::npos ) savename += "1500_5000";
-	if ( std::string(histset.first).find("Default_gen_boson_pt" )!=std::string::npos ) savename = "kfactor_vbf_inclusive";
-	std::string systname = "kfactors_shape";
+  //  std::vector<TString> sets = {"Pt", "LHEPt"};
+  std::vector<TString> sets = {"LHEPt"};
+  std::vector<TString> processes = {"WLN", "ZLL"};
+  std::vector<TString> analyses = {"vbf", "nonvbf"};
 
-	if ( setname == "LHEPt" ){
-	  if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-	  else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-	  else if ( std::string(histset.first).find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
-	  else if ( std::string(histset.first).find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
-	  else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
-	  if ( std::string(histset.first).find("Scale" )!=std::string::npos ) histset.second->Scale(2);
-	}
-	if ( setname == "Pt" ){
-	  if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-	  else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-	  else if ( std::string(histset.first).find("Scale_5" )!=std::string::npos ) systname += "_Fact_Up";
-	  else if ( std::string(histset.first).find("Scale_7" )!=std::string::npos ) systname += "_Renorm_Up";
-	  else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
-	}
-
-	
-	if ( std::string(histset.first).find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
-	else if ( std::string(histset.first).find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
-	
-	//Get smoothed histos
-	TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "Ratio-WLN-"+setname+"-" + histset.first );
-	TH1D * histo_smoothed =  (TH1D*)ratio->Clone( "WLN-NLO-" + setname + "_" +  histset.first + "_smoothed" );
-	TH1D * histo_fit =  (TH1D*)ratio->Clone( "WLN-NLO-" + setname + "_" +  histset.first + "_fit" );
-	histo_smoothed->Smooth(1,"");
-
-
-      double split = 370;
-      double start = 70;
-      if ( std::string(histset.first).find("Scale")!=std::string::npos )
-	start = 150;
-      TF1 * pol3 = new TF1("pol3","pol3",start,split);
-      TF1 * pol0 = new TF1("pol0","pol0",split,1050);     
-      TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
-
-
-      histo_fit->Fit(pol0, "LRQ0"); 
-      for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
-	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
-	  histo_fit->SetBinContent(i,pol0->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
-      }
-      histo_fit->Fit(pol3, "LRQ0"); 
-      for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
-	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
-	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
-      }
-
-      polcomb->SetParameter(0,pol3->GetParameter(0));
-      polcomb->SetParameter(1,pol3->GetParameter(1));
-      polcomb->SetParameter(2,pol3->GetParameter(2));
-      polcomb->SetParameter(3,pol0->GetParameter(0));
-
-      ratio->Fit(polcomb, "LRQ"); 
-
-	if ( setname == "LHEPt" ){	
-	  plotter.SaveToFile(ratio, savename, "kfactor_VBF_wjet", systname );
-	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "kfactor_VBF_wjet", systname );
-	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
-	    plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_VBF_wjet", systname );
-	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_VBF_wjet", systname );
+  for ( auto analysis : analyses  ){
+    for ( auto process : processes  ){
+      for ( auto setname : sets  ){
+	for (auto const& histset : _cloned_hists[ process + "-NLO-" + setname]){
+	  if (analysis == "nonvbf" && std::string(histset.first).find("non-VBF")==std::string::npos){
+	    continue;
 	  }
-	}
-	else if ( setname == "Pt" ){
-	  plotter.SaveToFile(ratio, savename, "PtBinned_kfactor_VBF_wjet", systname );
-	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "PtBinned_kfactor_VBF_wjet", systname );	  
-	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
-	    plotter.SaveToFile(histo_fit, savename+"_fit", "PtBinned_kfactor_VBF_wjet", systname );	  
-	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "PtBinned_kfactor_VBF_wjet", systname );
+	  if (analysis == "vbf" && !((std::string(histset.first).find("MJJ")!=std::string::npos||std::string(histset.first).find("Default")!=std::string::npos) && std::string(histset.first).find("gen_boson_pt")!=std::string::npos)){
+	    continue;
+	  }
+
+	  //	if ( (std::string(histset.first).find("MJJ")!=std::string::npos||std::string(histset.first).find("Default")!=std::string::npos) && std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
+	  if (std::string(histset.first).find("PDF")!=std::string::npos && std::string(histset.first).find("PDF_Up")==std::string::npos && std::string(histset.first).find("PDF_Down")==std::string::npos) continue;
+
+	  //temporary add back LO errors qwerty
+	  // for (int i = 1;i<_cloned_hists[process+"-LO"][ histset.first ]->GetNbinsX()+1;i++)    
+	  //   _cloned_hists[process+"-LO"][ histset.first ]->SetBinError(i,0);
+	  std::string savename = "";
+
+	  if ( analysis == "vbf" ){
+	    savename = "kfactor_vbf_mjj_";
+	    if ( std::string(histset.first).find("MJJ-200-500_gen_boson_pt" )!=std::string::npos ) savename += "200_500";
+	    if ( std::string(histset.first).find("MJJ-500-1000_gen_boson_pt" )!=std::string::npos ) savename += "500_1000";
+	    if ( std::string(histset.first).find("MJJ-1000-1500_gen_boson_pt" )!=std::string::npos ) savename += "1000_1500";
+	    if ( std::string(histset.first).find("MJJ-1500-5000_gen_boson_pt" )!=std::string::npos ) savename += "1500_5000";
+	    if ( std::string(histset.first).find("Default_gen_boson_pt" )!=std::string::npos ) savename = "kfactor_vbf_inclusive";
+	  }
+	  else if ( analysis == "nonvbf" ){
+
+	    savename = "kfactor_nonvbf_";
+	    if ( std::string(histset.first).find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
+	    if ( std::string(histset.first).find("gen_jetpt0")!=std::string::npos) savename += "gen_jetp0";
+
+	  }
+	  std::string systname = "kfactors_shape";
+	  
+	  if ( setname == "LHEPt" ){
+	    if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
+	    else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
+	    else if ( std::string(histset.first).find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
+	    else if ( std::string(histset.first).find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
+	    else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
+	    if ( std::string(histset.first).find("Scale" )!=std::string::npos ) histset.second->Scale(2);
+	  }
+	  if ( setname == "Pt" ){
+	    if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
+	    else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
+	    else if ( std::string(histset.first).find("Scale_5" )!=std::string::npos ) systname += "_Fact_Up";
+	    else if ( std::string(histset.first).find("Scale_7" )!=std::string::npos ) systname += "_Renorm_Up";
+	    else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
+	  }
+	  
+	  
+	  if ( std::string(histset.first).find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
+	  else if ( std::string(histset.first).find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
+	  
+	  //Get smoothed histos
+	  std::cout << histset.second->GetName() << " - " << _cloned_hists[process+"-LO"][ histset.first ]->GetName() << " - " << process << " - " << setname << " - " << histset.first << std::endl;
+	  TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-"+setname+"-" + histset.first );
+
+	  // if ( process == "WLN" && setname ==  "LHEPt" && histset.first == "MJJ-200-500_gen_boson_pt"){
+	  //   std::cout << "HERE" << std::endl;
+	  //   plotter.SaveToFile( ratio, "VBF-MJJ-200-500" , "NLO_plots" , "OrigRatio");
+	  //	  }
+
+	  TH1D * histo_smoothed =  (TH1D*)ratio->Clone( process+"-NLO-" + setname + "_" +  histset.first + "_smoothed" );
+	  TH1D * histo_fit =  (TH1D*)ratio->Clone( process+"-NLO-" + setname + "_" +  histset.first + "_fit" );
+	  TH1D * histo_fit2 =  (TH1D*)ratio->Clone( process+"-NLO-" + setname + "_" +  histset.first + "_fit2" );
+	  histo_smoothed->Smooth(1,"");
+	  
+	  double split = 190;
+	  //	  double split = 370;
+	  //	  double split = 190;
+
+	  ratio->GetXaxis()->SetRange(2,15);
+	  split	= ratio->GetBinLowEdge(ratio->GetMaximumBin()+1);
+	  ratio->GetXaxis()->SetRange(1,ratio->GetNbinsX());
+	  //	  double split = 120;
+	  //	  double start = 40;
+	  double start = 40;
+	  double split1 = 170;
+	  double split2 = 300;
+	  // if ( std::string(histset.first).find("Scale")!=std::string::npos )
+	  //   start = 150;
+	  TF1 * pol3 = new TF1("pol3","pol3",start,split);
+	  TF1 * pol2 = new TF1("pol2","pol2",start,split);
+	  TF1 * pol22 = new TF1("pol22","pol2",start,split);
+	  TF1 * pol23 = new TF1("pol23","pol2",start,split);
+	  TF1 * landau = new TF1("landau","landau",start,split);
+	  TF1 * pol32 = new TF1("pol32","pol3",split,1050);
+	  TF1 * pol0 = new TF1("pol0","pol0",split,1050);     
+	  //	  TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
+	  //	  TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*[0]*TMath::Landau(-x,[1],[2]) + (x>"+TString(std::to_string(split))+")*([3]+[4]*x+[5]*x*x)", start, 1100);
+	  //	  TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*([3]+[4]*x+[5]*x*x+[6]*x*x*x)", start, 1100);
+
+	  //	  	  TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*([3]+[4]*x+[5]*x*x+[6]*x*x*x)", start, 1100);
+
+	  //	  TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x+[3]*x*x*x) + (x>"+TString(std::to_string(split))+")*([4]+[5]*x+[6]*x*x+[7]*x*x*x)", start, 1100);
+
+	  //	  TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*([3]+[4]*x+[5]*x*x+[6]*x*x*x+[7]*x*x*x*x)", start, 1100);
+
+	  TF1 * polcomb = new TF1("Fit", "(x<="+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*([3]+[4]*x+[5]*x*x+[6]*x*x*x)", start, 1100);
+
+	  //	  TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split1))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split1))+")*(x<"+TString(std::to_string(split2))+")*([3]+[4]*x+[5]*x*x) + (x>"+TString(std::to_string(split2))+")*([6]+[7]*x+[8]*x*x)", start, 1100);
+
+
+	  //	  TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*(gaus(0)) + (x>"+TString(std::to_string(split))+")*([3]+[4]*x+[5]*x*x+[6]*x*x*x)", start, 1100);
+
+	  TF1 * pol_nonvbf_pt = new TF1("NonVBFFitPt", "pol2",200, 1050);
+	  double split_nonvbf = 200;
+	  TF1 * pol_nonvbf_jetpt = new TF1("NonVBFFitLeadingJet","(x<"+TString(std::to_string(split_nonvbf))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split_nonvbf))+")*([3]+[4]*x+[5]*x*x)", start, 1050);
+	  
+	  if (  analysis == "vbf" ){
+	    //	    histo_fit->Fit(pol0, "LRQ0"); 
+	  //histo_fit->Fit(landau, "RQ0"); 
+
+
+	    //	    histo_fit->Fit(pol2, "LRQ0"); 
+
+
+
+
+	    //	    for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
+	    //	      if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
+	    //	histo_fit->SetBinContent(i,pol0->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
+	    //	    }
+
+	    //	    for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
+	    //	      if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
+	    //		histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
+	    //	    }
+
+
+	    // std::cout << pol2->GetParameter(0) << " - " <<
+	    // 	      pol2->GetParameter(1) << " - " <<
+	    // 	      pol2->GetParameter(2) << " - " <<std::endl;
+
+	    
+	    // polcomb->SetParameter(0,pol2->GetParameter(0));
+	    // polcomb->SetParameter(1,pol2->GetParameter(1));
+	    // polcomb->SetParameter(2,pol2->GetParameter(2));
+	    // histo_fit2->Fit(pol32, "LR"); 
+	    // std::cout << pol32->GetParameter(0) << " - " <<
+	    // 	      pol32->GetParameter(1) << " - " <<
+	    // 	      pol32->GetParameter(2) << " - " <<
+	    // 	      pol32->GetParameter(3) << " - " <<std::endl;
+
+	    // polcomb->SetParameter(3,pol32->GetParameter(0));
+	    // polcomb->SetParameter(4,pol32->GetParameter(1));
+	    // polcomb->SetParameter(5,pol32->GetParameter(2));
+	    // polcomb->SetParameter(6,pol32->GetParameter(3));
+
+
+
+	    // polcomb->SetParameter(0,landau->GetParameter(0));
+	    // polcomb->SetParameter(1,landau->GetParameter(1));
+	    // polcomb->SetParameter(2,landau->GetParameter(2));
+	    // polcomb->SetParameter(3,pol32->GetParameter(0));
+	    // polcomb->SetParameter(4,pol32->GetParameter(1));
+	    // polcomb->SetParameter(5,pol32->GetParameter(2));
+
+	    //	    ratio->Fit(polcomb, "LRQ"); 
+	    ratio->Fit(polcomb, "RQ"); 
+	    ratio->Fit(polcomb, "RQ"); 
+	  }
+	  else if ( analysis == "nonvbf" ){
+
+	    if ( std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
+	      ratio->Fit(pol_nonvbf_pt, "LRQ"); 
+	    }
+	    else if ( std::string(histset.first).find("gen_jetpt0")!=std::string::npos) {
+	      ratio->Fit(pol_nonvbf_jetpt, "LRQ"); 
+	    }
+	  }
+	  std::string saveprocess = "zjet";
+	  std::string saveanalysis = "VBF";
+	  if ( process == "WLN" ) saveprocess = "wjet";
+	  if ( analysis == "nonvbf" ) saveanalysis = "nonVBF";
+	  if ( setname == "LHEPt" ){	
+	    plotter.SaveToFile(ratio, savename, "kfactor_"+saveanalysis+"_"+saveprocess, systname );
+
+
+	    // if ( process == "WLN" && setname ==  "LHEPt" && histset.first == "MJJ-200-500_gen_boson_pt"){
+	    //   std::cout << "HERE - " << "kfactor_"+saveanalysis+"_"+saveprocess << std::endl;
+	    //   plotter.SaveToFile( ratio, "VBF-MJJ-200-500" , "NLO_plots" , "OrigRatio2");
+	    // }
+
+	    //	    plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "kfactor_"+saveanalysis+"_" + saveprocess, systname );
+	    //	    if ( std::string(histset.first).find("Scale")==std::string::npos  ){
+	    //	      plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_"+saveanalysis+"_" + saveprocess, systname );
+
+	    if (  analysis == "vbf" )     {
+	      plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_"+saveanalysis+"_" + saveprocess, systname );
+	    }
+	    else if (  analysis == "nonvbf" )     {
+	      if ( std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
+		plotter.SaveToFile(pol_nonvbf_pt, savename+"_fitfunc", "kfactor_"+saveanalysis+"_" + saveprocess, systname );
+	      }
+	      else if ( std::string(histset.first).find("gen_jetpt0")!=std::string::npos){
+		plotter.SaveToFile(pol_nonvbf_jetpt, savename+"_fitfunc", "kfactor_"+saveanalysis+"_" + saveprocess, systname );
+	      }
+	    }
+	    //	    }
+	  }
+	  else if ( setname == "Pt" ){
+	    plotter.SaveToFile(ratio, savename, "PtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );
+	    plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "PtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );	  
+	    if ( std::string(histset.first).find("Scale")==std::string::npos  ){
+	      //	      plotter.SaveToFile(histo_fit, savename+"_fit", "PtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );	  
+	      plotter.SaveToFile(polcomb, savename+"_fitfunc", "PtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );
+	    }
 	  }
 	}
       }
     }
+    
   }
 
+  // for (auto const& histset : _cloned_hists["WLN-NLO-LHEPt"]){
+    // if (std::string(histset.first).find("non-VBF")!=std::string::npos){
+    //   if (std::string(histset.first).find("PDF")!=std::string::npos && std::string(histset.first).find("PDF_Up")==std::string::npos && std::string(histset.first).find("PDF_Down")==std::string::npos) continue;
+
+    //   for (int i = 1;i<_cloned_hists["WLN-LO"][ histset.first ]->GetNbinsX()+1;i++)    
+    // 	_cloned_hists["WLN-LO"][ histset.first ]->SetBinError(i,0);
+    //   std::string savename = "kfactor_nonvbf_";
+    //   if ( std::string(histset.first).find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
+    //   if ( std::string(histset.first).find("gen_jetpt0")!=std::string::npos) savename += "gen_jetp0";
+
+    //   std::string systname = "kfactors_shape";
+    //   if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
+    //   else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
+    //   else if ( std::string(histset.first).find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
+    //   else if ( std::string(histset.first).find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
+    //   else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
+    //   if ( std::string(histset.first).find("Scale" )!=std::string::npos ) histset.second->Scale(2);
+
+    //   if ( std::string(histset.first).find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
+    //   else if ( std::string(histset.first).find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
+
+    //   //Get smoothed histos
+
+    //   //	TF1 * pol2 = new TF1("pol2","1/([0]*(x^2)+[1]*(x)+[2])",170,1050);
+    //   //      TF1 * pol2 = new TF1("pol2","([0]*1/x)+[1])",170,1050);
+    //   TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "Ratio-WLN-LHEPt-" + histset.first );
+
+    //   TH1D * histo_smoothed = (TH1D*)ratio->Clone( "WLN-NLO-LHEPt" +  histset.first + "_smoothed" );
+    //   TH1D * histo_fit =  (TH1D*)ratio->Clone( "WLN-NLO-LHEPt" + histset.first + "_fit" );
+    //   histo_smoothed->Smooth(1,"");
+
+    //   double split = 370;
+    //   double start = 70;
+    //   if ( std::string(histset.first).find("Scale")!=std::string::npos )
+    // 	start = 150;
+
+    //   TF1 * pol3 = new TF1("pol3","pol3",start,split);
+    //   TF1 * pol0 = new TF1("pol0","pol0",split,1050);
+    //   TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
+    //   histo_fit->Fit(pol0, "LRQ0"); 
+    //   for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
+    // 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
+    // 	  histo_fit->SetBinContent(i,pol0->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
+    //   }
+    //   histo_fit->Fit(pol3, "LRQ0"); 
+    //   for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
+    // 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
+    // 	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
+    //   }
+
+    //   polcomb->SetParameter(0,pol3->GetParameter(0));
+    //   polcomb->SetParameter(1,pol3->GetParameter(1));
+    //   polcomb->SetParameter(2,pol3->GetParameter(2));
+    //   polcomb->SetParameter(3,pol0->GetParameter(0));
+    //   ratio->Fit(polcomb, "LRQ"); 
+
+    //   plotter.SaveToFile(ratio, savename, "kfactor_nonVBF_wjet", systname );
+    //   plotter.SaveToFile(histo_smoothed, savename + "_smoothed", "kfactor_nonVBF_wjet", systname );
+    //   if ( std::string(histset.first).find("Scale")==std::string::npos  )  {
+    // 	plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_nonVBF_wjet", systname );
+    // 	plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_nonVBF_wjet", systname );
+    //   }
+    // }
+  //  }
+
+  //  for ( auto setname : sets  ){
+
+  //   for (auto const& histset : _cloned_hists["ZLL-NLO-" + setname]){
+  //   if (std::string(histset.first).find("non-VBF")!=std::string::npos) continue;
+  //   //    if ( std::string(histset.first).find("MJJ")!=std::string::npos && std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
+  //     if ( (std::string(histset.first).find("MJJ")!=std::string::npos||std::string(histset.first).find("Default")!=std::string::npos) && std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
+  //     if (std::string(histset.first).find("PDF")!=std::string::npos && std::string(histset.first).find("PDF_Up")==std::string::npos && std::string(histset.first).find("PDF_Down")==std::string::npos) continue;
+
+  //     for (int i = 1;i<_cloned_hists["ZLL-LO"][ histset.first ]->GetNbinsX()+1;i++)    	
+  // 	_cloned_hists["ZLL-LO"][ histset.first ]->SetBinError(i,0);
+  //     std::string savename = "kfactor_vbf_mjj_";
+  //     if ( std::string(histset.first).find("MJJ-200-500_gen_boson_pt" )!=std::string::npos ) savename += "200_500";
+  //     if ( std::string(histset.first).find("MJJ-500-1000_gen_boson_pt" )!=std::string::npos ) savename += "500_1000";
+  //     if ( std::string(histset.first).find("MJJ-1000-1500_gen_boson_pt" )!=std::string::npos ) savename += "1000_1500";
+  //     if ( std::string(histset.first).find("MJJ-1500-5000_gen_boson_pt" )!=std::string::npos ) savename += "1500_5000";
+  //     if ( std::string(histset.first).find("Default_gen_boson_pt" )!=std::string::npos ) savename = "kfactor_vbf_inclusive";
+
+  //     std::string systname = "kfactors_shape";
+  //     if ( setname == "LHEPt" ){
+  // 	if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
+  // 	else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
+  // 	else if ( std::string(histset.first).find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
+  // 	else if ( std::string(histset.first).find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
+  // 	else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
+  // 	  if ( std::string(histset.first).find("Scale" )!=std::string::npos ) histset.second->Scale(2);
+  //     }
+  //     if ( setname == "Pt" ){
+  // 	if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
+  // 	else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
+  // 	else if ( std::string(histset.first).find("Scale_5" )!=std::string::npos ) systname += "_Fact_Up";
+  // 	else if ( std::string(histset.first).find("Scale_7" )!=std::string::npos ) systname += "_Renorm_Up";
+  // 	else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
+  //     }
 
 
-  for (auto const& histset : _cloned_hists["WLN-NLO-LHEPt"]){
-    if (std::string(histset.first).find("non-VBF")!=std::string::npos){
-      if (std::string(histset.first).find("PDF")!=std::string::npos && std::string(histset.first).find("PDF_Up")==std::string::npos && std::string(histset.first).find("PDF_Down")==std::string::npos) continue;
-
-      for (int i = 1;i<_cloned_hists["WLN-LO"][ histset.first ]->GetNbinsX()+1;i++)    
-	_cloned_hists["WLN-LO"][ histset.first ]->SetBinError(i,0);
-      std::string savename = "kfactor_nonvbf_";
-      if ( std::string(histset.first).find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
-      if ( std::string(histset.first).find("gen_jetpt0")!=std::string::npos) savename += "gen_jetp0";
-
-      std::string systname = "kfactors_shape";
-      if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-      else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-      else if ( std::string(histset.first).find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
-      else if ( std::string(histset.first).find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
-      else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
-      if ( std::string(histset.first).find("Scale" )!=std::string::npos ) histset.second->Scale(2);
-
-      if ( std::string(histset.first).find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
-      else if ( std::string(histset.first).find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
-
-      //Get smoothed histos
-
-      //	TF1 * pol2 = new TF1("pol2","1/([0]*(x^2)+[1]*(x)+[2])",170,1050);
-      //      TF1 * pol2 = new TF1("pol2","([0]*1/x)+[1])",170,1050);
-      TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "Ratio-WLN-LHEPt-" + histset.first );
-
-      TH1D * histo_smoothed = (TH1D*)ratio->Clone( "WLN-NLO-LHEPt" +  histset.first + "_smoothed" );
-      TH1D * histo_fit =  (TH1D*)ratio->Clone( "WLN-NLO-LHEPt" + histset.first + "_fit" );
-      histo_smoothed->Smooth(1,"");
-
-      double split = 370;
-      double start = 70;
-      if ( std::string(histset.first).find("Scale")!=std::string::npos )
-	start = 150;
-
-      TF1 * pol3 = new TF1("pol3","pol3",start,split);
-      TF1 * pol0 = new TF1("pol0","pol0",split,1050);
-      TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
-      histo_fit->Fit(pol0, "LRQ0"); 
-      for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
-	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
-	  histo_fit->SetBinContent(i,pol0->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
-      }
-      histo_fit->Fit(pol3, "LRQ0"); 
-      for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
-	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
-	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
-      }
-
-      polcomb->SetParameter(0,pol3->GetParameter(0));
-      polcomb->SetParameter(1,pol3->GetParameter(1));
-      polcomb->SetParameter(2,pol3->GetParameter(2));
-      polcomb->SetParameter(3,pol0->GetParameter(0));
-      ratio->Fit(polcomb, "LRQ"); 
-
-      plotter.SaveToFile(ratio, savename, "kfactor_nonVBF_wjet", systname );
-      plotter.SaveToFile(histo_smoothed, savename + "_smoothed", "kfactor_nonVBF_wjet", systname );
-      if ( std::string(histset.first).find("Scale")==std::string::npos  )  {
-	plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_nonVBF_wjet", systname );
-	plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_nonVBF_wjet", systname );
-      }
-    }
-  }
-
-  for ( auto setname : sets  ){
-    for (auto const& histset : _cloned_hists["ZLL-NLO-" + setname]){
-    if (std::string(histset.first).find("non-VBF")!=std::string::npos) continue;
-    //    if ( std::string(histset.first).find("MJJ")!=std::string::npos && std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
-      if ( (std::string(histset.first).find("MJJ")!=std::string::npos||std::string(histset.first).find("Default")!=std::string::npos) && std::string(histset.first).find("gen_boson_pt")!=std::string::npos){
-      if (std::string(histset.first).find("PDF")!=std::string::npos && std::string(histset.first).find("PDF_Up")==std::string::npos && std::string(histset.first).find("PDF_Down")==std::string::npos) continue;
-
-      for (int i = 1;i<_cloned_hists["ZLL-LO"][ histset.first ]->GetNbinsX()+1;i++)    	
-	_cloned_hists["ZLL-LO"][ histset.first ]->SetBinError(i,0);
-      std::string savename = "kfactor_vbf_mjj_";
-      if ( std::string(histset.first).find("MJJ-200-500_gen_boson_pt" )!=std::string::npos ) savename += "200_500";
-      if ( std::string(histset.first).find("MJJ-500-1000_gen_boson_pt" )!=std::string::npos ) savename += "500_1000";
-      if ( std::string(histset.first).find("MJJ-1000-1500_gen_boson_pt" )!=std::string::npos ) savename += "1000_1500";
-      if ( std::string(histset.first).find("MJJ-1500-5000_gen_boson_pt" )!=std::string::npos ) savename += "1500_5000";
-      if ( std::string(histset.first).find("Default_gen_boson_pt" )!=std::string::npos ) savename = "kfactor_vbf_inclusive";
-
-      std::string systname = "kfactors_shape";
-      if ( setname == "LHEPt" ){
-	if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-	else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-	else if ( std::string(histset.first).find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
-	else if ( std::string(histset.first).find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
-	else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
-	  if ( std::string(histset.first).find("Scale" )!=std::string::npos ) histset.second->Scale(2);
-      }
-      if ( setname == "Pt" ){
-	if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-	else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-	else if ( std::string(histset.first).find("Scale_5" )!=std::string::npos ) systname += "_Fact_Up";
-	else if ( std::string(histset.first).find("Scale_7" )!=std::string::npos ) systname += "_Renorm_Up";
-	else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
-      }
+  //     if ( std::string(histset.first).find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
+  //     else if ( std::string(histset.first).find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
+  //     //	TF1 * pol2 = new TF1("pol2","([0]*1/x)+[1])",170,1050);
+  // 	//      	TF1 * pol2 = new TF1("pol2","1/([0]*(x^2)+[1]*(x)+[2])",170,1050);
+  //     //		TF1 * pol2 = new TF1("pol2","pol2",170,1050);
 
 
-      if ( std::string(histset.first).find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
-      else if ( std::string(histset.first).find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
-      //	TF1 * pol2 = new TF1("pol2","([0]*1/x)+[1])",170,1050);
-	//      	TF1 * pol2 = new TF1("pol2","1/([0]*(x^2)+[1]*(x)+[2])",170,1050);
-      //		TF1 * pol2 = new TF1("pol2","pol2",170,1050);
+  //     TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists["ZLL-LO"][ histset.first ], "", "Ratio-ZLL-"+setname+"-" + histset.first );
+  //     TH1D * histo_smoothed =  (TH1D*)ratio->Clone( "ZLL-NLO-" + setname +  histset.first + "_smoothed" );
+  //     TH1D * histo_fit =  (TH1D*)ratio->Clone( "ZLL-NLO-" + setname + "_" +  histset.first + "_fit" );
+  //     histo_smoothed->Smooth(1,"");
+
+  //     double split = 370;
+  //     double start = 70;
+  //     if ( std::string(histset.first).find("Scale")!=std::string::npos )
+  // 	start = 150;
+
+  //     TF1 * pol3 = new TF1("pol3","pol3",start,split);
+  //     TF1 * pol0 = new TF1("pol0","pol0",split,1050);
+  //     TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
+  //     histo_fit->Fit(pol0, "LRQ0"); 
+  //     for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
+  // 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
+  // 	  histo_fit->SetBinContent(i,pol0->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
+  //     }
+  //     histo_fit->Fit(pol3, "LRQ0"); 
+  //     for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
+  // 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
+  // 	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
+  //     }
+  //     polcomb->SetParameter(0,pol3->GetParameter(0));
+  //     polcomb->SetParameter(1,pol3->GetParameter(1));
+  //     polcomb->SetParameter(2,pol3->GetParameter(2));
+  //     polcomb->SetParameter(3,pol0->GetParameter(0));
+
+  //     ratio->Fit(polcomb, "LRQ"); 
+
+  // 	if ( setname == "LHEPt" ){	
+  // 	  plotter.SaveToFile(ratio, savename, "kfactor_VBF_zjet", systname );
+  // 	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "kfactor_VBF_zjet", systname );
+  // 	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
+  // 	    plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_VBF_zjet", systname );
+  // 	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_VBF_zjet", systname );
+  // 	  }
+  // 	}
+  // 	else if ( setname == "Pt" ){
+  // 	  plotter.SaveToFile(ratio, savename, "PtBinned_kfactor_VBF_zjet", systname );
+  // 	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "PtBinned_kfactor_VBF_zjet", systname );	  
+  // 	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
+  // 	    plotter.SaveToFile(histo_fit, savename+"_fit", "PtBinned_kfactor_VBF_zjet", systname );	  
+  // 	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "PtBinned_kfactor_VBF_zjet", systname );
+  // 	  }
+  // 	}
 
 
-      TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists["ZLL-LO"][ histset.first ], "", "Ratio-ZLL-"+setname+"-" + histset.first );
-      TH1D * histo_smoothed =  (TH1D*)ratio->Clone( "ZLL-NLO-" + setname +  histset.first + "_smoothed" );
-      TH1D * histo_fit =  (TH1D*)ratio->Clone( "ZLL-NLO-" + setname + "_" +  histset.first + "_fit" );
-      histo_smoothed->Smooth(1,"");
+  //   }
+  // }
+  // }
+  // for (auto const& histset : _cloned_hists["ZLL-NLO-LHEPt"]){
+  //   if (std::string(histset.first).find("non-VBF")!=std::string::npos){
+  //     if (std::string(histset.first).find("PDF")!=std::string::npos && std::string(histset.first).find("PDF_Up")==std::string::npos && std::string(histset.first).find("PDF_Down")==std::string::npos) continue;
 
-      double split = 370;
-      double start = 70;
-      if ( std::string(histset.first).find("Scale")!=std::string::npos )
-	start = 150;
+  //     for (int i = 1;i<_cloned_hists["ZLL-LO"][ histset.first ]->GetNbinsX()+1;i++)    
+  // 	_cloned_hists["ZLL-LO"][ histset.first ]->SetBinError(i,0);
+  //     std::string savename = "kfactor_nonvbf_";
+  //     if ( std::string(histset.first).find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
+  //     if ( std::string(histset.first).find("gen_jetpt0")!=std::string::npos) savename += "gen_jetp0";
 
-      TF1 * pol3 = new TF1("pol3","pol3",start,split);
-      TF1 * pol0 = new TF1("pol0","pol0",split,1050);
-      TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
-      histo_fit->Fit(pol0, "LRQ0"); 
-      for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
-	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
-	  histo_fit->SetBinContent(i,pol0->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
-      }
-      histo_fit->Fit(pol3, "LRQ0"); 
-      for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
-	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
-	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
-      }
-      polcomb->SetParameter(0,pol3->GetParameter(0));
-      polcomb->SetParameter(1,pol3->GetParameter(1));
-      polcomb->SetParameter(2,pol3->GetParameter(2));
-      polcomb->SetParameter(3,pol0->GetParameter(0));
+  //     std::string systname = "kfactors_shape";
+  //     if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
+  //     else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
+  //     else if ( std::string(histset.first).find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
+  //     else if ( std::string(histset.first).find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
+  //     else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
 
-      ratio->Fit(polcomb, "LRQ"); 
+  //     if ( std::string(histset.first).find("Scale" )!=std::string::npos ) histset.second->Scale(2);
 
-	if ( setname == "LHEPt" ){	
-	  plotter.SaveToFile(ratio, savename, "kfactor_VBF_zjet", systname );
-	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "kfactor_VBF_zjet", systname );
-	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
-	    plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_VBF_zjet", systname );
-	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_VBF_zjet", systname );
-	  }
-	}
-	else if ( setname == "Pt" ){
-	  plotter.SaveToFile(ratio, savename, "PtBinned_kfactor_VBF_zjet", systname );
-	  plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "PtBinned_kfactor_VBF_zjet", systname );	  
-	  if ( std::string(histset.first).find("Scale")==std::string::npos  ){
-	    plotter.SaveToFile(histo_fit, savename+"_fit", "PtBinned_kfactor_VBF_zjet", systname );	  
-	    plotter.SaveToFile(polcomb, savename+"_fitfunc", "PtBinned_kfactor_VBF_zjet", systname );
-	  }
-	}
+  //     if ( std::string(histset.first).find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
+  //     else if ( std::string(histset.first).find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
+  //     //	TF1 * pol2 = new TF1("pol2","([0]*1/x)+[1])",170,1050);
+  // 	//	TF1 * pol2 = new TF1("pol2","1/([0]*(x^2)+[1]*(x)+[2])",170,1050);
+  //     //		TF1 * pol2 = new TF1("pol2","pol2",170,1050);
+
+  //     TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists["ZLL-LO"][ histset.first ], "", "Ratio-ZLL-LHEPt-" + histset.first );
+  //     TH1D * histo_smoothed =  (TH1D*)ratio->Clone( "ZLL-NLO-LHEPt" +  histset.first + "_smoothed" );
+  //     TH1D * histo_fit =  (TH1D*)ratio->Clone( "ZLL-NLO-LHEPt" +  histset.first + "_fit" );
+
+  //     histo_smoothed->Smooth(1,"");
 
 
-    }
-  }
-  }
-  for (auto const& histset : _cloned_hists["ZLL-NLO-LHEPt"]){
-    if (std::string(histset.first).find("non-VBF")!=std::string::npos){
-      if (std::string(histset.first).find("PDF")!=std::string::npos && std::string(histset.first).find("PDF_Up")==std::string::npos && std::string(histset.first).find("PDF_Down")==std::string::npos) continue;
+  //     double split =370;
+  //     double start = 70;
+  //     if ( std::string(histset.first).find("Scale")!=std::string::npos )
+  // 	start = 150;
 
-      for (int i = 1;i<_cloned_hists["ZLL-LO"][ histset.first ]->GetNbinsX()+1;i++)    
-	_cloned_hists["ZLL-LO"][ histset.first ]->SetBinError(i,0);
-      std::string savename = "kfactor_nonvbf_";
-      if ( std::string(histset.first).find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
-      if ( std::string(histset.first).find("gen_jetpt0")!=std::string::npos) savename += "gen_jetp0";
+  //     TF1 * pol3 = new TF1("pol3","pol3",start,split);
+  //     TF1 * pol0 = new TF1("pol0","pol0",split,1050);
 
-      std::string systname = "kfactors_shape";
-      if ( std::string(histset.first).find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-      else if ( std::string(histset.first).find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-      else if ( std::string(histset.first).find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
-      else if ( std::string(histset.first).find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
-      else if (  std::string(histset.first).find("Scale" )!=std::string::npos ) continue;
+  //     TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
+  //     histo_fit->Fit(pol0, "LRQ0"); 
+  //     for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
+  // 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
+  // 	  histo_fit->SetBinContent(i,pol0->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
+  //     }
+  //     histo_fit->Fit(pol3, "LRQ0"); 
+  //     for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
+  // 	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
+  // 	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
+  //     }
+  //     polcomb->SetParameter(0,pol3->GetParameter(0));
+  //     polcomb->SetParameter(1,pol3->GetParameter(1));
+  //     polcomb->SetParameter(2,pol3->GetParameter(2));
+  //     polcomb->SetParameter(3,pol0->GetParameter(0));
 
-      if ( std::string(histset.first).find("Scale" )!=std::string::npos ) histset.second->Scale(2);
+  //     ratio->Fit(polcomb, "LRQ"); 
 
-      if ( std::string(histset.first).find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
-      else if ( std::string(histset.first).find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
-      //	TF1 * pol2 = new TF1("pol2","([0]*1/x)+[1])",170,1050);
-	//	TF1 * pol2 = new TF1("pol2","1/([0]*(x^2)+[1]*(x)+[2])",170,1050);
-      //		TF1 * pol2 = new TF1("pol2","pol2",170,1050);
-
-      TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists["ZLL-LO"][ histset.first ], "", "Ratio-ZLL-LHEPt-" + histset.first );
-      TH1D * histo_smoothed =  (TH1D*)ratio->Clone( "ZLL-NLO-LHEPt" +  histset.first + "_smoothed" );
-      TH1D * histo_fit =  (TH1D*)ratio->Clone( "ZLL-NLO-LHEPt" +  histset.first + "_fit" );
-
-      histo_smoothed->Smooth(1,"");
-
-
-      double split =370;
-      double start = 70;
-      if ( std::string(histset.first).find("Scale")!=std::string::npos )
-	start = 150;
-
-      TF1 * pol3 = new TF1("pol3","pol3",start,split);
-      TF1 * pol0 = new TF1("pol0","pol0",split,1050);
-
-      TF1 * polcomb = new TF1("Fit", "(x<"+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*[3]", start, 1050);
-      histo_fit->Fit(pol0, "LRQ0"); 
-      for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
-	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)>split)
-	  histo_fit->SetBinContent(i,pol0->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
-      }
-      histo_fit->Fit(pol3, "LRQ0"); 
-      for (int i = 2;i<histo_fit->GetNbinsX()+1;i++){
-	if ( histo_fit->GetXaxis()->GetBinLowEdge(i+1)<split)
-	  histo_fit->SetBinContent(i,pol3->Eval(histo_fit->GetXaxis()->GetBinCenter(i)));
-      }
-      polcomb->SetParameter(0,pol3->GetParameter(0));
-      polcomb->SetParameter(1,pol3->GetParameter(1));
-      polcomb->SetParameter(2,pol3->GetParameter(2));
-      polcomb->SetParameter(3,pol0->GetParameter(0));
-
-      ratio->Fit(polcomb, "LRQ"); 
-
-      plotter.SaveToFile(ratio, savename, "kfactor_nonVBF_zjet", systname );
-      plotter.SaveToFile(histo_smoothed, savename + "_smoothed", "kfactor_nonVBF_zjet", systname);
-      if ( std::string(histset.first).find("Scale")==std::string::npos  ){
-	plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_nonVBF_zjet", systname );
-	plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_nonVBF_zjet", systname );
-      }
-    }
-  }
+  //     plotter.SaveToFile(ratio, savename, "kfactor_nonVBF_zjet", systname );
+  //     plotter.SaveToFile(histo_smoothed, savename + "_smoothed", "kfactor_nonVBF_zjet", systname);
+  //     if ( std::string(histset.first).find("Scale")==std::string::npos  ){
+  // 	plotter.SaveToFile(histo_fit, savename+"_fit", "kfactor_nonVBF_zjet", systname );
+  // 	plotter.SaveToFile(polcomb, savename+"_fitfunc", "kfactor_nonVBF_zjet", systname );
+  //     }
+  //   }
+  // }
   
-
+    //  }
 
 
 
@@ -1402,6 +1594,8 @@ std::vector< TString > zleg = {"LO", "NLO"};
   
   // plotter.SaveToFile( z_scale_LHEPt, zuncert, "kfactor_VBF_wjet");
   // plotter.SaveToFile( w_scale_LHEPt, wuncert,"kfactor_VBF_wjet");
+
+
   plotter.SaveToFile( wz_scale_LHEPt, wzuncert,"wz-ratio-uncertainty","kfactors_shape");
   plotter.SaveToFile( wz_scale_LHEPt_Correlated, wzuncert_corr,"wz-ratio-uncertainty","kfactors_shape");
   plotter.SaveToFile( wz_scale_LHEPt_Wup, wzuncert_wup,"wz-ratio-uncertainty","kfactors_shape");
@@ -1419,8 +1613,8 @@ std::vector< TString > zleg = {"LO", "NLO"};
 
 
 
-  plotter.Draw( z_mjj , zleg, "z-mjj" , true, true);
-  plotter.Draw( w_mjj , zleg, "w-mjj" , true, true);
+  // plotter.Draw( z_mjj , zleg, "z-mjj" , true, true);
+  // plotter.Draw( w_mjj , zleg, "w-mjj" , true, true);
   
   plotter.Draw( z_orig , zleg, "z-pt-orig" , true, true);
   plotter.Draw( w_orig , zleg, "w-pt-orig" , true, true);
@@ -1440,8 +1634,8 @@ std::vector< TString > zleg = {"LO", "NLO"};
   plotter.Draw( vec5, leg1, "w-nlo-ratio-all" , true, false);
 
 
-  std::vector<TH1D*> vec2 = {_cloned_hists["WLN-NLO-Pt"]["Default_n_jets"],_cloned_hists["WLN-NLO-LHEPt"]["Default_n_jets"]};
-  plotter.Draw( vec2, leg1, "w-nlo-njetratio" , true, false);
+  // std::vector<TH1D*> vec2 = {_cloned_hists["WLN-NLO-Pt"]["Default_n_jets"],_cloned_hists["WLN-NLO-LHEPt"]["Default_n_jets"]};
+  // plotter.Draw( vec2, leg1, "w-nlo-njetratio" , true, false);
 
 
   // std::vector<TH1D*> vec3 = {_cloned_hists["WLN-NLO-Pt"]["NJET2_gen_boson_pt"],_cloned_hists["WLN-NLO-LHEPt"]["NJET2_gen_boson_pt"]};
@@ -1472,9 +1666,31 @@ std::vector< TString > zleg = {"LO", "NLO"};
   // plotter.Draw( nlo , loleg, "nlo-pt" );
 
 
-  
 
 
+  plotter.SaveToFile( _cloned_hists[ "WLN-LO" ][ "MJJ-200-500_gen_boson_pt" ], "VBF_MJJ_200_500" , "NLO_plots" , "W_Nominal_LO");
+  plotter.SaveToFile( _cloned_hists[ "WLN-LO" ][ "MJJ-500-1000_gen_boson_pt" ], "VBF_MJJ_500_1000" , "NLO_plots" , "W_Nominal_LO");
+  plotter.SaveToFile( _cloned_hists[ "WLN-LO" ][ "MJJ-1000-1500_gen_boson_pt" ], "VBF_MJJ_1000_1500" , "NLO_plots" , "W_Nominal_LO");
+  plotter.SaveToFile( _cloned_hists[ "WLN-LO" ][ "MJJ-1500-5000_gen_boson_pt" ], "VBF_MJJ_1500_5000" , "NLO_plots" , "W_Nominal_LO");
+
+  plotter.SaveToFile( _cloned_hists[ "WLN-NLO-LHEPt" ][ "MJJ-200-500_gen_boson_pt" ], "VBF_MJJ_200_500" , "NLO_plots" , "W_Nominal_NLO");
+  plotter.SaveToFile( _cloned_hists[ "WLN-NLO-LHEPt" ][ "MJJ-500-1000_gen_boson_pt" ], "VBF_MJJ_500_1000" , "NLO_plots" , "W_Nominal_NLO");
+  plotter.SaveToFile( _cloned_hists[ "WLN-NLO-LHEPt" ][ "MJJ-1000-1500_gen_boson_pt" ], "VBF_MJJ_1000_1500" , "NLO_plots" , "W_Nominal_NLO");
+  plotter.SaveToFile( _cloned_hists[ "WLN-NLO-LHEPt" ][ "MJJ-1500-5000_gen_boson_pt" ], "VBF_MJJ_1500_5000" , "NLO_plots" , "W_Nominal_NLO");
+
+  plotter.SaveToFile( _cloned_hists[ "ZLL-LO" ][ "MJJ-200-500_gen_boson_pt" ], "VBF_MJJ_200_500" , "NLO_plots" , "Z_Nominal_LO");
+  plotter.SaveToFile( _cloned_hists[ "ZLL-LO" ][ "MJJ-500-1000_gen_boson_pt" ], "VBF_MJJ_500_1000" , "NLO_plots" , "Z_Nominal_LO");
+  plotter.SaveToFile( _cloned_hists[ "ZLL-LO" ][ "MJJ-1000-1500_gen_boson_pt" ], "VBF_MJJ_1000_1500" , "NLO_plots" , "Z_Nominal_LO");
+  plotter.SaveToFile( _cloned_hists[ "ZLL-LO" ][ "MJJ-1500-5000_gen_boson_pt" ], "VBF_MJJ_1500_5000" , "NLO_plots" , "Z_Nominal_LO");
+
+  plotter.SaveToFile( _cloned_hists[ "ZLL-NLO-LHEPt" ][ "MJJ-200-500_gen_boson_pt" ], "VBF_MJJ_200_500" , "NLO_plots" , "Z_Nominal_NLO");
+  plotter.SaveToFile( _cloned_hists[ "ZLL-NLO-LHEPt" ][ "MJJ-500-1000_gen_boson_pt" ], "VBF_MJJ_500_1000" , "NLO_plots" , "Z_Nominal_NLO");
+  plotter.SaveToFile( _cloned_hists[ "ZLL-NLO-LHEPt" ][ "MJJ-1000-1500_gen_boson_pt" ], "VBF_MJJ_1000_1500" , "NLO_plots" , "Z_Nominal_NLO");
+  plotter.SaveToFile( _cloned_hists[ "ZLL-NLO-LHEPt" ][ "MJJ-1500-5000_gen_boson_pt" ], "VBF_MJJ_1500_5000" , "NLO_plots" , "Z_Nominal_NLO");
+
+
+
+  plotter.SaveToFile( plotter.DrawRatio(_cloned_hists[ "WLN-NLO-LHEPt" ][ "MJJ-200-500_gen_boson_pt" ],_cloned_hists[ "WLN-LO" ][ "MJJ-200-500_gen_boson_pt" ]), "VBF-MJJ-200-500" , "NLO_plots" , "Ratio");
   //  output->Close();
 
 
