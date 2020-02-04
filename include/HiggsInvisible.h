@@ -48,11 +48,14 @@ class HiggsInvisible: public BuildTreeBase {
   TChain * _runchain   ;
 
   typedef std::map< std::string, TH1D* > histmap;
+  typedef std::map< std::string, TH2D* > histmap2D;
   typedef std::map< std::string, histmap > clonemap;
+  typedef std::map< std::string, histmap2D > clonemap2D;
   typedef std::map< std::string, double > doublemap;
   //  typedef std::map< std::string, bool > boolmap;
 
   clonemap _cloned_hists;
+  clonemap2D _cloned_hists2D;
   doublemap _event_variables;
   //  boolmap _cuts;  
 

@@ -12,6 +12,12 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   TH1::SetDefaultSumw2();
   //  TH1::AddDirectory(kFALSE);
   _HistoSets.push_back( "Default" );
+
+  _HistoSets.push_back( "Default_VTR" );
+
+
+
+
   _HistoSets.push_back( "Default_BARE" );
   // _HistoSets.push_back( "Default2ndLep" );
   _HistoSets.push_back( "All" );
@@ -20,6 +26,11 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   _HistoSets.push_back( "MJJ-500-1000" );
   _HistoSets.push_back( "MJJ-1000-1500" );
   _HistoSets.push_back( "MJJ-1500-5000" );
+
+  // _HistoSets.push_back( "MJJ-200-500_VTR" );
+  // _HistoSets.push_back( "MJJ-500-1000_VTR" );
+  // _HistoSets.push_back( "MJJ-1000-1500_VTR" );
+  // _HistoSets.push_back( "MJJ-1500-5000_VTR" );
 
   _HistoSets.push_back( "MJJ-200-500_BARE" );
   _HistoSets.push_back( "MJJ-500-1000_BARE" );
@@ -33,6 +44,11 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   //  _HistoSets.push_back( "1JPt150" );
 
   _HistoSets.push_back( "non-VBF" );
+
+
+
+
+
 
 
   // _HistoSets.push_back( "Default-Mjj-200-500" );
@@ -82,9 +98,9 @@ void HiggsInvisible::SetupFillHistograms(){
 
   MakeAllHistograms( _HistoSets );
 
-  _fout->mkdir("All");
-  _fout->cd("All");
-  _cloned_hists[ "All" ] [ "nRuns" ] = new TH1D ( ("All_nRuns"), ";;Number of Events", 1,0.5,1.5 );  
+  //   _fout->mkdir("All");
+   _fout->cd("All");
+   _cloned_hists[ "All" ] [ "nRuns" ] = new TH1D ( ("All_nRuns"), ";;Number of Events", 1,0.5,1.5 );  
   
 
 
@@ -148,6 +164,9 @@ void HiggsInvisible::Loop( ){
 
   fChain->SetBranchStatus("LHEScaleWeight",1);
   fChain->SetBranchStatus("LHEPdfWeight",1);
+  fChain->SetBranchStatus("nLHEScaleWeight",1);
+  fChain->SetBranchStatus("nLHEPdfWeight",1);
+
 
 
   fChain->SetBranchStatus("event",1);
@@ -180,6 +199,7 @@ void HiggsInvisible::Loop( ){
       //      std::cout << names << " - " << CalculateCuts(names) << std::endl;
 
       if ( CalculateCuts( names ) ){
+	//	std::cout << event << std::endl;
 	FillAllHists( names );
       }
     }
