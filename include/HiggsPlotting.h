@@ -41,10 +41,13 @@ class HiggsPlotting{
   std::vector<std::string> _HistoSets;
 
   typedef std::map< TString, TH1D* > histmap;
+  typedef std::map< TString, TH2D* > histmap2D;
   typedef std::map< TString, histmap > clonemap;
+  typedef std::map< TString, histmap2D > clonemap2D;
   typedef std::map< std::string, double > doublemap;
 
   clonemap _cloned_hists;
+  clonemap2D _cloned_hists2D;
 
   Helpers _helper;
 
@@ -59,6 +62,7 @@ class HiggsPlotting{
   void Rebin();
   void CombineHistograms();
   void EvaluateUncertainties();
+  void EvaluateUncertainties2D();
   void PlotAllHistograms();
 
   void MakeTar();

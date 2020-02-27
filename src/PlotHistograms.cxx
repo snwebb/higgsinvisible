@@ -24,6 +24,7 @@ int main( int argc, char ** argv ){
 
 
   higgs->EvaluateUncertainties();
+  higgs->EvaluateUncertainties2D();
 
   higgs->PlotAllHistograms();
   higgs->MakeTar();

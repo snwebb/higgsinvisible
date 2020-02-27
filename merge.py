@@ -32,6 +32,7 @@ OutputDirList = [
 ##### loop for creating and sending jobs #####
 for outdir in OutputDirList :
    os.system("hadd -f /vols/cms/snwebb/InvisibleOutput/Merged/" + outdir.split("/")[5] + ".root " + outdir + "/root/*root" )  
+   #print("hadd -f /vols/cms/snwebb/InvisibleOutput/Merged/" + outdir.split("/")[5] + ".root " + outdir + "/root/*root" )  
 
 
 
