@@ -59,6 +59,8 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   if ( _filein.find("WJetsToLNu")!=std::string::npos ) _wln = true;
   if ( _filein.find("ZJetsToNuNu")!=std::string::npos ) _znn = true;
   if ( _filein.find("DYJetsToLL")!=std::string::npos ) _zll = true;
+  if ( _filein.find("DY2JetsToLL")!=std::string::npos ) _zll = true;
+  if ( _filein.find("DY1JetsToLL")!=std::string::npos ) _zll = true;
 
 }
 

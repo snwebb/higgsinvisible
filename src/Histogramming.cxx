@@ -4,7 +4,7 @@ Samuel Webb
 Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2020-02-12 12:53:50 (snwebb)>
+// Time-stamp: <2020-03-25 10:51:12 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -443,6 +443,7 @@ void HiggsInvisible::CalculateVariables(){
 
   //  std::cout <<  boson_pt_born << " " << boson_phi_born << std::endl;
 
+  //  std::cout << boson_pt_born << std::endl;
   _event_variables["gen_boson_phi"] = boson_phi_born;
 
   _event_variables["gen_boson_eta"] = boson_eta_born;
@@ -462,12 +463,12 @@ void HiggsInvisible::CalculateVariables(){
   for (unsigned int g = 0; g < nGenJet; g++){
     
     jet.SetPtEtaPhiM( GenJet_pt[g], GenJet_eta[g], GenJet_phi[g], GenJet_mass[g] );
-      if ( !lep1_isnu ){
+    if ( !lep1_isnu ){
       if ( jet.DeltaR(lep1) < 0.4 ) continue;
-      }
-      if ( !lep2_isnu ){
+    }
+    if ( !lep2_isnu ){
       if ( jet.DeltaR(lep2) < 0.4 ) continue;
-      }
+    }
   
     GenJet_eta_or.push_back( GenJet_eta[g] );
     GenJet_phi_or.push_back( GenJet_phi[g] );
@@ -475,6 +476,8 @@ void HiggsInvisible::CalculateVariables(){
     GenJet_mass_or.push_back( GenJet_mass[g] );
 
   }  
+
+  //  std::cout << GenJet_eta_or.size() << " - " << nGenJet << std::endl;
     TLorentzVector jet0;
     TLorentzVector jet1;
   if (GenJet_pt_or.size()>1){
@@ -559,7 +562,7 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
 	   && _event_variables["gen_dphijj"] < 1.5 //Same as Andreas
 	   && _event_variables["gen_mjj"] > 200 
 	   && _event_variables["gen_detajj"] > 1 //Same as Andreas
-	   
+	   && ( _zll ? (_event_variables["gen_boson_mass"] > 60 && _event_variables["gen_boson_mass"] < 120 ) : true )
 	   // //for k-factors	 
 	   // //	 (  (_zll||_wln) ? (std::abs(GenDressedLepton_eta[0]) < 2.4) : true) 
 	   // //	 GenDressedLepton_pt[0] > 20//think
@@ -578,12 +581,15 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
            && GenJet_pt_or[1] > 70
 	   && (std::abs(GenJet_eta_or[0]) < 5 && std::abs(GenJet_eta_or[1])< 5 ) 
 	   && (GenJet_eta_or[0] *  GenJet_eta_or[1]) < 0
-	   // && _event_variables["gen_boson_pt"] < 250 
-	   // && _event_variables["gen_boson_pt"] >= 160
 	   && _event_variables["gen_detajj"] > 1 
-	   && _event_variables["gen_mjj"] > 900
+	   //&& _event_variables["gen_mjj"] > 900
 	   && _event_variables["gen_dphijj"] < 1.5 
 	   && pass_mindphi_jetbos_1p8
+	   && ( _zll ? (_event_variables["gen_boson_mass"] > 60 && _event_variables["gen_boson_mass"] < 120 ) : true )
+
+
+	   // && _event_variables["gen_boson_pt"] < 250 
+	   // && _event_variables["gen_boson_pt"] >= 160
 
 	   ){
 	passcut = true;
@@ -708,12 +714,13 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
     if ( //GenJet_pt_or[0] > 80
 	GenJet_pt_or[0] > 40
 	//	 && _event_variables["gen_boson_pt"] > 200
-	 && _event_variables["gen_boson_pt"] > 100
-         &&  ht.Pt() > 200
-         &&  ht.Pt()/_event_variables["gen_boson_pt"]  < 1.2
+	&& _event_variables["gen_boson_pt"] > 100
+	&&  ht.Pt() > 200
+	&&  ht.Pt()/_event_variables["gen_boson_pt"]  < 1.2
+	&& ( _zll ? (_event_variables["gen_boson_mass"] > 60 && _event_variables["gen_boson_mass"] < 120 ) : true )      
 	 ){
       passcut = true;
-      
+
     }
   }
 

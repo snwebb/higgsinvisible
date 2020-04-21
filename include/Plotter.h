@@ -212,13 +212,13 @@ class Plotter{
     }
 
     if ( !logy ){
-      //      c->SaveAs("plots/" + TString(_outdir) + "/linear/" + savename + ".root");
+      c->SaveAs("plots/" + TString(_outdir) + "/linear/" + savename + ".root");
       c->SaveAs("plots/" + TString(_outdir) + "/linear/" + savename + ".png");
-      c->SaveAs("plots/" + TString(_outdir) + "/linear/" + savename + ".pdf");
+      //c->SaveAs("plots/" + TString(_outdir) + "/linear/" + savename + ".pdf");
     }
     if ( logy ){
       c->SaveAs("plots/" + TString(_outdir) + "/log/" + savename + ".png");
-      c->SaveAs("plots/" + TString(_outdir) + "/log/" + savename + ".pdf");
+      //      c->SaveAs("plots/" + TString(_outdir) + "/log/" + savename + ".pdf");
     }
 
 
