@@ -46,8 +46,11 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   _HistoSets.push_back( "non-VBF" );
 
 
-
-
+  _HistoSets.push_back( "ZNN-No_gen_mjj" );
+  _HistoSets.push_back( "ZNN-2Jets" );
+  _HistoSets.push_back( "ZNN-2JetsEta" );
+  _HistoSets.push_back( "ZNN-2JetsEtaDeltaEta" );
+  _HistoSets.push_back( "ZNN-2JetsEtaDeltaEtaDeltaPhi" );
 
 
 
