@@ -4,7 +4,7 @@ Samuel Webb
 Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2020-06-11 14:44:53 (snwebb)>
+// Time-stamp: <2020-07-03 18:22:27 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -588,6 +588,17 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
   bool pass_mindphi_jetbos_1p8 = true;
 
   if ( name.find("Default")!=std::string::npos || name.find("MJJ")!=std::string::npos || name.find("NJET")!=std::string::npos){  
+
+
+    //Delta phi between jet and boson
+    //    std::string truth = "born";
+    //
+    boson.SetPtEtaPhiM( _event_variables["gen_boson_pt"], _event_variables["gen_boson_eta"], _event_variables["gen_boson_phi"], _event_variables["gen_boson_mass"] );
+
+    if (name.find("BARE")){
+      boson.SetPtEtaPhiM( _event_variables["gen_dilep_pt_bare"], _event_variables["gen_dilep_eta_bare"], _event_variables["gen_dilep_phi_bare"], _event_variables["gen_dilep_mass_bare"] );
+    }
+
     int counter = 0;
     for (unsigned int g = 0; g<(GenJet_pt_or.size()); g++){//Switch 14.01.20 to using the first 4 jets with pT > 30
       if ( std::abs(GenJet_eta_or.at(g)) > 5 ) continue;
@@ -611,22 +622,9 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
     	}
       }
     }
-  }     
+    //  }   
 
   
-  //  if ( name.find ("Default") !=std::string::npos ){
-  if ( name.find("Default")!=std::string::npos || name.find("MJJ")!=std::string::npos || name.find("NJET")!=std::string::npos){
-
-    //Delta phi between jet and boson
-    //    std::string truth = "born";
-    //
-    boson.SetPtEtaPhiM( _event_variables["gen_boson_pt"], _event_variables["gen_boson_eta"], _event_variables["gen_boson_phi"], _event_variables["gen_boson_mass"] );
-
-    if (name.find("BARE")){
-      boson.SetPtEtaPhiM( _event_variables["gen_dilep_pt_bare"], _event_variables["gen_dilep_eta_bare"], _event_variables["gen_dilep_phi_bare"], _event_variables["gen_dilep_mass_bare"] );
-    }
-    //    for (unsigned int g = 0; g<(GenJet_pt_or.size()<4?GenJet_pt_or.size():4); g++){
-    //    std::cout << event << " - " << pass_mindphi_jetbos << std::endl;
     if ( name.find("VTR")==std::string::npos){
 
       bool cut1 = ( GenJet_pt_or[0] > 80 );
@@ -801,43 +799,43 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
     }
   }
 
-  if ( name.find("ZNN")!=std::string::npos){
-      bool cut1 = ( GenJet_pt_or[0] > 80 );
-      bool cut2 = ( GenJet_pt_or[1] > 40 );
-      bool cut3 = ( (GenJet_eta_or[0] *  GenJet_eta_or[1]) < 0 );
-      bool cut4 = ( std::abs(GenJet_eta_or[0]) < 5 && std::abs(GenJet_eta_or[1])< 5 );
-      bool cut5 = ( pass_mindphi_jetbos);
-      bool cut6 = ( _event_variables["gen_dphijj"] < 1.5 );
-      bool cut8 = ( _event_variables["gen_detajj"] > 1 );
-      bool cut9 = ( _zll ? (_event_variables["gen_boson_mass"] > 60 && _event_variables["gen_boson_mass"] < 120 ) : true );
+  // if ( name.find("ZNN")!=std::string::npos){
+  //     bool cut1 = ( GenJet_pt_or[0] > 80 );
+  //     bool cut2 = ( GenJet_pt_or[1] > 40 );
+  //     bool cut3 = ( (GenJet_eta_or[0] *  GenJet_eta_or[1]) < 0 );
+  //     bool cut4 = ( std::abs(GenJet_eta_or[0]) < 5 && std::abs(GenJet_eta_or[1])< 5 );
+  //     bool cut5 = ( pass_mindphi_jetbos);
+  //     bool cut6 = ( _event_variables["gen_dphijj"] < 1.5 );
+  //     bool cut8 = ( _event_variables["gen_detajj"] > 1 );
+  //     bool cut9 = ( _zll ? (_event_variables["gen_boson_mass"] > 60 && _event_variables["gen_boson_mass"] < 120 ) : true );
 
-      if ( name == "ZNN-No_gen_mjj" ){
-	passcut = false;
-	if ( cut1 && cut2 && cut3 && cut4 && cut5 && cut6 && cut8 && cut9 )
-	  passcut = true;
-      }
-      else if ( name == "ZNN-2Jets" ){
-	passcut = false;
-	if ( cut1 && cut2 )
-	  passcut = true;
-      }
-      else if ( name == "ZNN-2JetsEta" ){
-	passcut = false;
-	if ( cut1 && cut2 && cut3 && cut4 )
-	  passcut = true;
-      }
-      else if ( name == "ZNN-2JetsEtaDeltaEta" ){
-	passcut = false;
-	if ( cut1 && cut2 && cut3 && cut4 && cut8 )
-	  passcut = true;
-      }
-      else if ( name == "ZNN-2JetsEtaDeltaEtaDeltaPhi" ){
-	passcut = false;
-	if ( cut1 && cut2 && cut3 && cut4 && cut6 && cut8 )
-	  passcut = true;
-      }
+  //     if ( name == "ZNN-No_gen_mjj" ){
+  // 	passcut = false;
+  // 	if ( cut1 && cut2 && cut3 && cut4 && cut5 && cut6 && cut8 && cut9 )
+  // 	  passcut = true;
+  //     }
+  //     else if ( name == "ZNN-2Jets" ){
+  // 	passcut = false;
+  // 	if ( cut1 && cut2 )
+  // 	  passcut = true;
+  //     }
+  //     else if ( name == "ZNN-2JetsEta" ){
+  // 	passcut = false;
+  // 	if ( cut1 && cut2 && cut3 && cut4 )
+  // 	  passcut = true;
+  //     }
+  //     else if ( name == "ZNN-2JetsEtaDeltaEta" ){
+  // 	passcut = false;
+  // 	if ( cut1 && cut2 && cut3 && cut4 && cut8 )
+  // 	  passcut = true;
+  //     }
+  //     else if ( name == "ZNN-2JetsEtaDeltaEtaDeltaPhi" ){
+  // 	passcut = false;
+  // 	if ( cut1 && cut2 && cut3 && cut4 && cut6 && cut8 )
+  // 	  passcut = true;
+  //     }
 
-    }
+  // }
 
   if ( name == "All" ){
     // if (  LHE_HT>100 
