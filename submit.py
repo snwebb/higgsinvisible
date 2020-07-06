@@ -59,26 +59,26 @@ InputDirList = [
 "190904/W2JetsToLNu_LHEWpT_400-inf_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_W2JetsToLNu_LHEWpT_400-inf_amcnloFXFX-pythia8-ext1/190904_093412",
 
 
-# "200107/WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-70To100_madgraphMLM_pythia8/200107_132905",
-# "200107/WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-100To200_madgraphMLM_pythia8/200107_132535",
-# "200107/WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-600To800_madgraphMLM_pythia8/200107_132831",
-# "200107/WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-400To600_madgraphMLM_pythia8/200107_132756",
-# "200107/WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-2500ToInf_madgraphMLM_pythia8/200107_132721",
-# "200107/WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-800To1200_madgraphMLM_pythia8/200107_132941",
-# "200107/WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-200To400_madgraphMLM_pythia8/200107_132646",
-# "200107/WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-1200To2500_madgraphMLM_pythia8/200107_132611",
+"200107/WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-70To100_madgraphMLM_pythia8/200107_132905",
+"200107/WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-100To200_madgraphMLM_pythia8/200107_132535",
+"200107/WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-600To800_madgraphMLM_pythia8/200107_132831",
+"200107/WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-400To600_madgraphMLM_pythia8/200107_132756",
+"200107/WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-2500ToInf_madgraphMLM_pythia8/200107_132721",
+"200107/WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-800To1200_madgraphMLM_pythia8/200107_132941",
+"200107/WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-200To400_madgraphMLM_pythia8/200107_132646",
+"200107/WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-1200To2500_madgraphMLM_pythia8/200107_132611",
 
-# "200107/DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-70to100_madgraphMLM_pythia8/200107_132424",
-# "200107/DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200_madgraphMLM_pythia8/200107_131944",
-# "200107/DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200_madgraphMLM_pythia8-ext1/200107_131908",   
-# "200107/DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400_madgraphMLM_pythia8/200107_132055",
-# "200107/DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400_madgraphMLM_pythia8-ext1/200107_132130",
-# "200107/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8/200107_132314",
-# "200107/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8-ext1/200107_132239",
-# "200107/DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-600to800_madgraphMLM_pythia8/200107_132349",
-# "200107/DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-800to1200_madgraphMLM_pythia8/200107_132459",
-# "200107/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-1200to2500_madgraphMLM_pythia8/200107_132021",
-# "200107/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-2500toInf_madgraphMLM_pythia8/200107_132205",
+"200107/DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-70to100_madgraphMLM_pythia8/200107_132424",
+"200107/DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200_madgraphMLM_pythia8/200107_131944",
+"200107/DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200_madgraphMLM_pythia8-ext1/200107_131908",   
+"200107/DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400_madgraphMLM_pythia8/200107_132055",
+"200107/DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400_madgraphMLM_pythia8-ext1/200107_132130",
+"200107/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8/200107_132314",
+"200107/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8-ext1/200107_132239",
+"200107/DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-600to800_madgraphMLM_pythia8/200107_132349",
+"200107/DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-800to1200_madgraphMLM_pythia8/200107_132459",
+"200107/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-1200to2500_madgraphMLM_pythia8/200107_132021",
+"200107/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-2500toInf_madgraphMLM_pythia8/200107_132205",
 
 
 #NU NU
@@ -96,13 +96,13 @@ InputDirList = [
 "200302/Z2JetsToNuNU_M-50_LHEZpT_400-inf_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_400-inf_amcnloFXFX-pythia8/200310_140222",
 
  
-# "200302/ZJetsToNuNu_HT-100To200_13TeV-madgraph/MC_ZJetsToNuNu_HT-100To200-madgraph/200302_154542",
-# "200302/ZJetsToNuNu_HT-200To400_13TeV-madgraph/MC_ZJetsToNuNu_HT-200To400-madgraph/200302_154854",
-# "200302/ZJetsToNuNu_HT-400To600_13TeV-madgraph/MC_ZJetsToNuNu_HT-400To600-madgraph/200302_155005",
-# "200302/ZJetsToNuNu_HT-600To800_13TeV-madgraph/MC_ZJetsToNuNu_HT-600To800-madgraph/200302_155041",
-# "200302/ZJetsToNuNu_HT-800To1200_13TeV-madgraph/MC_ZJetsToNuNu_HT-800To1200-madgraph/200302_155117",
-# "200302/ZJetsToNuNu_HT-1200To2500_13TeV-madgraph/MC_ZJetsToNuNu_HT-1200To2500-madgraph/200302_154818",
-# "200302/ZJetsToNuNu_HT-2500ToInf_13TeV-madgraph/MC_ZJetsToNuNu_HT-2500ToInf-madgraph/200302_154930",
+"200302/ZJetsToNuNu_HT-100To200_13TeV-madgraph/MC_ZJetsToNuNu_HT-100To200-madgraph/200302_154542",
+"200302/ZJetsToNuNu_HT-200To400_13TeV-madgraph/MC_ZJetsToNuNu_HT-200To400-madgraph/200302_154854",
+"200302/ZJetsToNuNu_HT-400To600_13TeV-madgraph/MC_ZJetsToNuNu_HT-400To600-madgraph/200302_155005",
+"200302/ZJetsToNuNu_HT-600To800_13TeV-madgraph/MC_ZJetsToNuNu_HT-600To800-madgraph/200302_155041",
+"200302/ZJetsToNuNu_HT-800To1200_13TeV-madgraph/MC_ZJetsToNuNu_HT-800To1200-madgraph/200302_155117",
+"200302/ZJetsToNuNu_HT-1200To2500_13TeV-madgraph/MC_ZJetsToNuNu_HT-1200To2500-madgraph/200302_154818",
+"200302/ZJetsToNuNu_HT-2500ToInf_13TeV-madgraph/MC_ZJetsToNuNu_HT-2500ToInf-madgraph/200302_154930",
 
 
 

@@ -193,8 +193,8 @@ void HiggsPlotting::LoadAllHistograms(){
   std::vector<std::string> plots2D = {"gen_boson_pt_gen_mjj","gen_boson_pt_gen_jetpt0","gen_boson_pt_gen_mjj_NoHeavyQuark","gen_boson_pt_gen_mjj_HeavyQuark"};
 
   //  std::vector<std::string> histoSets = { "Default", "All", "Default-Mjj-200-500" };
-  //  std::vector<std::string> histoSets = { "Default", "All" , "Default_VTR", "MJJ-200-500",  "MJJ-500-1000",  "MJJ-1000-1500", "MJJ-1500-5000", "non-VBF"};
-  std::vector<std::string> histoSets = { "Default","All","ZNN-No_gen_mjj", "ZNN-2Jets", "ZNN-2JetsEta", "ZNN-2JetsEtaDeltaEta", "ZNN-2JetsEtaDeltaEtaDeltaPhi"};
+  std::vector<std::string> histoSets = { "Default", "All" , "Default_VTR", "MJJ-200-500",  "MJJ-500-1000",  "MJJ-1000-1500", "MJJ-1500-5000", "non-VBF"};
+  //  std::vector<std::string> histoSets = { "Default","All","ZNN-No_gen_mjj", "ZNN-2Jets", "ZNN-2JetsEta", "ZNN-2JetsEtaDeltaEta", "ZNN-2JetsEtaDeltaEtaDeltaPhi"};
 
   //then load into clonemap with short name and list of hists
 
@@ -1160,8 +1160,8 @@ void HiggsPlotting::EvaluateUncertainties(){
    for ( auto setname : sets  ){
     
     
-     //     std::vector<TString> histoSets = { "Default" , "Default_VTR", "MJJ-200-500",  "MJJ-500-1000",  "MJJ-1000-1500", "MJJ-1500-5000", "non-VBF"};
-    std::vector<TString> histoSets = { "Default"};
+     std::vector<TString> histoSets = { "Default" , "Default_VTR", "MJJ-200-500",  "MJJ-500-1000",  "MJJ-1000-1500", "MJJ-1500-5000", "non-VBF"};
+     //    std::vector<TString> histoSets = { "Default"};
     for ( auto histoset : histoSets ){
       std::vector<std::string> systplots = {"gen_boson_pt", "gen_jetpt0"};
       for ( auto syst : systplots ){
@@ -1414,8 +1414,8 @@ void HiggsPlotting::EvaluateUncertainties2D(){
   std::vector<TString> sets = {"LHEPt"};
   for ( auto setname : sets  ){
     
-    //    std::vector<TString> histoSets = { "Default" , "Default_VTR","non-VBF"};
-    std::vector<TString> histoSets = { "Default"};
+    std::vector<TString> histoSets = { "Default" , "Default_VTR","non-VBF"};
+    //std::vector<TString> histoSets = { "Default"};
     for ( auto histoset : histoSets ){
       std::vector<std::string> systplots = {"gen_boson_pt_gen_mjj"};
       if ( histoset == "non-VBF" ) systplots = {"gen_boson_pt_gen_jetpt0"};
@@ -1478,15 +1478,15 @@ void HiggsPlotting::EvaluateUncertainties2D(){
 		double wnom = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetBinContent(i,k);
 		double znom = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetBinContent(i,k);	    
 
-		double wu_heavy = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_HeavyQuark_" + j ]->GetBinContent(i,k);
-		double zu_heavy = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_HeavyQuark_" + j ]->GetBinContent(i,k);
-		double wnom_heavy = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal_heavy ]->GetBinContent(i,k);
-		double znom_heavy = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal_heavy ]->GetBinContent(i,k);	    
+		// double wu_heavy = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_HeavyQuark_" + j ]->GetBinContent(i,k);
+		// double zu_heavy = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_HeavyQuark_" + j ]->GetBinContent(i,k);
+		// double wnom_heavy = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal_heavy ]->GetBinContent(i,k);
+		// double znom_heavy = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal_heavy ]->GetBinContent(i,k);	    
 		
-		double wu_light = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_NoHeavyQuark_" + j ]->GetBinContent(i,k);
-		double zu_light = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_NoHeavyQuark_" + j ]->GetBinContent(i,k);
-		double wnom_light = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal_light ]->GetBinContent(i,k);
-		double znom_light = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal_light ]->GetBinContent(i,k);	    
+		// double wu_light = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_NoHeavyQuark_" + j ]->GetBinContent(i,k);
+		// double zu_light = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_NoHeavyQuark_" + j ]->GetBinContent(i,k);
+		// double wnom_light = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal_light ]->GetBinContent(i,k);
+		// double znom_light = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal_light ]->GetBinContent(i,k);	    
 		
 		r = wnom / znom;
 		double r_zup = (wnom/2) / zu;
@@ -1496,18 +1496,18 @@ void HiggsPlotting::EvaluateUncertainties2D(){
 		double val_correlated = 1;
 		double val_zup = 1;
 		double val_wup = 1;
-		double val_light_correlated = 1;
-		double val_heavy_uncorrelated = 1;
+		// double val_light_correlated = 1;
+		// double val_heavy_uncorrelated = 1;
 
-		double val_heavy_uncorrelated_w = 1;
-		double val_heavy_uncorrelated_z = 1;
+		// double val_heavy_uncorrelated_w = 1;
+		// double val_heavy_uncorrelated_z = 1;
 
-		double val_flavour_separated = 1;
+		// double val_flavour_separated = 1;
 
-		double r_light = wnom_light / znom_light;
-		double r_heavy = wnom_heavy / znom_heavy;
-		double r_heavy_zup = (wnom_heavy/2) / zu_heavy;
-		double r_heavy_wup = wu_heavy / (znom_heavy/2);
+		// double r_light = wnom_light / znom_light;
+		// double r_heavy = wnom_heavy / znom_heavy;
+		// double r_heavy_zup = (wnom_heavy/2) / zu_heavy;
+		// double r_heavy_wup = wu_heavy / (znom_heavy/2);
 
 		if ( j == "1" || j == "3" ){
 		  val_uncorrelated = 1 - ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r; 
@@ -1515,12 +1515,12 @@ void HiggsPlotting::EvaluateUncertainties2D(){
 		  val_zup = ((wnom/(zu*2)) / r);
 		  val_wup = (((2*wu)/znom) / r);
 
-		  // val_light_correlated = ((wu_light/zu_light) / r_light) - 1;
-		  // val_heavy_uncorrelated = ( std::sqrt( std::pow(r_heavy_wup-r_heavy,2) + std::pow(r_heavy_zup-r_heavy,2) ) ) / r_heavy; 
-		  // val_flavour_separated = 1 + std::sqrt(val_light_correlated*val_light_correlated + val_heavy_uncorrelated*val_heavy_uncorrelated);
-		  val_light_correlated = ((wu_light+wnom_heavy/2)/(zu_light+znom_heavy/2)) / r ;
-		  val_heavy_uncorrelated_w = ((wnom_light/2+wu_heavy)/(znom_light/2+znom_heavy/2)) / r ;
-		  val_heavy_uncorrelated_z = ((wnom_light/2+wnom_heavy/2)/(znom_light/2+zu_heavy)) / r ;
+		  // // val_light_correlated = ((wu_light/zu_light) / r_light) - 1;
+		  // // val_heavy_uncorrelated = ( std::sqrt( std::pow(r_heavy_wup-r_heavy,2) + std::pow(r_heavy_zup-r_heavy,2) ) ) / r_heavy; 
+		  // // val_flavour_separated = 1 + std::sqrt(val_light_correlated*val_light_correlated + val_heavy_uncorrelated*val_heavy_uncorrelated);
+		  // val_light_correlated = ((wu_light+wnom_heavy/2)/(zu_light+znom_heavy/2)) / r ;
+		  // val_heavy_uncorrelated_w = ((wnom_light/2+wu_heavy)/(znom_light/2+znom_heavy/2)) / r ;
+		  // val_heavy_uncorrelated_z = ((wnom_light/2+wnom_heavy/2)/(znom_light/2+zu_heavy)) / r ;
 
 		}
 		else{
@@ -1529,13 +1529,13 @@ void HiggsPlotting::EvaluateUncertainties2D(){
 		  val_zup = ((wnom/(zu*2)) / r);
 		  val_wup = (((2*wu)/znom) / r);
 
-		  // val_light_correlated = ((wu_light/zu_light) / r_light) - 1;
-		  // val_heavy_uncorrelated = ( std::sqrt( std::pow(r_heavy_wup-r_heavy,2) + std::pow(r_heavy_zup-r_heavy,2) ) ) / r_heavy; 
-		  // val_flavour_separated = 1 - std::sqrt(val_light_correlated*val_light_correlated + val_heavy_uncorrelated*val_heavy_uncorrelated);
+		  // // val_light_correlated = ((wu_light/zu_light) / r_light) - 1;
+		  // // val_heavy_uncorrelated = ( std::sqrt( std::pow(r_heavy_wup-r_heavy,2) + std::pow(r_heavy_zup-r_heavy,2) ) ) / r_heavy; 
+		  // // val_flavour_separated = 1 - std::sqrt(val_light_correlated*val_light_correlated + val_heavy_uncorrelated*val_heavy_uncorrelated);
 
-		  val_light_correlated = ((wu_light+wnom_heavy/2)/(zu_light+znom_heavy/2)) / r ;
-		  val_heavy_uncorrelated_w = ((wnom_light/2+wu_heavy)/(znom_light/2+znom_heavy/2)) / r ;
-		  val_heavy_uncorrelated_z = ((wnom_light/2+wnom_heavy/2)/(znom_light/2+zu_heavy)) / r ;
+		  // val_light_correlated = ((wu_light+wnom_heavy/2)/(zu_light+znom_heavy/2)) / r ;
+		  // val_heavy_uncorrelated_w = ((wnom_light/2+wu_heavy)/(znom_light/2+znom_heavy/2)) / r ;
+		  // val_heavy_uncorrelated_z = ((wnom_light/2+wnom_heavy/2)/(znom_light/2+zu_heavy)) / r ;
 
 		}
 		
@@ -1543,10 +1543,10 @@ void HiggsPlotting::EvaluateUncertainties2D(){
 		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, k, val_correlated );
 		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, k, val_zup );
 		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, k, val_wup );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleFlavourSeparated_" + j ]->SetBinContent(i, k, val_flavour_separated );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleLightCorrelated_" + j ]->SetBinContent(i, k, val_light_correlated );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedW_" + j ]->SetBinContent(i, k, val_heavy_uncorrelated_w );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedZ_" + j ]->SetBinContent(i, k, val_heavy_uncorrelated_z );
+		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleFlavourSeparated_" + j ]->SetBinContent(i, k, val_flavour_separated );
+		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleLightCorrelated_" + j ]->SetBinContent(i, k, val_light_correlated );
+		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedW_" + j ]->SetBinContent(i, k, val_heavy_uncorrelated_w );
+		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedZ_" + j ]->SetBinContent(i, k, val_heavy_uncorrelated_z );
 		
 	      }
 	      else{
@@ -1554,10 +1554,10 @@ void HiggsPlotting::EvaluateUncertainties2D(){
 		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, k, 1 );
 		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, k, 1 );
 		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, k, 1 );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleFlavourSeparated_" + j ]->SetBinContent(i, k, 1 );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleLightCorrelated_" + j ]->SetBinContent(i, k, 1 );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedW_" + j ]->SetBinContent(i, k, 1 );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedZ_" + j ]->SetBinContent(i, k, 1 );
+		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleFlavourSeparated_" + j ]->SetBinContent(i, k, 1 );
+		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleLightCorrelated_" + j ]->SetBinContent(i, k, 1 );
+		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedW_" + j ]->SetBinContent(i, k, 1 );
+		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedZ_" + j ]->SetBinContent(i, k, 1 );
 
 	      }
 	      
@@ -2047,6 +2047,7 @@ void HiggsPlotting::PlotAllHistograms(){
 	//2D copy for now
 	for (auto const& histset : _cloned_hists2D[ process + "-NLO-" + setname]){
 	  std::string hist = std::string(histset.first);
+	  std::cout << histset.second->GetName() <<std::endl;
 	  if (analysis == "nonvbf" && hist.find("non-VBF")==std::string::npos){
 	    continue;
 	  }
@@ -2115,7 +2116,7 @@ void HiggsPlotting::PlotAllHistograms(){
 	  if ( hist.find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
 	  else if ( hist.find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
 	  
-	  std::cout << process+"-LO" <<  histset.first << " - " << process+"-"+setname << std::endl;
+	  //	  std::cout << process+"-LO" <<  histset.first << " - " << process+"-"+setname << std::endl;
 
 	  //	  std::cout << histset.second->Integral(2,2,2,2) << " - " << _cloned_hists2D[process+"-LO"][ histset.first]->Integral(2,2,2,2) << std::endl;
 	  TH2D * ratio = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-"+setname+"-" + histset.first );
@@ -2137,6 +2138,7 @@ void HiggsPlotting::PlotAllHistograms(){
 	  if ( analysis == "nonvbf" ) saveanalysis = "nonVBF";
 	  if ( analysis == "VTR" ) saveanalysis = "VTR";
 	  if ( setname == "LHEPt" ){	
+	    std::cout << savename << " - " << saveanalysis << " - " << saveprocess << " - " << systname << std::endl;
 	    plotter.SaveToFile(ratio, savename, "2Dkfactor_"+saveanalysis+"_"+saveprocess, systname );
 	    if ( process == "ZNN" )
 	      plotter.SaveToFile(ratio_zll_over_znn, savename, "2Dkfactor_"+saveanalysis+"_"+saveprocess + "_zll", systname );
