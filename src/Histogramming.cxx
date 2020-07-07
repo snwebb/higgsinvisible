@@ -4,7 +4,7 @@ Samuel Webb
 Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2020-07-03 18:22:27 (snwebb)>
+// Time-stamp: <2020-07-07 16:46:07 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -25,6 +25,7 @@ void HiggsInvisible::MakeAllHistograms( std::vector<std::string> &HistoSets){
 void HiggsInvisible::LoadHistoTemplates( std::string name ){
 
   double mjjbins[6] = {0,200,500,1000,1500,5000};
+  double vtrmjjbins[4] = {0,600,900,5000};
   double jetptbins[5] = {0,200,400,600,1200};
   double ptbins[15] = {0, 40, 80, 120, 160, 200, 240, 280, 320, 400, 520, 640, 760, 880,1100}; //andreas's binnings
 
@@ -35,11 +36,20 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
     // _cloned_hists[ name ] [ "gen_dilep_mass_bare" ] = new TH1D ( (name + "_gen_dilep_mass_bare").c_str(), ";Di lep Mass;Number of Events", 120,0,1200 );  
 
     _cloned_hists[ name ] [ "gen_boson_pt" ] = new TH1D ( (name + "_gen_boson_pt").c_str(), ";Boson p_{T};Number of Events", 120,0,1200 );  
+    
 
-    _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
+    if ( name == "Default_VTR" ){
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,3,vtrmjjbins);  
+    _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_HeavyQuark" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_HeavyQuark" ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,3,vtrmjjbins);  
+    _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_NoHeavyQuark" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_NoHeavyQuark" ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,3,vtrmjjbins);  
+
+    }
+    else{
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
+
     _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_HeavyQuark" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_HeavyQuark" ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
     _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_NoHeavyQuark" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_NoHeavyQuark" ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
-
+    }
 
     _cloned_hists[ name ] [ "gen_boson_eta" ] = new TH1D ( (name + "_gen_boson_eta").c_str(), ";Boson #eta;Number of Events", 40,-8,8 );  
     _cloned_hists[ name ] [ "gen_boson_mass" ] = new TH1D ( (name + "_gen_boson_mass").c_str(), ";Boson Mass;Number of Events", 200,0,200);  
@@ -105,18 +115,26 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
 
   }
   if ( name.find("Default")!=std::string::npos){
-    for ( int i = 0;i<9;i++){
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
 
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_HeavyQuark_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_HeavyQuark_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_NoHeavyQuark_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_NoHeavyQuark_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
-
-
+    if ( name == "Default_VTR" ){
+      for ( int i = 0;i<9;i++){
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_HeavyQuark_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_HeavyQuark_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_NoHeavyQuark_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_NoHeavyQuark_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
+      }
+      for ( int i = 0;i<102;i++){
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14,ptbins,5,mjjbins );  
+      }
+    }else{
+      for ( int i = 0;i<9;i++){
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_HeavyQuark_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_HeavyQuark_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_NoHeavyQuark_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_NoHeavyQuark_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,5,mjjbins);  
+      }
+      for ( int i = 0;i<102;i++){
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14,ptbins,5,mjjbins );  
+      }
     }
-    for ( int i = 0;i<102;i++){
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14,ptbins,5,mjjbins );  
-    }
-
   }
 
   if ( name == "non-VBF" ){
@@ -611,6 +629,8 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
 	}
       }
     }
+    
+    counter = 0;
     for (unsigned int g = 0; g<(GenJet_pt_or.size()); g++){//Switch 14.01.20 to using the first 4 jets with pT > 30
       if ( std::abs(GenJet_eta_or.at(g)) > 5 ) continue;
       if ( GenJet_pt_or[g] > 30 ){
@@ -622,8 +642,6 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
     	}
       }
     }
-    //  }   
-
   
     if ( name.find("VTR")==std::string::npos){
 
@@ -667,6 +685,7 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
 	   // && _event_variables["gen_boson_pt"] >= 160
 
 	   ){
+
 	passcut = true;
       }
     }  

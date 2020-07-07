@@ -106,43 +106,47 @@ InputDirList = [
 
 
 
-# #Updated pT binned files
-# "190904/WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8-ext1/190910_135639",
-# "190904/WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8-ext1/190910_135720",
-# "190904/WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8-ext1/190910_135801",
-# "190904/WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8-ext1/190910_135840",
 
-# "190904/WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8/190910_142558",
-# "190904/WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8/190910_153416",
-# "190904/WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8/190910_142722",
-# "190904/WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8/190910_153455",
+
+
+
+# #Updated pT binned files
+"190904/WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8-ext1/190910_135639",
+"190904/WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8-ext1/190910_135720",
+"190904/WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8-ext1/190910_135801",
+"190904/WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8-ext1/190910_135840",
+
+"190904/WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8/190910_142558",
+"190904/WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8/190910_153416",
+"190904/WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8/190910_142722",
+"190904/WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8/190910_153455",
                                                                                                                          
 # # # #Oliviers new files
 
-# "190731/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-100To250-amcatnloFXFX-pythia8-ext1/190731_150621",
-# "190731/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-100To250-amcatnloFXFX-pythia8-ext2/190731_150655",
-# "190731/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-100To250-amcatnloFXFX-pythia8-ext5/190731_152804",
-# "190731/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-250To400-amcatnloFXFX-pythia8/190731_150731",
-# "190731/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-250To400-amcatnloFXFX-pythia8-ext1/190731_150807",
-# "190731/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-250To400-amcatnloFXFX-pythia8-ext2/190731_150842",
-# "190731/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-250To400-amcatnloFXFX-pythia8-ext5/190731_152903",
-# "190731/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-400To650-amcatnloFXFX-pythia8/190731_150916",
-# "190731/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-400To650-amcatnloFXFX-pythia8-ext1/190731_150951",
-# "190731/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-400To650-amcatnloFXFX-pythia8-ext2/190731_151027",
-# "190731/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-650ToInf-amcatnloFXFX-pythia8/190731_151103",
-# "190731/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-650ToInf-amcatnloFXFX-pythia8-ext1/190731_151136",
-# "190731/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-650ToInf-amcatnloFXFX-pythia8-ext2/190731_151221",
+"190731/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-100To250-amcatnloFXFX-pythia8-ext1/190731_150621",
+"190731/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-100To250-amcatnloFXFX-pythia8-ext2/190731_150655",
+"190731/DYJetsToLL_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-100To250-amcatnloFXFX-pythia8-ext5/190731_152804",
+"190731/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-250To400-amcatnloFXFX-pythia8/190731_150731",
+"190731/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-250To400-amcatnloFXFX-pythia8-ext1/190731_150807",
+"190731/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-250To400-amcatnloFXFX-pythia8-ext2/190731_150842",
+"190731/DYJetsToLL_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-250To400-amcatnloFXFX-pythia8-ext5/190731_152903",
+"190731/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-400To650-amcatnloFXFX-pythia8/190731_150916",
+"190731/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-400To650-amcatnloFXFX-pythia8-ext1/190731_150951",
+"190731/DYJetsToLL_Pt-400To650_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-400To650-amcatnloFXFX-pythia8-ext2/190731_151027",
+"190731/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-650ToInf-amcatnloFXFX-pythia8/190731_151103",
+"190731/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-650ToInf-amcatnloFXFX-pythia8-ext1/190731_151136",
+"190731/DYJetsToLL_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_Pt-650ToInf-amcatnloFXFX-pythia8-ext2/190731_151221",
 
 
 # # # #OTHER LEADING ORDER FILES
 
 
-# "190312/WJetsToLNu_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_0J_TuneCP5-amcatnloFXFX/190312_143531",
-# "190312/WJetsToLNu_2J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_2J_TuneCP5-amcatnloFXFX/190312_143507",
-# "190312/WJetsToLNu_1J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_1J_TuneCP5-amcatnloFXFX-Skimmed/190531_093825",
+"190312/WJetsToLNu_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_0J_TuneCP5-amcatnloFXFX/190312_143531",
+"190312/WJetsToLNu_2J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_2J_TuneCP5-amcatnloFXFX/190312_143507",
+"190312/WJetsToLNu_1J_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_1J_TuneCP5-amcatnloFXFX-Skimmed/190531_093825",
    
-# "190312/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX/190312_143114",
-# "190312/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX-ext/190312_143051",
+"190312/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX/190312_143114",
+"190312/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/MC_DYJetsToLL_M-50-amcatnloFXFX-ext/190312_143051",
 
 
 

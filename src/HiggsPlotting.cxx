@@ -351,7 +351,7 @@ void HiggsPlotting::Rebin(){
       if ( std::string(plot.first).find("VTR")==std::string::npos ) continue;
       //      plot.second =  (TH2D*) plot.second->Rebin( 14/, plot.first + "_rebinnned" , bins ) ;
       plot.second =  (TH2D*)plot.second->Clone( plot.first + "_rebinnned" );
-      plot.second->RebinY(plot.second->GetNbinsY());
+      //      plot.second->RebinY(plot.second->GetNbinsY());
     }
   }
     
