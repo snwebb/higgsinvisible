@@ -201,7 +201,7 @@ void HiggsPlotting::LoadAllHistograms(){
   TH2D * loadHist2D = 0;
   TFile * loadFile = 0;
 
-  TString filepath = "/vols/cms/snwebb/InvisibleOutput/Merged/";
+  TString filepath = "/vols/cms/snwebb/InvisibleOutputOLD/Merged/";
 
   for (auto const& filename : filenames){
     

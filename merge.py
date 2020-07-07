@@ -22,7 +22,7 @@ Date = "190708"
 #    count+=1;
 
 OutputDirList = [
-   "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[2] for i in InputDirList
+   "/vols/cms/snwebb/InvisibleOutputOLD/" + i.split("/")[2] for i in InputDirList
  ]
 
 #FileList = "filelist.txt" # list with all the file directories
@@ -31,7 +31,7 @@ OutputDirList = [
 
 ##### loop for creating and sending jobs #####
 for outdir in OutputDirList :
-   os.system("hadd -f /vols/cms/snwebb/InvisibleOutput/Merged/" + outdir.split("/")[5] + ".root " + outdir + "/root/*root" )  
+   os.system("hadd -f /vols/cms/snwebb/InvisibleOutputOLD/Merged/" + outdir.split("/")[5] + ".root " + outdir + "/root/*root" )  
    #print("hadd -f /vols/cms/snwebb/InvisibleOutput/Merged/" + outdir.split("/")[5] + ".root " + outdir + "/root/*root" )  
 
 

@@ -14,17 +14,6 @@ interval = 5 # number files to be processed in a single job, take care to split 
 
 InputDirList = [ 
 
-# #Updated pT binned files
-# "190904/WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8-ext1/190910_135639",
-# "190904/WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8-ext1/190910_135720",
-# "190904/WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8-ext1/190910_135801",
-# "190904/WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8-ext1/190910_135840",
-
-# "190904/WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8/190910_142558",
-# "190904/WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8/190910_153416",
-# "190904/WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8/190910_142722",
-# "190904/WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8/190910_153455",
-
 # # # #Andreas new files
 
 # "200127/W1JetsToLNu_LHEWpT_50-150_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_W1JetsToLNu_LHEWpT_50-150_amcnloFXFX-pythia8/200127_095105",
@@ -70,47 +59,67 @@ InputDirList = [
 # "190904/W2JetsToLNu_LHEWpT_400-inf_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_W2JetsToLNu_LHEWpT_400-inf_amcnloFXFX-pythia8-ext1/190904_093412",
 
 
-# "200107/WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-70To100_madgraphMLM_pythia8/200107_132905",
-# "200107/WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-100To200_madgraphMLM_pythia8/200107_132535",
-# "200107/WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-600To800_madgraphMLM_pythia8/200107_132831",
-# "200107/WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-400To600_madgraphMLM_pythia8/200107_132756",
-# "200107/WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-2500ToInf_madgraphMLM_pythia8/200107_132721",
-# "200107/WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-800To1200_madgraphMLM_pythia8/200107_132941",
-# "200107/WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-200To400_madgraphMLM_pythia8/200107_132646",
-# "200107/WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-1200To2500_madgraphMLM_pythia8/200107_132611",
+"200107/WJetsToLNu_HT-70To100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-70To100_madgraphMLM_pythia8/200107_132905",
+"200107/WJetsToLNu_HT-100To200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-100To200_madgraphMLM_pythia8/200107_132535",
+"200107/WJetsToLNu_HT-600To800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-600To800_madgraphMLM_pythia8/200107_132831",
+"200107/WJetsToLNu_HT-400To600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-400To600_madgraphMLM_pythia8/200107_132756",
+"200107/WJetsToLNu_HT-2500ToInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-2500ToInf_madgraphMLM_pythia8/200107_132721",
+"200107/WJetsToLNu_HT-800To1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-800To1200_madgraphMLM_pythia8/200107_132941",
+"200107/WJetsToLNu_HT-200To400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-200To400_madgraphMLM_pythia8/200107_132646",
+"200107/WJetsToLNu_HT-1200To2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_WJetsToLNu_HT-1200To2500_madgraphMLM_pythia8/200107_132611",
 
 # "200107/DYJetsToLL_M-50_HT-70to100_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-70to100_madgraphMLM_pythia8/200107_132424",
 # "200107/DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200_madgraphMLM_pythia8/200107_131944",
 # "200107/DYJetsToLL_M-50_HT-100to200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-100to200_madgraphMLM_pythia8-ext1/200107_131908",   
-# "200107/DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-800to1200_madgraphMLM_pythia8/200107_132459",
-# "200107/DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-600to800_madgraphMLM_pythia8/200107_132349",
-# "200107/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8/200107_132314",
-# "200107/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8-ext1/200107_132239",
-# "200107/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-2500toInf_madgraphMLM_pythia8/200107_132205",
 # "200107/DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400_madgraphMLM_pythia8/200107_132055",
 # "200107/DYJetsToLL_M-50_HT-200to400_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-200to400_madgraphMLM_pythia8-ext1/200107_132130",
+# "200107/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8/200107_132314",
+# "200107/DYJetsToLL_M-50_HT-400to600_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-400to600_madgraphMLM_pythia8-ext1/200107_132239",
+# "200107/DYJetsToLL_M-50_HT-600to800_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-600to800_madgraphMLM_pythia8/200107_132349",
+# "200107/DYJetsToLL_M-50_HT-800to1200_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-800to1200_madgraphMLM_pythia8/200107_132459",
 # "200107/DYJetsToLL_M-50_HT-1200to2500_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-1200to2500_madgraphMLM_pythia8/200107_132021",
+# "200107/DYJetsToLL_M-50_HT-2500toInf_TuneCP5_13TeV-madgraphMLM-pythia8/MC_DYJetsToLL_M-50_HT-2500toInf_madgraphMLM_pythia8/200107_132205",
+
 
 #NU NU
 
-"200302/Z1JetsToNuNu_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_150-250_amcnloFXFX-pythia8/200302_155153",
-"200302/Z1JetsToNuNu_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_150-250_amcnloFXFX-pythia8-ext1/200302_155228",
-"200302/Z1JetsToNuNu_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_250-400_amcnloFXFX-pythia8/200302_155302",
-  "200302/Z1JetsToNuNu_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_250-400-amcnloFXFX-pythia8-ext1/200305_114506",
-"200302/Z1JetsToNuNu_M-50_LHEZpT_400-inf_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_400-inf_amcnloFXFX-pythia8/200302_155413",
-"200302/Z1JetsToNuNu_M-50_LHEZpT_50-150_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_50-150_amcnloFXFX-pythia8/200302_155449",
-"200302/Z2JetsToNuNu_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_150-250_amcnloFXFX-pythia8-ext1/200302_155522",
-"200302/Z2JetsToNuNu_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_250-400_amcnloFXFX-pythia8/200302_155557",
-"200302/Z2JetsToNuNu_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_250-400_amcnloFXFX-pythia8-ext1/200302_155632",
-"200302/Z2JetsToNuNu_M-50_LHEZpT_50-150_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_50-150_amcnloFXFX-pythia8/200302_155708",
-"200302/Z2JetsToNuNU_M-50_LHEZpT_400-inf_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_400-inf_amcnloFXFX-pythia8/200310_140222",
-"200302/ZJetsToNuNu_HT-100To200_13TeV-madgraph/MC_ZJetsToNuNu_HT-100To200-madgraph/200302_154542",
-"200302/ZJetsToNuNu_HT-1200To2500_13TeV-madgraph/MC_ZJetsToNuNu_HT-1200To2500-madgraph/200302_154818",
-"200302/ZJetsToNuNu_HT-200To400_13TeV-madgraph/MC_ZJetsToNuNu_HT-200To400-madgraph/200302_154854",
-"200302/ZJetsToNuNu_HT-2500ToInf_13TeV-madgraph/MC_ZJetsToNuNu_HT-2500ToInf-madgraph/200302_154930",
-"200302/ZJetsToNuNu_HT-400To600_13TeV-madgraph/MC_ZJetsToNuNu_HT-400To600-madgraph/200302_155005",
-"200302/ZJetsToNuNu_HT-600To800_13TeV-madgraph/MC_ZJetsToNuNu_HT-600To800-madgraph/200302_155041",
-"200302/ZJetsToNuNu_HT-800To1200_13TeV-madgraph/MC_ZJetsToNuNu_HT-800To1200-madgraph/200302_155117",
+# "200302/Z1JetsToNuNu_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_150-250_amcnloFXFX-pythia8/200302_155153",
+# "200302/Z1JetsToNuNu_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_150-250_amcnloFXFX-pythia8-ext1/200302_155228",
+# "200302/Z1JetsToNuNu_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_250-400_amcnloFXFX-pythia8/200302_155302",
+# "200302/Z1JetsToNuNu_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_250-400-amcnloFXFX-pythia8-ext1/200305_114506",
+# "200302/Z1JetsToNuNu_M-50_LHEZpT_400-inf_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_400-inf_amcnloFXFX-pythia8/200302_155413",
+# "200302/Z1JetsToNuNu_M-50_LHEZpT_50-150_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z1JetsToNuNu_M-50_LHEZpT_50-150_amcnloFXFX-pythia8/200302_155449",
+# "200302/Z2JetsToNuNu_M-50_LHEZpT_150-250_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_150-250_amcnloFXFX-pythia8-ext1/200302_155522",
+# "200302/Z2JetsToNuNu_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_250-400_amcnloFXFX-pythia8/200302_155557",
+# "200302/Z2JetsToNuNu_M-50_LHEZpT_250-400_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_250-400_amcnloFXFX-pythia8-ext1/200302_155632",
+# "200302/Z2JetsToNuNu_M-50_LHEZpT_50-150_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_50-150_amcnloFXFX-pythia8/200302_155708",
+# "200302/Z2JetsToNuNU_M-50_LHEZpT_400-inf_TuneCP5_13TeV-amcnloFXFX-pythia8/MC_Z2JetsToNuNu_M-50_LHEZpT_400-inf_amcnloFXFX-pythia8/200310_140222",
+
+ 
+# "200302/ZJetsToNuNu_HT-100To200_13TeV-madgraph/MC_ZJetsToNuNu_HT-100To200-madgraph/200302_154542",
+# "200302/ZJetsToNuNu_HT-200To400_13TeV-madgraph/MC_ZJetsToNuNu_HT-200To400-madgraph/200302_154854",
+# "200302/ZJetsToNuNu_HT-400To600_13TeV-madgraph/MC_ZJetsToNuNu_HT-400To600-madgraph/200302_155005",
+# "200302/ZJetsToNuNu_HT-600To800_13TeV-madgraph/MC_ZJetsToNuNu_HT-600To800-madgraph/200302_155041",
+# "200302/ZJetsToNuNu_HT-800To1200_13TeV-madgraph/MC_ZJetsToNuNu_HT-800To1200-madgraph/200302_155117",
+# "200302/ZJetsToNuNu_HT-1200To2500_13TeV-madgraph/MC_ZJetsToNuNu_HT-1200To2500-madgraph/200302_154818",
+# "200302/ZJetsToNuNu_HT-2500ToInf_13TeV-madgraph/MC_ZJetsToNuNu_HT-2500ToInf-madgraph/200302_154930",
+
+
+
+
+
+
+
+# #Updated pT binned files
+# "190904/WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8-ext1/190910_135639",
+# "190904/WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8-ext1/190910_135720",
+# "190904/WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8-ext1/190910_135801",
+# "190904/WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8-ext1/190910_135840",
+
+# "190904/WJetsToLNu_Pt-100To250_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-100To250-amcatnloFXFX-pythia8/190910_142558",
+# "190904/WJetsToLNu_Pt-250To400_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-250To400-amcatnloFXFX-pythia8/190910_153416",
+# "190904/WJetsToLNu_Pt-400To600_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-400To600-amcatnloFXFX-pythia8/190910_142722",
+# "190904/WJetsToLNu_Pt-600ToInf_TuneCUETP8M1_13TeV-amcatnloFXFX-pythia8/MC_WJetsToLNu_Pt-600ToInf-amcatnloFXFX-pythia8/190910_153455",
                                                                                                                          
 # # # #Oliviers new files
 
@@ -206,7 +215,7 @@ InputDirList = [
 #    OutputDirList.append( "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[1] + str(count) )
 #    count+=1;
 
-OutputDirList=[  "/vols/cms/snwebb/InvisibleOutput/" + i.split("/")[2] for i in InputDirList ]
+OutputDirList=[  "/vols/cms/snwebb/InvisibleOutputOLD/" + i.split("/")[2] for i in InputDirList ]
 
 #FileList = "filelist.txt" # list with all the file directories
 ########   customization end   #########
@@ -287,7 +296,7 @@ def main():
 
             fout.write("cd /home/hep/snwebb/invisible/CMSSW_9_4_10/src\n")
             fout.write("eval `scramv1 runtime -sh`\n")
-            fout.write("cd /home/hep/snwebb/invisible/analysis\n")
+            fout.write("cd /home/hep/snwebb/invisible/analysis_oldtest\n")
             fout.write("./FillHistograms --filein root://gfe02.grid.hep.ph.ic.ac.uk:1096//store/user/sawebb/"+indir + "/000"+s_dirnum+"/tree_"+str(x)+".root --fileout " + OutputFileNames +"_"+str(x)+".root \n")
             fout.write("echo 'STOP---------------'\n")
             fout.write("echo\n")
