@@ -25,17 +25,24 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   _HistoSets.push_back( "MJJ-200-500" );
   _HistoSets.push_back( "MJJ-500-1000" );
   _HistoSets.push_back( "MJJ-1000-1500" );
+  _HistoSets.push_back( "MJJ-1500-2000" );
+  _HistoSets.push_back( "MJJ-2000-5000" );
   _HistoSets.push_back( "MJJ-1500-5000" );
+
+
+  // _HistoSets.push_back( "MJJ-200-500_BARE" );
+  // _HistoSets.push_back( "MJJ-500-1000_BARE" );
+  // _HistoSets.push_back( "MJJ-1000-1500_BARE" );
+  // _HistoSets.push_back( "MJJ-1500-5000_BARE" );
+
+
+
 
   // _HistoSets.push_back( "MJJ-200-500_VTR" );
   // _HistoSets.push_back( "MJJ-500-1000_VTR" );
   // _HistoSets.push_back( "MJJ-1000-1500_VTR" );
   // _HistoSets.push_back( "MJJ-1500-5000_VTR" );
 
-  _HistoSets.push_back( "MJJ-200-500_BARE" );
-  _HistoSets.push_back( "MJJ-500-1000_BARE" );
-  _HistoSets.push_back( "MJJ-1000-1500_BARE" );
-  _HistoSets.push_back( "MJJ-1500-5000_BARE" );
 
   // _HistoSets.push_back( "NJET1" );
   // _HistoSets.push_back( "NJET2" );
@@ -46,11 +53,11 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   _HistoSets.push_back( "non-VBF" );
 
 
-  _HistoSets.push_back( "ZNN-No_gen_mjj" );
-  _HistoSets.push_back( "ZNN-2Jets" );
-  _HistoSets.push_back( "ZNN-2JetsEta" );
-  _HistoSets.push_back( "ZNN-2JetsEtaDeltaEta" );
-  _HistoSets.push_back( "ZNN-2JetsEtaDeltaEtaDeltaPhi" );
+  // _HistoSets.push_back( "ZNN-No_gen_mjj" );
+  // _HistoSets.push_back( "ZNN-2Jets" );
+  // _HistoSets.push_back( "ZNN-2JetsEta" );
+  // _HistoSets.push_back( "ZNN-2JetsEtaDeltaEta" );
+  // _HistoSets.push_back( "ZNN-2JetsEtaDeltaEtaDeltaPhi" );
 
 
 
