@@ -4,7 +4,7 @@
  Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2020-11-16 13:18:43 (snwebb)>
+// Time-stamp: <2020-11-16 13:33:31 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -27,7 +27,7 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
   double mjjbins[7] = {0,200,500,1000,1500,2000,5000};
   double vtrmjjbins[4] = {0,600,900,5000};
   double jetptbins[5] = {0,200,400,600,1200};
-  double njetbins[8] = {-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5}
+  double njetbins[8] = {-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5};
   double ptbins[15] = {0, 40, 80, 120, 160, 200, 240, 280, 320, 400, 520, 640, 760, 880,1100}; //andreas's binnings
 
   if ( name.find("Default")!=std::string::npos ||  name == "1JPt150" || name == "All" || name.find("ZNN")!=std::string::npos){
@@ -261,6 +261,7 @@ void HiggsInvisible::FillAllHists( std::string name ){
     _cloned_hists[ name ] [ "gen_boson_pt" ] -> Fill( _event_variables["gen_boson_pt"], weight );
     _cloned_hists[ name ] [ "gen_jetpt0" ] -> Fill( GenJet_pt_or[0], weight );
     _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0" ] -> Fill( _event_variables["gen_boson_pt"], GenJet_pt_or[0], weight );
+    _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity" ] -> Fill( _event_variables["gen_boson_pt"], _event_variables["nJetNonVBF"], weight );
     for ( int i = 0;i<9;i++){
       double scaled_weight = weight;
       if (nLHEScaleWeight > 0){
@@ -272,6 +273,7 @@ void HiggsInvisible::FillAllHists( std::string name ){
       _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], scaled_weight );
       _cloned_hists[ name ] [ "gen_jetpt0_Scale_"+std::to_string(i) ] -> Fill( GenJet_pt_or[0], scaled_weight );
       _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], GenJet_pt_or[0], scaled_weight );
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], _event_variables["nJetNonVBF"], scaled_weight );
     }
     for ( int i = 0;i<102;i++){
       double scaled_weight = weight;
@@ -285,6 +287,7 @@ void HiggsInvisible::FillAllHists( std::string name ){
       _cloned_hists[ name ] [ "gen_jetpt0_PDF_"+std::to_string(i) ] -> Fill( GenJet_pt_or[0], scaled_weight );
       _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], scaled_weight );
       _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], GenJet_pt_or[0], scaled_weight );
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], _event_variables["nJetNonVBF"], scaled_weight );
     }
 
   }
@@ -598,6 +601,16 @@ void HiggsInvisible::CalculateVariables(){
     _event_variables["gen_detajj"] = std::abs(jet0.Eta()-jet1.Eta());
     _event_variables["gen_dphijj"] = std::abs(jet0.DeltaPhi(jet1));
   }
+  
+  //For Non-VBF k-factors calculate the number of jets with pT>30, and everything above 6 jets set to 6 jets
+  int nJetNonVBF = 0;
+  for (unsigned int g = 0; g<(GenJet_pt_or.size()); g++){
+    if ( GenJet_pt_or[g] > 30 ){
+      nJetNonVBF++;
+    }
+  }
+  if (nJetNonVBF > 6) nJetNonVBF = 6;
+  _event_variables["nJetNonVBF"] = nJetNonVBF;
 
 
 }
@@ -647,6 +660,7 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
 	}
       }
     }
+
 
     if ( name.find("VTR")==std::string::npos){
       bool cut1 = false;
