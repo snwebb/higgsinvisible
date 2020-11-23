@@ -190,7 +190,8 @@ void HiggsPlotting::LoadAllHistograms(){
 
   //  std::vector<std::string> plots = {"gen_boson_pt", "gen_events", "gen_jetpt0","LHE_HT", "gen_boson_mass","gen_mjj"};
   std::vector<std::string> plots = {"gen_boson_pt", "gen_events", "gen_jetpt0","LHE_HT", "gen_boson_mass","gen_mjj", "gen_lepton_eta0", "gen_lepton_eta1", "gen_lepton_pt0", "gen_lepton_pt1", "gen_dphijj"};
-  std::vector<std::string> plots2D = {"gen_boson_pt_gen_mjj","gen_boson_pt_gen_jetpt0","gen_boson_pt_gen_mjj_NoHeavyQuark","gen_boson_pt_gen_mjj_HeavyQuark"};
+  //std::vector<std::string> plots2D = {"gen_boson_pt_gen_mjj","gen_boson_pt_gen_jetpt0","gen_boson_pt_gen_mjj_NoHeavyQuark","gen_boson_pt_gen_mjj_HeavyQuark"};
+  std::vector<std::string> plots2D = {"gen_boson_pt_gen_mjj","gen_boson_pt_gen_jetpt0","gen_boson_pt_gen_jet_multiplicity","gen_boson_pt_gen_mjj_NoHeavyQuark","gen_boson_pt_gen_mjj_HeavyQuark"};
 
   //  std::vector<std::string> histoSets = { "Default", "All", "Default-Mjj-200-500" };
   std::vector<std::string> histoSets = { "Default", "All" , "Default_VTR", "MJJ-200-500",  "MJJ-500-1000",  "MJJ-1000-1500", "MJJ-1500-5000", "non-VBF"};
@@ -906,16 +907,29 @@ void HiggsPlotting::CombineHistograms(){
   // _xs[ "ZLL-LO-2500-Inf"] = 3.47E-03;
 
   //ANDREAS
-  _xs[ "ZLL-LO-70-100" ] = 147.0;
+  // _xs[ "ZLL-LO-70-100" ] = 147.0;
+  // _xs[ "ZLL-LO-100-200"] = 161.3;
+  // _xs[ "ZLL-LO-100-200-ext"] = 160.7;
+  // _xs[ "ZLL-LO-200-400"] = 48.61;
+  // _xs[ "ZLL-LO-200-400-ext"] = 48.44;
+  // _xs[ "ZLL-LO-400-600"] = 7.033;
+  // _xs[ "ZLL-LO-400-600-ext"] = 7.033;
+  // _xs[ "ZLL-LO-600-800"] = 1.745;
+  // _xs[ "ZLL-LO-800-1200"] = 0.8077;
+  // _xs[ "ZLL-LO-1200-2500"] = 0.192;
+  // _xs[ "ZLL-LO-2500-Inf"] = 0.003477;
+
+  //Update to the same as the note (2017)
+  _xs[ "ZLL-LO-70-100" ] = 146.9;
   _xs[ "ZLL-LO-100-200"] = 161.3;
-  _xs[ "ZLL-LO-100-200-ext"] = 160.7;
-  _xs[ "ZLL-LO-200-400"] = 48.61;
-  _xs[ "ZLL-LO-200-400-ext"] = 48.44;
+  _xs[ "ZLL-LO-100-200-ext"] = 160.9;
+  _xs[ "ZLL-LO-200-400"] = 48.68;
+  _xs[ "ZLL-LO-200-400-ext"] = 48.52;
   _xs[ "ZLL-LO-400-600"] = 7.033;
-  _xs[ "ZLL-LO-400-600-ext"] = 7.033;
+  _xs[ "ZLL-LO-400-600-ext"] = 6.998;
   _xs[ "ZLL-LO-600-800"] = 1.745;
   _xs[ "ZLL-LO-800-1200"] = 0.8077;
-  _xs[ "ZLL-LO-1200-2500"] = 0.192;
+  _xs[ "ZLL-LO-1200-2500"] = 0.1923;
   _xs[ "ZLL-LO-2500-Inf"] = 0.003477;
 
   //NORMAL
@@ -1001,11 +1015,20 @@ void HiggsPlotting::CombineHistograms(){
   ///////  Z NU NU  /////////  
 
   //ANDREAS
-  _xs[ "ZNN-LO-100-200"] = 306.2;
-  _xs[ "ZNN-LO-200-400"] = 91.38;
-  _xs[ "ZNN-LO-400-600"] = 13.19;
-  _xs[ "ZNN-LO-600-800"] = 3.272;
-  _xs[ "ZNN-LO-800-1200"] = 1.5;
+  // _xs[ "ZNN-LO-100-200"] = 306.2;
+  // _xs[ "ZNN-LO-200-400"] = 91.38;
+  // _xs[ "ZNN-LO-400-600"] = 13.19;
+  // _xs[ "ZNN-LO-600-800"] = 3.272;
+  // _xs[ "ZNN-LO-800-1200"] = 1.5;
+  // _xs[ "ZNN-LO-1200-2500"] = 0.3431;
+  // _xs[ "ZNN-LO-2500-Inf"] = 0.005146;
+
+  //Update to the same as the note (2017)
+  _xs[ "ZNN-LO-100-200"] = 305.3;
+  _xs[ "ZNN-LO-200-400"] = 91.86;
+  _xs[ "ZNN-LO-400-600"] = 13.13;
+  _xs[ "ZNN-LO-600-800"] = 3.242;
+  _xs[ "ZNN-LO-800-1200"] = 1.501;
   _xs[ "ZNN-LO-1200-2500"] = 0.3431;
   _xs[ "ZNN-LO-2500-Inf"] = 0.005146;
 
@@ -1078,14 +1101,24 @@ void HiggsPlotting::CombineHistograms(){
   // _xs[ "WLN-LO-2500-Inf"] = 8.19E-03;
 
   //ANDREAS
-  _xs[ "WLN-LO-70-100" ] = 1291.0;
-  _xs[ "WLN-LO-100-200"] = 1405.0;
-  _xs[ "WLN-LO-200-400"] = 411.1;
-  _xs[ "WLN-LO-400-600"] = 57.96;
-  _xs[ "WLN-LO-600-800"] = 13.06;
-  _xs[ "WLN-LO-800-1200"] = 5.419;
-  _xs[ "WLN-LO-1200-2500"] = 1.082;
-  _xs[ "WLN-LO-2500-Inf"] = 0.008111;
+  // _xs[ "WLN-LO-70-100" ] = 1291.0;
+  // _xs[ "WLN-LO-100-200"] = 1405.0;
+  // _xs[ "WLN-LO-200-400"] = 411.1;
+  // _xs[ "WLN-LO-400-600"] = 57.96;
+  // _xs[ "WLN-LO-600-800"] = 13.06;
+  // _xs[ "WLN-LO-800-1200"] = 5.419;
+  // _xs[ "WLN-LO-1200-2500"] = 1.082;
+  // _xs[ "WLN-LO-2500-Inf"] = 0.008111;
+
+  //Update to the same as the note (2017)
+  _xs[ "WLN-LO-70-100" ] = 1296.0;
+  _xs[ "WLN-LO-100-200"] = 1392.0;
+  _xs[ "WLN-LO-200-400"] = 410.2;
+  _xs[ "WLN-LO-400-600"] = 57.95;
+  _xs[ "WLN-LO-600-800"] = 12.98;
+  _xs[ "WLN-LO-800-1200"] = 5.39;
+  _xs[ "WLN-LO-1200-2500"] = 1.08;
+  _xs[ "WLN-LO-2500-Inf"] = 0.008098;
 
   _stitch[ "WLN-LO-70-100" ] = 1.0;
   _stitch[ "WLN-LO-100-200"] = 0.993;
@@ -1418,7 +1451,7 @@ void HiggsPlotting::EvaluateUncertainties2D(){
     //std::vector<TString> histoSets = { "Default"};
     for ( auto histoset : histoSets ){
       std::vector<std::string> systplots = {"gen_boson_pt_gen_mjj"};
-      if ( histoset == "non-VBF" ) systplots = {"gen_boson_pt_gen_jetpt0"};
+      if ( histoset == "non-VBF" ) systplots = {"gen_boson_pt_gen_jetpt0", "gen_boson_pt_gen_jet_multiplicity"};
       for ( auto syst : systplots ){
 
 	for ( int i = 0;i<9;i++){
@@ -2135,7 +2168,11 @@ void HiggsPlotting::PlotAllHistograms(){
 	  if ( process == "WLN" ) saveprocess = "wjet";
 	  if ( process == "ZNN" ) saveprocess = "znn";
 	  if ( process == "WZ" ) saveprocess = "wz";
-	  if ( analysis == "nonvbf" ) saveanalysis = "nonVBF";
+	  if ( analysis == "nonvbf" ) {
+	    saveanalysis = "nonVBF";
+	    if (hist.find("jet_multiplicity")!=std::string::npos)
+	      saveanalysis = "nonVBF_njet";
+	  }
 	  if ( analysis == "VTR" ) saveanalysis = "VTR";
 	  if ( setname == "LHEPt" ){	
 	    std::cout << savename << " - " << saveanalysis << " - " << saveprocess << " - " << systname << std::endl;
