@@ -35,8 +35,6 @@ class HiggsInvisible: public BuildTreeBase {
 
   /***** General *****/
   CmdLine * _cmd ;
-  /* std::string _in_directory; */
-  /* std::string _out_directory; */
   std::string _filein;
   std::string _fileout;
   TFile * _fout;
