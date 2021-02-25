@@ -4,7 +4,7 @@
  Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2021-02-24 14:43:49 (snwebb)>
+// Time-stamp: <2021-02-24 14:48:27 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -286,10 +286,6 @@ void HiggsInvisible::CalculateVariables(){
   double boson_phi_born = -999;
   double boson_eta_born = -999;
 
-  double dilep_mass_bare = -1;
-  double dilep_phi_bare = -999;
-  double dilep_eta_bare = -999;
-
   bool boson_found = false;
   bool lep1_found = false;
   bool lep2_found = false;
@@ -398,9 +394,6 @@ void HiggsInvisible::CalculateVariables(){
   }
   if ( lep1_found && lep2_found ){
     dilep_pt_bare = (lep1+lep2).Pt();
-    dilep_eta_bare = (lep1+lep2).Eta();
-    dilep_phi_bare = (lep1+lep2).Phi();
-    dilep_mass_bare = (lep1+lep2).M();
   }
 
   _event_variables["gen_boson_phi"] = boson_phi_born;

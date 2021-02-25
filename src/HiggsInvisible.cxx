@@ -5,68 +5,32 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
   _cmd = cmd;
   _origDir = gDirectory ;
   _filein = _cmd->string_val( "--filein" ) ;
-  //  _out_directory = _cmd->string_val( "--out_directory" ) ;
   _fileout = _cmd->string_val( "--fileout" ) ;
   _max_events =  _cmd->int_val( "--max_events"  , -1);
 
   TH1::SetDefaultSumw2();
-  //  TH1::AddDirectory(kFALSE);
-  _HistoSets.push_back( "Default" );
 
-  _HistoSets.push_back( "Default_VTR" );
+  //HistoSets are sets of Histograms with a common selection criteria
 
+  _HistoSets.push_back( "Default" ); //Default is the standard MTR-like selection
+  _HistoSets.push_back( "Default_VTR" ); //Default is the standard VTR-like selection
+  _HistoSets.push_back( "All" ); //Select all events (no cut)
 
+  _HistoSets.push_back( "MJJ-200-500" ); //Like Default selection but requiring 200 GeV < Mjj << 500 GeV
+  _HistoSets.push_back( "MJJ-500-1000" ); //Like Default selection but requiring 500 GeV < Mjj << 1000 GeV
+  _HistoSets.push_back( "MJJ-1000-1500" ); //Like Default selection but requiring 1000 GeV < Mjj << 1500 GeV
+  _HistoSets.push_back( "MJJ-1500-2000" ); //Like Default selection but requiring 1500 GeV < Mjj << 2000 GeV
+  _HistoSets.push_back( "MJJ-2000-5000" ); //Like Default selection but requiring 2000 GeV < Mjj << 5000 GeV
+  _HistoSets.push_back( "MJJ-1500-5000" ); //Like Default selection but requiring 1500 GeV < Mjj << 5000 GeV
 
-
-  _HistoSets.push_back( "Default_BARE" );
-  // _HistoSets.push_back( "Default2ndLep" );
-  _HistoSets.push_back( "All" );
-
-  _HistoSets.push_back( "MJJ-200-500" );
-  _HistoSets.push_back( "MJJ-500-1000" );
-  _HistoSets.push_back( "MJJ-1000-1500" );
-  _HistoSets.push_back( "MJJ-1500-2000" );
-  _HistoSets.push_back( "MJJ-2000-5000" );
-  _HistoSets.push_back( "MJJ-1500-5000" );
-
-
-  // _HistoSets.push_back( "MJJ-200-500_BARE" );
-  // _HistoSets.push_back( "MJJ-500-1000_BARE" );
-  // _HistoSets.push_back( "MJJ-1000-1500_BARE" );
-  // _HistoSets.push_back( "MJJ-1500-5000_BARE" );
-
-
-
-
-  // _HistoSets.push_back( "MJJ-200-500_VTR" );
-  // _HistoSets.push_back( "MJJ-500-1000_VTR" );
-  // _HistoSets.push_back( "MJJ-1000-1500_VTR" );
-  // _HistoSets.push_back( "MJJ-1500-5000_VTR" );
-
-
-  // _HistoSets.push_back( "NJET1" );
-  // _HistoSets.push_back( "NJET2" );
-  // _HistoSets.push_back( "NJET3" ); 
+  // _HistoSets.push_back( "MJJ-200-500_VTR" ); //Like Default_VTR, but with Mjj selection 200 GeV < Mjj << 500 GeV
+  // _HistoSets.push_back( "MJJ-500-1000_VTR" ); //Like Default_VTR, but with Mjj selection 500 GeV < Mjj << 1000 GeV
+  // _HistoSets.push_back( "MJJ-1000-1500_VTR" ); //Like Default_VTR, but with Mjj selection 1000 GeV < Mjj << 1500 GeV
+  // _HistoSets.push_back( "MJJ-1500-5000_VTR" ); //Like Default_VTR, but with Mjj selection 1500 GeV < Mjj << 5000 GeV
   
-  //  _HistoSets.push_back( "1JPt150" );
+  _HistoSets.push_back( "non-VBF" ); //Non VBF selection for the Bristol analysis
 
-  _HistoSets.push_back( "non-VBF" );
-
-
-  // _HistoSets.push_back( "ZNN-No_gen_mjj" );
-  // _HistoSets.push_back( "ZNN-2Jets" );
-  // _HistoSets.push_back( "ZNN-2JetsEta" );
-  // _HistoSets.push_back( "ZNN-2JetsEtaDeltaEta" );
-  // _HistoSets.push_back( "ZNN-2JetsEtaDeltaEtaDeltaPhi" );
-
-
-
-  // _HistoSets.push_back( "Default-Mjj-200-500" );
-  // _HistoSets.push_back( "Default-Mjj-500-1000" );
-  // _HistoSets.push_back( "Default-Mjj-1000-1500" );
-  // _HistoSets.push_back( "Default-Mjj-1500-5000" );
-
-  if ( _filein.find("WJetsToLNu")!=std::string::npos ) _wln = true;
+  if ( _filein.find("WJetsToLNu")!=std::string::npos ) _wln = true; 
   if ( _filein.find("ZJetsToNuNu")!=std::string::npos ) _znn = true;
   if ( _filein.find("DYJetsToLL")!=std::string::npos ) _zll = true;
   if ( _filein.find("DY2JetsToLL")!=std::string::npos ) _zll = true;
@@ -76,19 +40,10 @@ HiggsInvisible::HiggsInvisible( CmdLine * cmd ){
 
 
 HiggsInvisible::~HiggsInvisible() {
-  //    _fout->ls();
-  // gDirectory = _origDir ;
-
-  // for(auto &it1 : _cloned_hists) {
-  //   for(auto &it2 : it1.second) {
-  //     if ( it2.second ) it2.second->Delete();
-  //   }
-  // }
 
 }
 
 void HiggsInvisible::DoNothing(){
-
 
 }
 
@@ -100,26 +55,21 @@ void HiggsInvisible::SetupFillHistograms(){
   _chain   = new TChain ( "Events" );
   _runchain   = new TChain ( "Runs" );
 
-  //  std::string remotedir = "root://cms-xrd-global.cern.ch//store/user/sawebb/SingleGammaPt25Eta1p6_2p8/crab_SingleGammaPt25_PU0-stc/181025_100629/0000/";
-
   for ( int i = 0; i < 1; i++ ){
     _chain  ->Add ( TString(_filein) );
     _runchain  ->Add ( TString(_filein) );
   }
 
-
+  //Make the empty histograms (most of the code contained within the LoadHistoTemplates function)
+  //The histograms being created depend on the name of the _HistoSets defined in the constructor above
   MakeAllHistograms( _HistoSets );
 
-  //   _fout->mkdir("All");
-   _fout->cd("All");
-   _cloned_hists[ "All" ] [ "nRuns" ] = new TH1D ( ("All_nRuns"), ";;Number of Events", 1,0.5,1.5 );  
+  _fout->cd("All");
+  _cloned_hists[ "All" ] [ "nRuns" ] = new TH1D ( ("All_nRuns"), ";;Number of Events", 1,0.5,1.5 );  
   
-
-
 }
 
 void HiggsInvisible::Fill(){
-
 
   InitRuns(  _runchain );
   LoopRuns( );
@@ -179,12 +129,7 @@ void HiggsInvisible::Loop( ){
   fChain->SetBranchStatus("nLHEScaleWeight",1);
   fChain->SetBranchStatus("nLHEPdfWeight",1);
 
-
-
   fChain->SetBranchStatus("event",1);
-  // fChain->SetBranchStatus("nLHEScaleWeight",1);
-  
-
 
 
   for (Long64_t jentry=0; jentry<nentries;jentry++) {
@@ -203,26 +148,17 @@ void HiggsInvisible::Loop( ){
       if ( jentry == _max_events ) break;
     }
 
-
     CalculateVariables();
 
     for (auto& names : _HistoSets ){
-      
-      //      std::cout << names << " - " << CalculateCuts(names) << std::endl;
-
       if ( CalculateCuts( names ) ){
-	//	std::cout << event << std::endl;
 	FillAllHists( names );
       }
     }
 
-
-
   }
 
-
 }
-
 
 
 void HiggsInvisible::LoopRuns(){
@@ -248,17 +184,6 @@ bool HiggsInvisible::FileExists( std::string file ){
 }
 
 void HiggsInvisible::Save(){
-
-  //  std::system( ("mkdir -p output/" + _out_directory  )   .c_str() );
-  //  _fout->cd();
-
-  // for(auto &it1 : _cloned_hists) {
-  //   for(auto &it2 : it1.second) {
-  //     it2.second->Write();
-  //   }
-  // }
-
-  //f_hists->Close();
   
   _fout->Write();
   _fout->Close();
@@ -266,5 +191,3 @@ void HiggsInvisible::Save(){
 
 }
 
-
-//////////
