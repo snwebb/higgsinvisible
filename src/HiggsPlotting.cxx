@@ -353,6 +353,81 @@ void HiggsPlotting::CombineHistograms(){
   //     NLO      // 
   //////////////////
 
+  ///////  W  /////////
+
+  _xs[ "WLN-NLO-LHEPt-1J-50-150" ] = 2675.79;     
+  _xs[ "WLN-NLO-LHEPt-1J-100-150" ] = 284.06;     
+  _xs[ "WLN-NLO-LHEPt-1J-150-250" ] = 71.71;     
+  _xs[ "WLN-NLO-LHEPt-1J-250-400" ] = 8.06;     
+  _xs[ "WLN-NLO-LHEPt-1J-400-Inf" ] = 0.89;     
+  _xs[ "WLN-NLO-LHEPt-2J-50-150" ] = 1345.61;
+  _xs[ "WLN-NLO-LHEPt-2J-100-150" ] = 281.63;
+  _xs[ "WLN-NLO-LHEPt-2J-150-250" ] = 108.59;     
+  _xs[ "WLN-NLO-LHEPt-2J-250-400" ] = 18.03;     
+  _xs[ "WLN-NLO-LHEPt-2J-400-Inf" ] = 3.0;     
+ 
+  _xs[ "WLN-NLO-LHEPt-1J-50-150-TOT" ] = 2675.79;     
+  _xs[ "WLN-NLO-LHEPt-1J-100-150-TOT" ] = 284.06;     
+  _xs[ "WLN-NLO-LHEPt-1J-150-250-TOT" ] = 71.71;     
+  _xs[ "WLN-NLO-LHEPt-1J-250-400-TOT" ] = 8.06;     
+  _xs[ "WLN-NLO-LHEPt-1J-400-Inf-TOT" ] = 0.89;     
+  _xs[ "WLN-NLO-LHEPt-2J-50-150-TOT" ] = 1345.61;
+  _xs[ "WLN-NLO-LHEPt-2J-100-150-TOT" ] = 281.63;
+  _xs[ "WLN-NLO-LHEPt-2J-150-250-TOT" ] = 108.59;     
+  _xs[ "WLN-NLO-LHEPt-2J-250-400-TOT" ] = 18.03;     
+  _xs[ "WLN-NLO-LHEPt-2J-400-Inf-TOT" ] = 3.0;     
+
+  _sum["WLN-NLO-LHEPt-1J-50-150-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-50-150" ]  +   _sum["WLN-NLO-LHEPt-1J-50-150-ext1" ];
+  _sum["WLN-NLO-LHEPt-1J-100-150-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-100-150" ]  +   _sum["WLN-NLO-LHEPt-1J-100-150-ext1" ];
+  _sum["WLN-NLO-LHEPt-1J-150-250-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-150-250" ]  +   _sum["WLN-NLO-LHEPt-1J-150-250-ext1" ];
+  _sum["WLN-NLO-LHEPt-1J-250-400-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-250-400" ]  ;
+  _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-400-Inf" ]  +   _sum["WLN-NLO-LHEPt-1J-400-Inf-ext1" ];
+  _sum["WLN-NLO-LHEPt-2J-50-150-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-50-150" ]  +   _sum["WLN-NLO-LHEPt-2J-50-150-ext1" ];
+  _sum["WLN-NLO-LHEPt-2J-100-150-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-100-150" ]  +   _sum["WLN-NLO-LHEPt-2J-100-150-ext1" ];
+  _sum["WLN-NLO-LHEPt-2J-150-250-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-150-250" ]  +   _sum["WLN-NLO-LHEPt-2J-150-250-ext1" ];
+  _sum["WLN-NLO-LHEPt-2J-250-400-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-250-400" ]  ;
+  _sum["WLN-NLO-LHEPt-2J-400-Inf-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-400-Inf" ]  ;
+
+  //1D
+  for (auto const& histset : _cloned_hists["WLN-NLO-LHEPt-1J-50-150"]){
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN-NLO-LHEPt-1J-100-150_" + histset.first  );   
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Reset();
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-50-150" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-50-150"     ] / _sum["WLN-NLO-LHEPt-1J-50-150-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-50-150-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-50-150"     ] / _sum["WLN-NLO-LHEPt-1J-50-150-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-50-150" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-50-150"     ] / _sum["WLN-NLO-LHEPt-2J-50-150-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-50-150-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-50-150"     ] / _sum["WLN-NLO-LHEPt-2J-50-150-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-150-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-150-250"     ] / _sum["WLN-NLO-LHEPt-1J-150-250-TOT"     ] ); 
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-150-250-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-150-250"     ] / _sum["WLN-NLO-LHEPt-1J-150-250-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-150-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-150-250"     ] / _sum["WLN-NLO-LHEPt-2J-150-250-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-150-250-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-150-250"     ] / _sum["WLN-NLO-LHEPt-2J-150-250-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-250-400"     ] / _sum["WLN-NLO-LHEPt-1J-250-400-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-250-400"     ] / _sum["WLN-NLO-LHEPt-2J-250-400-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-400-Inf" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-400-Inf-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT"     ] );
+    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-400-Inf" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-2J-400-Inf-TOT"     ] );
+  }
+
+
+  //2D
+  for (auto const& histset : _cloned_hists2D["WLN-NLO-LHEPt-1J-50-150"]){
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ] = (TH2D*) histset.second->Clone( "WLN-NLO-LHEPt-1J-100-150_" + histset.first  );   
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Reset();
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-50-150" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-50-150"     ] / _sum["WLN-NLO-LHEPt-1J-50-150-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-50-150-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-50-150"     ] / _sum["WLN-NLO-LHEPt-1J-50-150-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-50-150" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-50-150"     ] / _sum["WLN-NLO-LHEPt-2J-50-150-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-50-150-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-50-150"     ] / _sum["WLN-NLO-LHEPt-2J-50-150-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-150-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-150-250"     ] / _sum["WLN-NLO-LHEPt-1J-150-250-TOT"     ] ); 
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-150-250-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-150-250"     ] / _sum["WLN-NLO-LHEPt-1J-150-250-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-150-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-150-250"     ] / _sum["WLN-NLO-LHEPt-2J-150-250-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-150-250-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-150-250"     ] / _sum["WLN-NLO-LHEPt-2J-150-250-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-250-400"     ] / _sum["WLN-NLO-LHEPt-1J-250-400-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-250-400"     ] / _sum["WLN-NLO-LHEPt-2J-250-400-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-400-Inf" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-400-Inf-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT"     ] );
+    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-400-Inf" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-2J-400-Inf-TOT"     ] );
+  }
+
+
   ///////  DY  /////////
 
   _xs[ "ZLL-NLO-LHEPt-1J-50-150" ] = 312.3;     
@@ -489,82 +564,7 @@ void HiggsPlotting::CombineHistograms(){
     _cloned_hists2D["ZNN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["ZNN-NLO-LHEPt-2J-400-Inf" ][histset.first]  , 1E3 * _xs["ZNN-NLO-LHEPt-2J-400-Inf"     ] / _sum["ZNN-NLO-LHEPt-2J-400-Inf-TOT"     ] );
   }
   
-  ///////  W  /////////
-
-  _xs[ "WLN-NLO-LHEPt-1J-50-150" ] = 2675.79;     
-  _xs[ "WLN-NLO-LHEPt-1J-100-150" ] = 284.06;     
-  _xs[ "WLN-NLO-LHEPt-1J-150-250" ] = 71.71;     
-  _xs[ "WLN-NLO-LHEPt-1J-250-400" ] = 8.06;     
-  _xs[ "WLN-NLO-LHEPt-1J-400-Inf" ] = 0.89;     
-  _xs[ "WLN-NLO-LHEPt-2J-50-150" ] = 1345.61;
-  _xs[ "WLN-NLO-LHEPt-2J-100-150" ] = 281.63;
-  _xs[ "WLN-NLO-LHEPt-2J-150-250" ] = 108.59;     
-  _xs[ "WLN-NLO-LHEPt-2J-250-400" ] = 18.03;     
-  _xs[ "WLN-NLO-LHEPt-2J-400-Inf" ] = 3.0;     
- 
-  _xs[ "WLN-NLO-LHEPt-1J-50-150-TOT" ] = 2675.79;     
-  _xs[ "WLN-NLO-LHEPt-1J-100-150-TOT" ] = 284.06;     
-  _xs[ "WLN-NLO-LHEPt-1J-150-250-TOT" ] = 71.71;     
-  _xs[ "WLN-NLO-LHEPt-1J-250-400-TOT" ] = 8.06;     
-  _xs[ "WLN-NLO-LHEPt-1J-400-Inf-TOT" ] = 0.89;     
-  _xs[ "WLN-NLO-LHEPt-2J-50-150-TOT" ] = 1345.61;
-  _xs[ "WLN-NLO-LHEPt-2J-100-150-TOT" ] = 281.63;
-  _xs[ "WLN-NLO-LHEPt-2J-150-250-TOT" ] = 108.59;     
-  _xs[ "WLN-NLO-LHEPt-2J-250-400-TOT" ] = 18.03;     
-  _xs[ "WLN-NLO-LHEPt-2J-400-Inf-TOT" ] = 3.0;     
-
-  _sum["WLN-NLO-LHEPt-1J-50-150-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-50-150" ]  +   _sum["WLN-NLO-LHEPt-1J-50-150-ext1" ];
-  _sum["WLN-NLO-LHEPt-1J-100-150-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-100-150" ]  +   _sum["WLN-NLO-LHEPt-1J-100-150-ext1" ];
-  _sum["WLN-NLO-LHEPt-1J-150-250-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-150-250" ]  +   _sum["WLN-NLO-LHEPt-1J-150-250-ext1" ];
-  _sum["WLN-NLO-LHEPt-1J-250-400-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-250-400" ]  ;
-  _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT" ]  =    _sum["WLN-NLO-LHEPt-1J-400-Inf" ]  +   _sum["WLN-NLO-LHEPt-1J-400-Inf-ext1" ];
-  _sum["WLN-NLO-LHEPt-2J-50-150-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-50-150" ]  +   _sum["WLN-NLO-LHEPt-2J-50-150-ext1" ];
-  _sum["WLN-NLO-LHEPt-2J-100-150-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-100-150" ]  +   _sum["WLN-NLO-LHEPt-2J-100-150-ext1" ];
-  _sum["WLN-NLO-LHEPt-2J-150-250-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-150-250" ]  +   _sum["WLN-NLO-LHEPt-2J-150-250-ext1" ];
-  _sum["WLN-NLO-LHEPt-2J-250-400-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-250-400" ]  ;
-  _sum["WLN-NLO-LHEPt-2J-400-Inf-TOT" ]  =    _sum["WLN-NLO-LHEPt-2J-400-Inf" ]  ;
-
-  //1D
-  for (auto const& histset : _cloned_hists["WLN-NLO-LHEPt-1J-50-150"]){
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN-NLO-LHEPt-1J-100-150_" + histset.first  );   
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Reset();
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-50-150" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-50-150"     ] / _sum["WLN-NLO-LHEPt-1J-50-150-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-50-150-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-50-150"     ] / _sum["WLN-NLO-LHEPt-1J-50-150-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-50-150" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-50-150"     ] / _sum["WLN-NLO-LHEPt-2J-50-150-TOT"     ] );
-       _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-50-150-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-50-150"     ] / _sum["WLN-NLO-LHEPt-2J-50-150-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-150-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-150-250"     ] / _sum["WLN-NLO-LHEPt-1J-150-250-TOT"     ] ); 
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-150-250-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-150-250"     ] / _sum["WLN-NLO-LHEPt-1J-150-250-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-150-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-150-250"     ] / _sum["WLN-NLO-LHEPt-2J-150-250-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-150-250-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-150-250"     ] / _sum["WLN-NLO-LHEPt-2J-150-250-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-250-400"     ] / _sum["WLN-NLO-LHEPt-1J-250-400-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-250-400"     ] / _sum["WLN-NLO-LHEPt-2J-250-400-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-400-Inf" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-1J-400-Inf-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT"     ] );
-    _cloned_hists["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists["WLN-NLO-LHEPt-2J-400-Inf" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-2J-400-Inf-TOT"     ] );
-  }
-
-
-  //2D
-  for (auto const& histset : _cloned_hists2D["WLN-NLO-LHEPt-1J-50-150"]){
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ] = (TH2D*) histset.second->Clone( "WLN-NLO-LHEPt-1J-100-150_" + histset.first  );   
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Reset();
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-50-150" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-50-150"     ] / _sum["WLN-NLO-LHEPt-1J-50-150-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-50-150-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-50-150"     ] / _sum["WLN-NLO-LHEPt-1J-50-150-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-50-150" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-50-150"     ] / _sum["WLN-NLO-LHEPt-2J-50-150-TOT"     ] );
-       _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-50-150-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-50-150"     ] / _sum["WLN-NLO-LHEPt-2J-50-150-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-150-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-150-250"     ] / _sum["WLN-NLO-LHEPt-1J-150-250-TOT"     ] ); 
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-150-250-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-150-250"     ] / _sum["WLN-NLO-LHEPt-1J-150-250-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-150-250" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-150-250"     ] / _sum["WLN-NLO-LHEPt-2J-150-250-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-150-250-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-150-250"     ] / _sum["WLN-NLO-LHEPt-2J-150-250-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-250-400"     ] / _sum["WLN-NLO-LHEPt-1J-250-400-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-250-400" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-250-400"     ] / _sum["WLN-NLO-LHEPt-2J-250-400-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-400-Inf" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-1J-400-Inf-ext1" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-1J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-1J-400-Inf-TOT"     ] );
-    _cloned_hists2D["WLN-NLO-LHEPt"][ histset.first ]->Add( _cloned_hists2D["WLN-NLO-LHEPt-2J-400-Inf" ][histset.first]  , 1E3 * _xs["WLN-NLO-LHEPt-2J-400-Inf"     ] / _sum["WLN-NLO-LHEPt-2J-400-Inf-TOT"     ] );
-  }
-
-
- ////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////
 
   ////////////////////
   //  LO HT Binned  // 
@@ -608,7 +608,6 @@ void HiggsPlotting::CombineHistograms(){
     }
   }
   
-
   _sum["ZLL-LO-100-200-TOT"    ] =  _sum["ZLL-LO-100-200"    ] + _sum["ZLL-LO-100-200-ext"]; 
   _sum["ZLL-LO-200-400-TOT"    ] =  _sum["ZLL-LO-200-400"    ] + _sum["ZLL-LO-200-400-ext"];
   _sum["ZLL-LO-400-600-TOT"    ] =  _sum["ZLL-LO-400-600"    ] + _sum["ZLL-LO-400-600-ext"];
@@ -633,7 +632,6 @@ void HiggsPlotting::CombineHistograms(){
 
 
   //2D
-
   for (auto const& histset : _cloned_hists2D["ZLL-LO-70-100"]){
     
     _cloned_hists2D["ZLL-LO"][ histset.first ] = (TH2D*) histset.second->Clone( "ZLL-LO_" + histset.first );   
@@ -654,15 +652,6 @@ void HiggsPlotting::CombineHistograms(){
 
 
   ///////  Z NU NU  /////////  
-
-  //ANDREAS
-  // _xs[ "ZNN-LO-100-200"] = 306.2;
-  // _xs[ "ZNN-LO-200-400"] = 91.38;
-  // _xs[ "ZNN-LO-400-600"] = 13.19;
-  // _xs[ "ZNN-LO-600-800"] = 3.272;
-  // _xs[ "ZNN-LO-800-1200"] = 1.5;
-  // _xs[ "ZNN-LO-1200-2500"] = 0.3431;
-  // _xs[ "ZNN-LO-2500-Inf"] = 0.005146;
 
   //Update to the same as the note (2017)
   _xs[ "ZNN-LO-100-200"] = 305.3;
@@ -727,26 +716,6 @@ void HiggsPlotting::CombineHistograms(){
 
   ///////  W  /////////
 
-  //ORIGINAL
-  // _xs[ "WLN-LO-70-100" ] = 1.47E+01;
-  // _xs[ "WLN-LO-100-200"] = 1.39E+03;
-  // _xs[ "WLN-LO-200-400"] = 4.03E+02;
-  // _xs[ "WLN-LO-400-600"] = 5.82E+01;
-  // _xs[ "WLN-LO-600-800"] = 1.29E+01;
-  // _xs[ "WLN-LO-800-1200"] = 5.49E+00;
-  // _xs[ "WLN-LO-1200-2500"] = 1.092E+00;
-  // _xs[ "WLN-LO-2500-Inf"] = 8.19E-03;
-
-  //ANDREAS
-  // _xs[ "WLN-LO-70-100" ] = 1291.0;
-  // _xs[ "WLN-LO-100-200"] = 1405.0;
-  // _xs[ "WLN-LO-200-400"] = 411.1;
-  // _xs[ "WLN-LO-400-600"] = 57.96;
-  // _xs[ "WLN-LO-600-800"] = 13.06;
-  // _xs[ "WLN-LO-800-1200"] = 5.419;
-  // _xs[ "WLN-LO-1200-2500"] = 1.082;
-  // _xs[ "WLN-LO-2500-Inf"] = 0.008111;
-
   //Update to the same as the note (2017)
   _xs[ "WLN-LO-70-100" ] = 1296.0;
   _xs[ "WLN-LO-100-200"] = 1392.0;
@@ -791,7 +760,6 @@ void HiggsPlotting::CombineHistograms(){
   }
 
   //2D
-
   for (auto const& histset : _cloned_hists2D["WLN-LO-70-100"]){ 
     
     _cloned_hists2D["WLN-LO"][ histset.first ] = (TH2D*) histset.second->Clone( "WLN-LO_" + histset.first );   
@@ -808,27 +776,7 @@ void HiggsPlotting::CombineHistograms(){
   }
   
 
-  // for (auto const& histset : _cloned_hists["WLN-LO-Pt-100-200"]){
-    
-  //   _cloned_hists["WLN-LO-Pt"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN-LO-Pt-100-200_" + histset.first  );   
-  //   _cloned_hists["WLN-LO-Pt"][ histset.first ]->Reset();
-
-  //   _cloned_hists["WLN-LO-Pt"][ histset.first ]->Add( _cloned_hists["WLN-LO-Pt-100-200" ][histset.first]  , 1E0 * _xs["WLN-LO-Pt-100-200"     ] / _sum["WLN-LO-Pt-100-200"     ] );
-  //   _cloned_hists["WLN-LO-Pt"][ histset.first ]->Add( _cloned_hists["WLN-LO-Pt-200-Inf" ][histset.first]  , 1E0 * _xs["WLN-LO-Pt-200-Inf"     ] / _sum["WLN-LO-Pt-200-Inf"     ] );
-   
-  // }
-  
-
-
-
-
-
-
-
-
-
-
- ////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////
 
   /////////////////////////
   //  LO HT Binned 2016  // 
@@ -1025,7 +973,7 @@ void HiggsPlotting::CombineHistograms(){
   }
 
 
- ////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////
 
   /////////////////////////
   //  LO HT Binned 2018  // 
@@ -1135,221 +1083,144 @@ void HiggsPlotting::CombineHistograms(){
 //Evaluate the uncertainties on the 1D k-factors
 void HiggsPlotting::EvaluateUncertainties(){
 
-  std::vector<TString> sets = {"Pt","LHEPt"};
-  //   std::vector<TString> sets = {"LHEPt"};
-  for ( auto setname : sets  ){
-    
-    
-    std::vector<TString> histoSets = { "Default" , "Default_VTR", "MJJ-200-500",  "MJJ-500-1000",  "MJJ-1000-1500", "MJJ-1500-5000", "non-VBF"};
-    //    std::vector<TString> histoSets = { "Default"};
-    for ( auto histoset : histoSets ){
-      std::vector<std::string> systplots = {"gen_boson_pt", "gen_jetpt0"};
-      for ( auto syst : systplots ){
-      	if ( syst == "gen_jetpt0" && histoset != "non-VBF") continue;
+  std::vector<TString> histoSets = { "Default" , "Default_VTR", "MJJ-200-500",  "MJJ-500-1000",  "MJJ-1000-1500", "MJJ-1500-5000", "non-VBF"};
 
-	for ( int i = 0;i<9;i++){
+  for ( auto histoset : histoSets ){
+    std::vector<std::string> systplots = {"gen_boson_pt", "gen_jetpt0"};
+    
+    for ( auto syst : systplots ){      
+      if ( syst == "gen_jetpt0" && histoset != "non-VBF") continue;
+      
+
+      ////////////////////////////////////////////
+      //                                        //
+      //           SCALE UNCERTAINTIES          //
+      //                                        //
+      ////////////////////////////////////////////
+
+      std::vector<TString> list = {"1","3","4","6"};//Labels for renormalisation and factorisation scales up and down
+      
+      for ( auto &j : list ) {
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleUncorrelated_LHEPt" + j);
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleCorrelated_LHEPt" + j);
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleZup_LHEPt" + j);
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleWup_LHEPt" + j);
 	  
-	  if ( i ==4 ) continue;
-	  //    _cloned_hists["WLN-NLO-Pt"][ histoset + "_gen_boson_pt_Scale_" + std::to_string(i) ] ->Divide(_cloned_hists["WLN-NLO-Pt"][ histoset + "_gen_boson_pt_Scale_4" ]);
-	  //    _cloned_hists["ZLL-NLO-Pt"][ histoset + "_gen_boson_pt_Scale_" + std::to_string(i) ] ->Divide(_cloned_hists["ZLL-NLO-Pt"][ histoset + "_gen_boson_pt_Scale_4" ]);
-	  // _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_gen_boson_pt_Scale_" + std::to_string(i) ] ->Divide(_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_gen_boson_pt_Scale_4" ]);
-	  // _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_gen_boson_pt_Scale_" + std::to_string(i) ] ->Divide(_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_gen_boson_pt_Scale_4" ]);
-	}  
-	
-	std::vector<TString> list = {"1","3","5","7"};
-	if ( setname == "LHEPt" )
-	  list = {"1","3","4","6"};
-	if ( setname == "Pt" )
-	  list = {"1","3","5","7"};
-	
-	for ( auto &j : list ) {
-	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleUncorrelated_" + setname + j);
-	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleCorrelated_" + setname + j);
-	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleZup_" + setname + j);
-	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH1D*) _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleWup_" + setname + j);
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Reset();
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Reset();
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleWup_" + j ]->Reset();
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleZup_" + j ]->Reset();
 	  
-	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Reset();
-	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Reset();
-	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->Reset();
-	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->Reset();
-	  
-	  TString nominal = "";
-	  if ( histoset == "Pt" ) nominal = "_Scale_4";
-	  for ( int i = 1;i<_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetNbinsX()+1;i++){      
+	TString nominal = "";
+
+	for ( int i = 1;i<_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + nominal ]->GetNbinsX()+1;i++){      
 	    
-	    double r = 1;
-	    if ( _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->GetBinContent(i) != 0 ){
+	  double r = 1;
+	  if ( _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->GetBinContent(i) != 0 ){
 	      
-	      double wu = _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_" + j ]->GetBinContent(i);
-	      double zu = _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_" + j ]->GetBinContent(i);
-	      double wnom = _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetBinContent(i);
-	      double znom = _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetBinContent(i);	    
+	    double wu = _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_" + j ]->GetBinContent(i);
+	    double zu = _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_" + j ]->GetBinContent(i);
+	    double wnom = _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + nominal ]->GetBinContent(i);
+	    double znom = _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + nominal ]->GetBinContent(i);	    
 	      
-	      r = wnom / znom;
-	      double r_zup = (wnom/2) / zu;
-	      double r_wup = wu / (znom/2);
+	    r = wnom / znom;
+	    double r_zup = (wnom/2) / zu;
+	    double r_wup = wu / (znom/2);
 	      
-	      double val_uncorrelated = 1;
-	      double val_correlated = 1;
-	      double val_zup = 1;
-	      double val_wup = 1;
-	      if ( j == "1" || j == "3" ){
-		val_uncorrelated = 1 - ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r; 
-		val_correlated = ((wu/zu) / r);
-		val_zup = ((wnom/(zu*2)) / r);
-		val_wup = (((2*wu)/znom) / r);
-	      }
-	      else{
-		val_uncorrelated = 1 + ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r;
-		val_correlated = ((wu/zu) / r);
-		val_zup = ((wnom/(zu*2)) / r);
-		val_wup = (((2*wu)/znom) / r);
-	      }
-	      
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, val_uncorrelated );
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, val_correlated );
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, val_zup );
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, val_wup );
-	      
+	    double val_uncorrelated = 1;
+	    double val_correlated = 1;
+	    double val_zup = 1;
+	    double val_wup = 1;
+	    if ( j == "1" || j == "3" ){
+	      val_uncorrelated = 1 - ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r; 
+	      val_correlated = ((wu/zu) / r);
+	      val_zup = ((wnom/(zu*2)) / r);
+	      val_wup = (((2*wu)/znom) / r);
 	    }
 	    else{
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, 1 );
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, 1 );
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, 1 );
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, 1 );
+	      val_uncorrelated = 1 + ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r;
+	      val_correlated = ((wu/zu) / r);
+	      val_zup = ((wnom/(zu*2)) / r);
+	      val_wup = (((2*wu)/znom) / r);
 	    }
-	    
-	    
+	      
+	    _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, val_uncorrelated );
+	    _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, val_correlated );
+	    _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, val_zup );
+	    _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, val_wup );
+	      
 	  }
-	  
-	}
-      	
-	//PDF uncertainty
-	_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH1D*)_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_"+setname+"_PDF_SD_WLN");
-	_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH1D*)_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_"+setname+"_PDF_SD_ZLL");
-	_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH1D*)_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_"+setname+"_PDF_SD_WZ");
-	_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
-	_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
-	_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
-	
-	if ( setname == "Pt" ){                 
-	  
-	  _cloned_hists["Zero"][ "Zero" ] = (TH1D*)_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->Clone( "Zero");
-	  
-	  
-	  for ( int i = 1;i<_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    
-	    _cloned_hists["Zero"][ "Zero" ]->SetBinContent(i,0);
-	    _cloned_hists["Zero"][ "Zero" ]->SetBinError(i,0);
-	
-	    double sum = 0;
-	    double sum2 = 0;
-	    for ( int j = 0; j < 100; j++){
-	      sum += _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i);
-	      sum2 += std::pow(_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i),2);
-	    }
-	    double sd_pdf = std::sqrt( (sum2/100) - (sum/100)*(sum/100) );
-	    
-	    double sd_alphas = (_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_101" ]->GetBinContent(i) - _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_100" ]->GetBinContent(i))/2;
-	    double sd =  std::sqrt( sd_pdf*sd_pdf + sd_alphas*sd_alphas );
-	    //double sd =  std::sqrt( sd_pdf*sd_pdf  );
-	  
-	    if ( _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
-	      _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
+	  else{
+	    _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, 1 );
+	    _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, 1 );
+	    _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, 1 );
+	    _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, 1 );
 	  }
-	  
-	  for ( int i = 1;i<_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    
-	    double sum = 0;
-	    double sum2 = 0;
-	    for ( int j = 0; j < 100; j++){
-	      sum += _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i);
-	      sum2 += std::pow(_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i),2);
-	    }
-	    
-	    double sd_pdf = std::sqrt( (sum2/100) - (sum/100)*(sum/100) );
-	    double sd_alphas = (_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_100" ]->GetBinContent(i) - _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_101" ]->GetBinContent(i))/2;
-	    double sd =  std::sqrt( sd_pdf*sd_pdf + sd_alphas*sd_alphas );
-	    
-	    if ( _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
-	      _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
-	  }
-	  
-	  for ( int i = 1;i<_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    
-	    double sum = 0;
-	    double sum2 = 0;
-	    for ( int j = 0; j < 100; j++){
-	      sum += _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) / _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i);
-	      sum2 += std::pow(_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i),2);
-	    }
-	    
-	    double sd_pdf = std::sqrt( (sum2/100) - (sum/100)*(sum/100) );
-	    double sd_alphas = (_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_101" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_101" ]->GetBinContent(i) - _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_100" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_100" ]->GetBinContent(i))/2;
-	    double sd =  std::sqrt( sd_pdf*sd_pdf + sd_alphas*sd_alphas );
-	    
-	    
-	    if ( _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
-	      //	  _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd/(_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i)));
-	      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
-	//	_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinError(i,0);
-	  }
-	  
-	}else if ( setname == "LHEPt" ){                 
-	  
-	  for ( int i = 1;i<_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    double sum2_pdf = 0;
-	    for ( int j = 1; j < 31; j++){	    
-	      sum2_pdf += std::pow( 2*_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) - 2*_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i), 2);
-	    }
-	    double sd_alphas = 2*(_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i) - _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i))/2;
-	    
-	    double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
-	    
-	    // double sd =  std::sqrt( sum2_pdf  );
-	    
-	    //	  double sd =  std::sqrt( sum2_pdf );
-	    if ( _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
-	      _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
 	    
 	}
-	  
-	  for ( int i = 1;i<_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    double sum2_pdf = 0;
-	    for ( int j = 1; j < 31; j++){
-	      sum2_pdf += std::pow( 2*_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) - 2*_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i), 2);
-	    }
-	    double sd_alphas = 2*(_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i) - _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i))/2;
-	    double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
-	    //	    	  double sd =  std::sqrt( sum2_pdf);
-	    if ( _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
-	      _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
-	    
-	  }
-	  
-	  for ( int i = 1;i<_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    double sum2_pdf = 0;
-	    for ( int j = 1; j < 31; j++){
-	      sum2_pdf += std::pow( _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) - _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i), 2);
-	  }
-	    double sd_alphas = (_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i) - _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i))/2;
-	  double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
-	  if ( _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
-	    _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
-	  }
-	  
-	  
-	}
+      }
 
+      ////////////////////////////////////////////
+      //                                        //
+      //            PDF UNCERTAINTIES           //
+      //                                        //
+      ////////////////////////////////////////////
+          
+      _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ] = (TH1D*)_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_WLN");
+      _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ] = (TH1D*)_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_ZLL");
+      _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ] = (TH1D*)_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_WZ");
+      _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
+      _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
+      _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
       
-	_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-      _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]=(TH1D*)_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
-      _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-      _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]=(TH1D*)_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
-      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up_WZ"));
-      _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]=(TH1D*)_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down_WZ"));
 
+      ////////    W    ////////
+      
+      for ( int i = 1;i<_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
+	double sum2_pdf = 0;
+	for ( int j = 1; j < 31; j++){	    
+	  sum2_pdf += std::pow( 2*_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) - 2*_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i), 2);
+	}
+	double sd_alphas = 2*(_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i) - _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i))/2;
+	
+	double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
+	
+	if ( _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 ){
+	  _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
+	}
 
+      }
+	  
+      ////////    DY    ////////
+      
+      for ( int i = 1;i<_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
+	double sum2_pdf = 0;
+	for ( int j = 1; j < 31; j++){
+	  sum2_pdf += std::pow( 2*_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) - 2*_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i), 2);
+	}
+	double sd_alphas = 2*(_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i) - _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i))/2;
+	double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
+
+	if ( _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 ){
+	  _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
+	}
+	
+      }
+	  
+      ////////     W/Z     ////////
+
+      for ( int i = 1;i<_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
+	double sum2_pdf = 0;
+	for ( int j = 1; j < 31; j++){
+	  sum2_pdf += std::pow( _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) - _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i), 2);
+	}
+	double sd_alphas = (_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i) - _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i))/2;
+	double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
+	if ( _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
+	  _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd);
+      }      
+	  
+      //Create dummy PDF up and down histograms for the LO samples, which are just set to the central values (for simplicity)
       _cloned_hists["WLN-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
       _cloned_hists["WLN-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH1D*)_cloned_hists["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
       _cloned_hists["ZLL-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["ZLL-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
@@ -1367,26 +1238,34 @@ void HiggsPlotting::EvaluateUncertainties(){
       _cloned_hists["WZ-LO"][ histoset + "_" + syst + "_PDF_Up" ]->Divide(_cloned_hists["ZLL-LO"][ histoset + "_" + syst ]);
       _cloned_hists["WZ-LO"][ histoset + "_" + syst + "_PDF_Down" ]->Divide(_cloned_hists["ZLL-LO"][ histoset + "_" + syst ]);
       
-    
-      for ( int i = 1;i<_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetNbinsX()+1;i++){
+
+
+
+      //Create the final PDF Up and PDF Down systematic histograms for the NLO samples
+      _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]=(TH1D*)_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]=(TH1D*)_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up_WZ"));
+      _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]=(TH1D*)_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down_WZ"));
+      
+      //Fill those histograms with the correct values (to mirror the format for the scale uncertainties, i.e. uncertainty histogram is central_val+sigma_deviation)
+      for ( int i = 1;i<_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetNbinsX()+1;i++){
 	
-	double centralw = _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i);
-	double centralz = _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i);
-	double centralwz = _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i);
+	double centralw = _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i);
+	double centralz = _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i);
+	double centralwz = _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i)/_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i);
 	
-	_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i, centralw + _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
-	_cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i, centralw - _cloned_hists["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
-	_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i, centralz + _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
-	_cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i, centralz - _cloned_hists["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
-	_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i, centralwz + _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
-	_cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i, centralwz - _cloned_hists["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
+	_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i, centralw + _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
+	_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i, centralw - _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
+	_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i, centralz + _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
+	_cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i, centralz - _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i, centralwz + _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
+	_cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i, centralwz - _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i)   );
 	
       }
     }
   }
-  
-  }
-
 
  
 }
@@ -1585,10 +1464,10 @@ void HiggsPlotting::EvaluateUncertainties2D(){
 	}
 
 	//PDF uncertainty
-	_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_"+setname+"_PDF_SD_WLN");
-	_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_"+setname+"_PDF_SD_ZLL");
-	_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_"+setname+"_PDF_SD_ZNN");
-	_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_"+setname+"_PDF_SD_WZ");
+	_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_WLN");
+	_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_ZLL");
+	_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_ZNN");
+	_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_WZ");
 
 	_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
 	_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
