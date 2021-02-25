@@ -1,6 +1,6 @@
-#VBF invisble k-factor producer
+# VBF invisible k-factor producer
 
-##Introduction
+## Introduction
 
 This framework produces the k-factors used in the CMS Run 2 Higgs to Invisible analysis, as well as some generator level control distributions.
 In addition to this README, the code is commented throughout.
@@ -10,7 +10,7 @@ The `master` branch contains everything necessary to produce the k-factors.
 The `version-0.9` branch contains an older version, not fully described, but has more features and studies.
 The output for the functions common to `master` will be the same though.
 
-##Initial setup
+## Initial setup
 
 The code should work with most versions of `ROOT` and/or `CMSSW`. It has only been fully tested with `CMSSW_9_4_10` and `CMSSW_10_1_7` though.
 
@@ -33,6 +33,6 @@ Finally when all jobs are completed you need to run:
 
 -  `./merge.py`
 
-This will merge (`hadd`) all individuial `ROOT` output files, so there is exactly one for each initial dataset. Note that `merge.py` merges the same files that are listed in `submit.py` (i.e. it imports the list of datasets from `submit.py`).
+This will merge (`hadd`) all individual `ROOT` output files, so there is exactly one for each initial dataset. Note that `merge.py` merges the same files that are listed in `submit.py` (i.e. it imports the list of datasets from `submit.py`).
 
 
