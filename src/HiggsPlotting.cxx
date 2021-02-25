@@ -915,45 +915,42 @@ void HiggsPlotting::CombineHistograms(){
     
     _cloned_hists["ZNN16-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "ZNN16-LO_" + histset.first );   
     _cloned_hists["ZNN16-LO"][ histset.first ] ->Reset();
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-100-200"    ][histset.first], 1E3* _stitch["ZNN16-LO-100-200"    ] * _xs["ZNN16-LO-100-200"    ] / _sum["ZNN16-LO-100-200-TOT"    ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-100-200-ext1"    ][histset.first], 1E3* _stitch["ZNN16-LO-100-200-ext1"    ] * _xs["ZNN16-LO-100-200-ext1"    ] / _sum["ZNN16-LO-100-200-TOT"    ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-200-400"    ][histset.first], 1E3* _stitch["ZNN16-LO-200-400"    ] * _xs["ZNN16-LO-200-400"    ] / _sum["ZNN16-LO-200-400-TOT"    ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-200-400-ext1"    ][histset.first], 1E3* _stitch["ZNN16-LO-200-400-ext1"    ] * _xs["ZNN16-LO-200-400-ext1"    ] / _sum["ZNN16-LO-200-400-TOT"    ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-400-600"    ][histset.first], 1E3* _stitch["ZNN16-LO-400-600"    ] * _xs["ZNN16-LO-400-600"    ] / _sum["ZNN16-LO-400-600-TOT"    ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-400-600-ext1"    ][histset.first], 1E3* _stitch["ZNN16-LO-400-600-ext1"    ] * _xs["ZNN16-LO-400-600-ext1"    ] / _sum["ZNN16-LO-400-600-TOT"    ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-600-800"    ][histset.first], 1E3* _stitch["ZNN16-LO-600-800"    ] * _xs["ZNN16-LO-600-800"    ] / _sum["ZNN16-LO-600-800"    ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-800-1200"   ][histset.first], 1E3* _stitch["ZNN16-LO-800-1200"   ] * _xs["ZNN16-LO-800-1200"   ] / _sum["ZNN16-LO-800-1200"   ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-1200-2500"  ][histset.first], 1E3* _stitch["ZNN16-LO-1200-2500"  ] * _xs["ZNN16-LO-1200-2500"  ] / _sum["ZNN16-LO-1200-2500-TOT"  ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-1200-2500-ext1"  ][histset.first], 1E3* _stitch["ZNN16-LO-1200-2500-ext1"  ] * _xs["ZNN16-LO-1200-2500-ext1"  ] / _sum["ZNN16-LO-1200-2500-TOT"  ]);
-    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-2500-Inf"   ][histset.first], 1E3* _stitch["ZNN16-LO-2500-Inf"   ] * _xs["ZNN16-LO-2500-Inf"   ] / _sum["ZNN16-LO-2500-Inf"   ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-100-200"    ][histset.first], 1E3 * _xs["ZNN16-LO-100-200"    ] / _sum["ZNN16-LO-100-200-TOT"    ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-100-200-ext1"    ][histset.first], 1E3 * _xs["ZNN16-LO-100-200-ext1"    ] / _sum["ZNN16-LO-100-200-TOT"    ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-200-400"    ][histset.first], 1E3 * _xs["ZNN16-LO-200-400"    ] / _sum["ZNN16-LO-200-400-TOT"    ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-200-400-ext1"    ][histset.first], 1E3 * _xs["ZNN16-LO-200-400-ext1"    ] / _sum["ZNN16-LO-200-400-TOT"    ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-400-600"    ][histset.first], 1E3 * _xs["ZNN16-LO-400-600"    ] / _sum["ZNN16-LO-400-600-TOT"    ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-400-600-ext1"    ][histset.first], 1E3 * _xs["ZNN16-LO-400-600-ext1"    ] / _sum["ZNN16-LO-400-600-TOT"    ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-600-800"    ][histset.first], 1E3 * _xs["ZNN16-LO-600-800"    ] / _sum["ZNN16-LO-600-800"    ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-800-1200"   ][histset.first], 1E3 * _xs["ZNN16-LO-800-1200"   ] / _sum["ZNN16-LO-800-1200"   ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-1200-2500"  ][histset.first], 1E3 * _xs["ZNN16-LO-1200-2500"  ] / _sum["ZNN16-LO-1200-2500-TOT"  ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-1200-2500-ext1"  ][histset.first], 1E3 * _xs["ZNN16-LO-1200-2500-ext1"  ] / _sum["ZNN16-LO-1200-2500-TOT"  ]);
+    _cloned_hists["ZNN16-LO"][ histset.first ]->Add( _cloned_hists["ZNN16-LO-2500-Inf"   ][histset.first], 1E3 * _xs["ZNN16-LO-2500-Inf"   ] / _sum["ZNN16-LO-2500-Inf"   ]);
 
   }
 
-
   //2D
-
-  for (auto const& histset : _cloned_hists2D["ZNN16-LO-100-200"]){
-    
+  for (auto const& histset : _cloned_hists2D["ZNN16-LO-100-200"]){    
     _cloned_hists2D["ZNN16-LO"][ histset.first ] = (TH2D*) histset.second->Clone( "ZNN16-LO_" + histset.first );   
     _cloned_hists2D["ZNN16-LO"][ histset.first ] ->Reset();
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-100-200"    ][histset.first], 1E3* _stitch["ZNN16-LO-100-200"    ] * _xs["ZNN16-LO-100-200"    ] / _sum["ZNN16-LO-100-200-TOT"    ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-100-200-ext1"    ][histset.first], 1E3* _stitch["ZNN16-LO-100-200-ext1"    ] * _xs["ZNN16-LO-100-200-ext1"    ] / _sum["ZNN16-LO-100-200-TOT"    ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-200-400"    ][histset.first], 1E3* _stitch["ZNN16-LO-200-400"    ] * _xs["ZNN16-LO-200-400"    ] / _sum["ZNN16-LO-200-400-TOT"    ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-200-400-ext1"    ][histset.first], 1E3* _stitch["ZNN16-LO-200-400-ext1"    ] * _xs["ZNN16-LO-200-400-ext1"    ] / _sum["ZNN16-LO-200-400-TOT"    ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-400-600"    ][histset.first], 1E3* _stitch["ZNN16-LO-400-600"    ] * _xs["ZNN16-LO-400-600"    ] / _sum["ZNN16-LO-400-600-TOT"    ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-400-600-ext1"    ][histset.first], 1E3* _stitch["ZNN16-LO-400-600-ext1"    ] * _xs["ZNN16-LO-400-600-ext1"    ] / _sum["ZNN16-LO-400-600-TOT"    ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-600-800"    ][histset.first], 1E3* _stitch["ZNN16-LO-600-800"    ] * _xs["ZNN16-LO-600-800"    ] / _sum["ZNN16-LO-600-800"    ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-800-1200"   ][histset.first], 1E3* _stitch["ZNN16-LO-800-1200"   ] * _xs["ZNN16-LO-800-1200"   ] / _sum["ZNN16-LO-800-1200"   ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-1200-2500"  ][histset.first], 1E3* _stitch["ZNN16-LO-1200-2500"  ] * _xs["ZNN16-LO-1200-2500"  ] / _sum["ZNN16-LO-1200-2500-TOT"  ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-1200-2500-ext1"  ][histset.first], 1E3* _stitch["ZNN16-LO-1200-2500-ext1"  ] * _xs["ZNN16-LO-1200-2500-ext1"  ] / _sum["ZNN16-LO-1200-2500-TOT"  ]);
-    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-2500-Inf"   ][histset.first], 1E3* _stitch["ZNN16-LO-2500-Inf"   ] * _xs["ZNN16-LO-2500-Inf"   ] / _sum["ZNN16-LO-2500-Inf"   ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-100-200"    ][histset.first], 1E3 * _xs["ZNN16-LO-100-200"    ] / _sum["ZNN16-LO-100-200-TOT"    ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-100-200-ext1"    ][histset.first], 1E3 * _xs["ZNN16-LO-100-200-ext1"    ] / _sum["ZNN16-LO-100-200-TOT"    ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-200-400"    ][histset.first], 1E3 * _xs["ZNN16-LO-200-400"    ] / _sum["ZNN16-LO-200-400-TOT"    ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-200-400-ext1"    ][histset.first], 1E3 * _xs["ZNN16-LO-200-400-ext1"    ] / _sum["ZNN16-LO-200-400-TOT"    ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-400-600"    ][histset.first], 1E3 * _xs["ZNN16-LO-400-600"    ] / _sum["ZNN16-LO-400-600-TOT"    ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-400-600-ext1"    ][histset.first], 1E3 * _xs["ZNN16-LO-400-600-ext1"    ] / _sum["ZNN16-LO-400-600-TOT"    ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-600-800"    ][histset.first], 1E3 * _xs["ZNN16-LO-600-800"    ] / _sum["ZNN16-LO-600-800"    ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-800-1200"   ][histset.first], 1E3 * _xs["ZNN16-LO-800-1200"   ] / _sum["ZNN16-LO-800-1200"   ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-1200-2500"  ][histset.first], 1E3 * _xs["ZNN16-LO-1200-2500"  ] / _sum["ZNN16-LO-1200-2500-TOT"  ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-1200-2500-ext1"  ][histset.first], 1E3 * _xs["ZNN16-LO-1200-2500-ext1"  ] / _sum["ZNN16-LO-1200-2500-TOT"  ]);
+    _cloned_hists2D["ZNN16-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN16-LO-2500-Inf"   ][histset.first], 1E3 * _xs["ZNN16-LO-2500-Inf"   ] / _sum["ZNN16-LO-2500-Inf"   ]);
 
   }
 
 
   ///////  W  /////////
 
-  //ANDREAS
+  //Cross-sections take from Andreas's list
   _xs[ "WLN16-LO-70-100" ] = 1353.0;
   _xs[ "WLN16-LO-100-200"] = 1348.0;
   _xs[ "WLN16-LO-100-200-ext1"] = 1348.0;
@@ -972,12 +969,6 @@ void HiggsPlotting::CombineHistograms(){
   _xs[ "WLN16-LO-2500-Inf"] = 0.03219;
   _xs[ "WLN16-LO-2500-Inf-ext1"] = 0.03212;
 
-  //If no stitching
-  for (auto& stitch:_xs){
-    _stitch[stitch.first] = 1;
-  }
-
-
   _sum["WLN16-LO-100-200-TOT"    ] =  _sum["WLN16-LO-100-200"    ] + _sum["WLN16-LO-100-200-ext1"] + _sum["WLN16-LO-100-200-ext2"];
   _sum["WLN16-LO-200-400-TOT"    ] =  _sum["WLN16-LO-200-400"    ] + _sum["WLN16-LO-200-400-ext1"] + _sum["WLN16-LO-200-400-ext2"];
   _sum["WLN16-LO-400-600-TOT"    ] =  _sum["WLN16-LO-400-600"    ] + _sum["WLN16-LO-400-600-ext1"];
@@ -986,73 +977,99 @@ void HiggsPlotting::CombineHistograms(){
   _sum["WLN16-LO-1200-2500-TOT"    ] =  _sum["WLN16-LO-1200-2500"    ] + _sum["WLN16-LO-1200-2500-ext1"];
   _sum["WLN16-LO-2500-Inf-TOT"    ] =  _sum["WLN16-LO-2500-Inf"    ] + _sum["WLN16-LO-2500-Inf-ext1"];
 
-
+  
+  //1D
   for (auto const& histset : _cloned_hists["WLN16-LO-70-100"]){ 
-    
     _cloned_hists["WLN16-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN16-LO_" + histset.first );   
     _cloned_hists["WLN16-LO"][ histset.first ] ->Reset();
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-70-100"     ][histset.first],  1E3 * _stitch["WLN16-LO-70-100"     ] * _xs["WLN16-LO-70-100"     ] / _sum["WLN16-LO-70-100"     ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-100-200"    ][histset.first],  1E3 * _stitch["WLN16-LO-100-200"    ] * _xs["WLN16-LO-100-200"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-100-200-ext1"    ][histset.first],  1E3 * _stitch["WLN16-LO-100-200-ext1"    ] * _xs["WLN16-LO-100-200-ext1"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-100-200-ext2"    ][histset.first],  1E3 * _stitch["WLN16-LO-100-200-ext2"    ] * _xs["WLN16-LO-100-200-ext2"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-200-400"    ][histset.first],  1E3 * _stitch["WLN16-LO-200-400"    ] * _xs["WLN16-LO-200-400"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-200-400-ext1"    ][histset.first],  1E3 * _stitch["WLN16-LO-200-400-ext1"    ] * _xs["WLN16-LO-200-400-ext1"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-200-400-ext2"    ][histset.first],  1E3 * _stitch["WLN16-LO-200-400-ext2"    ] * _xs["WLN16-LO-200-400-ext2"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-400-600"    ][histset.first],  1E3 * _stitch["WLN16-LO-400-600"    ] * _xs["WLN16-LO-400-600"    ] / _sum["WLN16-LO-400-600-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-400-600-ext1"    ][histset.first],  1E3 * _stitch["WLN16-LO-400-600-ext1"    ] * _xs["WLN16-LO-400-600-ext1"    ] / _sum["WLN16-LO-400-600-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-600-800"    ][histset.first],  1E3 * _stitch["WLN16-LO-600-800"    ] * _xs["WLN16-LO-600-800"    ] / _sum["WLN16-LO-600-800-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-600-800-ext1"    ][histset.first],  1E3 * _stitch["WLN16-LO-600-800-ext1"    ] * _xs["WLN16-LO-600-800-ext1"    ] / _sum["WLN16-LO-600-800-TOT"    ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-800-1200"   ][histset.first],  1E3 * _stitch["WLN16-LO-800-1200"   ] * _xs["WLN16-LO-800-1200"   ] / _sum["WLN16-LO-800-1200-TOT"   ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-800-1200-ext1"   ][histset.first],  1E3 * _stitch["WLN16-LO-800-1200-ext1"   ] * _xs["WLN16-LO-800-1200-ext1"   ] / _sum["WLN16-LO-800-1200-TOT"   ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-1200-2500"  ][histset.first],  1E3 * _stitch["WLN16-LO-1200-2500"  ] * _xs["WLN16-LO-1200-2500"  ] / _sum["WLN16-LO-1200-2500-TOT"  ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-1200-2500-ext1"  ][histset.first],  1E3 * _stitch["WLN16-LO-1200-2500-ext1"  ] * _xs["WLN16-LO-1200-2500-ext1"  ] / _sum["WLN16-LO-1200-2500-TOT"  ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-2500-Inf"   ][histset.first],  1E3 * _stitch["WLN16-LO-2500-Inf"   ] * _xs["WLN16-LO-2500-Inf"   ] / _sum["WLN16-LO-2500-Inf-TOT"   ]);
-    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-2500-Inf-ext1"   ][histset.first],  1E3 * _stitch["WLN16-LO-2500-Inf-ext1"   ] * _xs["WLN16-LO-2500-Inf-ext1"   ] / _sum["WLN16-LO-2500-Inf-TOT"   ]);
-
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-70-100"     ][histset.first],  1E3 * _xs["WLN16-LO-70-100"     ] / _sum["WLN16-LO-70-100"     ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-100-200"    ][histset.first],  1E3 * _xs["WLN16-LO-100-200"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-100-200-ext1"    ][histset.first],  1E3 * _xs["WLN16-LO-100-200-ext1"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-100-200-ext2"    ][histset.first],  1E3 * _xs["WLN16-LO-100-200-ext2"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-200-400"    ][histset.first],  1E3 * _xs["WLN16-LO-200-400"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-200-400-ext1"    ][histset.first],  1E3 * _xs["WLN16-LO-200-400-ext1"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-200-400-ext2"    ][histset.first],  1E3 * _xs["WLN16-LO-200-400-ext2"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-400-600"    ][histset.first],  1E3 * _xs["WLN16-LO-400-600"    ] / _sum["WLN16-LO-400-600-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-400-600-ext1"    ][histset.first],  1E3 * _xs["WLN16-LO-400-600-ext1"    ] / _sum["WLN16-LO-400-600-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-600-800"    ][histset.first],  1E3  * _xs["WLN16-LO-600-800"    ] / _sum["WLN16-LO-600-800-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-600-800-ext1"    ][histset.first],  1E3 * _xs["WLN16-LO-600-800-ext1"    ] / _sum["WLN16-LO-600-800-TOT"    ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-800-1200"   ][histset.first],  1E3  * _xs["WLN16-LO-800-1200"   ] / _sum["WLN16-LO-800-1200-TOT"   ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-800-1200-ext1"   ][histset.first],  1E3 * _xs["WLN16-LO-800-1200-ext1"   ] / _sum["WLN16-LO-800-1200-TOT"   ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-1200-2500"  ][histset.first],  1E3 * _xs["WLN16-LO-1200-2500"  ] / _sum["WLN16-LO-1200-2500-TOT"  ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-1200-2500-ext1"  ][histset.first],  1E3 * _xs["WLN16-LO-1200-2500-ext1"  ] / _sum["WLN16-LO-1200-2500-TOT"  ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-2500-Inf"   ][histset.first],  1E3 * _xs["WLN16-LO-2500-Inf"   ] / _sum["WLN16-LO-2500-Inf-TOT"   ]);
+    _cloned_hists["WLN16-LO"][ histset.first ]->Add( _cloned_hists["WLN16-LO-2500-Inf-ext1"   ][histset.first],  1E3 * _xs["WLN16-LO-2500-Inf-ext1"   ] / _sum["WLN16-LO-2500-Inf-TOT"   ]);
   }
 
   //2D
-
   for (auto const& histset : _cloned_hists2D["WLN16-LO-70-100"]){ 
-    
     _cloned_hists2D["WLN16-LO"][ histset.first ] = (TH2D*) histset.second->Clone( "WLN16-LO_" + histset.first );   
     _cloned_hists2D["WLN16-LO"][ histset.first ] ->Reset();
-
-
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-70-100"     ][histset.first],  1E3 * _stitch["WLN16-LO-70-100"     ] * _xs["WLN16-LO-70-100"     ] / _sum["WLN16-LO-70-100"     ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-100-200"    ][histset.first],  1E3 * _stitch["WLN16-LO-100-200"    ] * _xs["WLN16-LO-100-200"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-100-200-ext1"    ][histset.first],  1E3 * _stitch["WLN16-LO-100-200-ext1"    ] * _xs["WLN16-LO-100-200-ext1"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-100-200-ext2"    ][histset.first],  1E3 * _stitch["WLN16-LO-100-200-ext2"    ] * _xs["WLN16-LO-100-200-ext2"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-200-400"    ][histset.first],  1E3 * _stitch["WLN16-LO-200-400"    ] * _xs["WLN16-LO-200-400"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-200-400-ext1"    ][histset.first],  1E3 * _stitch["WLN16-LO-200-400-ext1"    ] * _xs["WLN16-LO-200-400-ext1"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-200-400-ext2"    ][histset.first],  1E3 * _stitch["WLN16-LO-200-400-ext2"    ] * _xs["WLN16-LO-200-400-ext2"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-400-600"    ][histset.first],  1E3 * _stitch["WLN16-LO-400-600"    ] * _xs["WLN16-LO-400-600"    ] / _sum["WLN16-LO-400-600-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-400-600-ext1"    ][histset.first],  1E3 * _stitch["WLN16-LO-400-600-ext1"    ] * _xs["WLN16-LO-400-600-ext1"    ] / _sum["WLN16-LO-400-600-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-600-800"    ][histset.first],  1E3 * _stitch["WLN16-LO-600-800"    ] * _xs["WLN16-LO-600-800"    ] / _sum["WLN16-LO-600-800-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-600-800-ext1"    ][histset.first],  1E3 * _stitch["WLN16-LO-600-800-ext1"    ] * _xs["WLN16-LO-600-800-ext1"    ] / _sum["WLN16-LO-600-800-TOT"    ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-800-1200"   ][histset.first],  1E3 * _stitch["WLN16-LO-800-1200"   ] * _xs["WLN16-LO-800-1200"   ] / _sum["WLN16-LO-800-1200-TOT"   ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-800-1200-ext1"   ][histset.first],  1E3 * _stitch["WLN16-LO-800-1200-ext1"   ] * _xs["WLN16-LO-800-1200-ext1"   ] / _sum["WLN16-LO-800-1200-TOT"   ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-1200-2500"  ][histset.first],  1E3 * _stitch["WLN16-LO-1200-2500"  ] * _xs["WLN16-LO-1200-2500"  ] / _sum["WLN16-LO-1200-2500-TOT"  ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-1200-2500-ext1"  ][histset.first],  1E3 * _stitch["WLN16-LO-1200-2500-ext1"  ] * _xs["WLN16-LO-1200-2500-ext1"  ] / _sum["WLN16-LO-1200-2500-TOT"  ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-2500-Inf"   ][histset.first],  1E3 * _stitch["WLN16-LO-2500-Inf"   ] * _xs["WLN16-LO-2500-Inf"   ] / _sum["WLN16-LO-2500-Inf-TOT"   ]);
-    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-2500-Inf-ext1"   ][histset.first],  1E3 * _stitch["WLN16-LO-2500-Inf-ext1"   ] * _xs["WLN16-LO-2500-Inf-ext1"   ] / _sum["WLN16-LO-2500-Inf-TOT"   ]);
-
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-70-100"     ][histset.first],  1E3 * _xs["WLN16-LO-70-100"     ] / _sum["WLN16-LO-70-100"     ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-100-200"    ][histset.first],  1E3 * _xs["WLN16-LO-100-200"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-100-200-ext1"    ][histset.first],  1E3 * _xs["WLN16-LO-100-200-ext1"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-100-200-ext2"    ][histset.first],  1E3 * _xs["WLN16-LO-100-200-ext2"    ] / _sum["WLN16-LO-100-200-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-200-400"    ][histset.first],  1E3 * _xs["WLN16-LO-200-400"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-200-400-ext1"    ][histset.first],  1E3 * _xs["WLN16-LO-200-400-ext1"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-200-400-ext2"    ][histset.first],  1E3 * _xs["WLN16-LO-200-400-ext2"    ] / _sum["WLN16-LO-200-400-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-400-600"    ][histset.first],  1E3 * _xs["WLN16-LO-400-600"    ] / _sum["WLN16-LO-400-600-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-400-600-ext1"    ][histset.first],  1E3 * _xs["WLN16-LO-400-600-ext1"    ] / _sum["WLN16-LO-400-600-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-600-800"    ][histset.first],  1E3 * _xs["WLN16-LO-600-800"    ] / _sum["WLN16-LO-600-800-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-600-800-ext1"    ][histset.first],  1E3 * _xs["WLN16-LO-600-800-ext1"    ] / _sum["WLN16-LO-600-800-TOT"    ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-800-1200"   ][histset.first],  1E3 * _xs["WLN16-LO-800-1200"   ] / _sum["WLN16-LO-800-1200-TOT"   ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-800-1200-ext1"   ][histset.first],  1E3 * _xs["WLN16-LO-800-1200-ext1"   ] / _sum["WLN16-LO-800-1200-TOT"   ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-1200-2500"  ][histset.first],  1E3 * _xs["WLN16-LO-1200-2500"  ] / _sum["WLN16-LO-1200-2500-TOT"  ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-1200-2500-ext1"  ][histset.first],  1E3 * _xs["WLN16-LO-1200-2500-ext1"  ] / _sum["WLN16-LO-1200-2500-TOT"  ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-2500-Inf"   ][histset.first],  1E3 * _xs["WLN16-LO-2500-Inf"   ] / _sum["WLN16-LO-2500-Inf-TOT"   ]);
+    _cloned_hists2D["WLN16-LO"][ histset.first ]->Add( _cloned_hists2D["WLN16-LO-2500-Inf-ext1"   ][histset.first],  1E3 * _xs["WLN16-LO-2500-Inf-ext1"   ] / _sum["WLN16-LO-2500-Inf-TOT"   ]);
   }
-
-
-
 
 
  ////////////////////////////////////////////////////////
 
-  ////////////////////
+  /////////////////////////
   //  LO HT Binned 2018  // 
-  ////////////////////
-  //Same cross section at 2017
+  /////////////////////////
+
+  //Use same cross section as for 2017
+
+  ///////  W  /////////
+
+  //1D
+  for (auto const& histset : _cloned_hists["WLN18-LO-70-100"]){ 
+    _cloned_hists["WLN18-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN18-LO_" + histset.first );   
+    _cloned_hists["WLN18-LO"][ histset.first ] ->Reset();
+    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-70-100"     ][histset.first],  1E3 * _xs["WLN-LO-70-100"     ] / _sum["WLN18-LO-70-100"     ]);
+    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-100-200"    ][histset.first],  1E3 * _xs["WLN-LO-100-200"    ] / _sum["WLN18-LO-100-200"    ]);
+    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-200-400"    ][histset.first],  1E3 * _xs["WLN-LO-200-400"    ] / _sum["WLN18-LO-200-400"    ]);
+    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-400-600"    ][histset.first],  1E3 * _xs["WLN-LO-400-600"    ] / _sum["WLN18-LO-400-600"    ]);
+    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-600-800"    ][histset.first],  1E3 * _xs["WLN-LO-600-800"    ] / _sum["WLN18-LO-600-800"    ]);
+    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-800-1200"   ][histset.first],  1E3 * _xs["WLN-LO-800-1200"   ] / _sum["WLN18-LO-800-1200"   ]);
+    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-1200-2500"  ][histset.first],  1E3 * _xs["WLN-LO-1200-2500"  ] / _sum["WLN18-LO-1200-2500"  ]);
+    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-2500-Inf"   ][histset.first],  1E3 * _xs["WLN-LO-2500-Inf"   ] / _sum["WLN18-LO-2500-Inf"   ]);
+  }
+
+  //2D
+  for (auto const& histset : _cloned_hists2D["WLN18-LO-70-100"]){    
+    _cloned_hists2D["WLN18-LO"][ histset.first ] = (TH2D*) histset.second->Clone( "WLN18-LO_" + histset.first );   
+    _cloned_hists2D["WLN18-LO"][ histset.first ] ->Reset();
+    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-70-100"     ][histset.first],  1E3 * _xs["WLN-LO-70-100"     ] / _sum["WLN18-LO-70-100"     ]);
+    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-100-200"    ][histset.first],  1E3 * _xs["WLN-LO-100-200"    ] / _sum["WLN18-LO-100-200"    ]);
+    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-200-400"    ][histset.first],  1E3 * _xs["WLN-LO-200-400"    ] / _sum["WLN18-LO-200-400"    ]);
+    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-400-600"    ][histset.first],  1E3 * _xs["WLN-LO-400-600"    ] / _sum["WLN18-LO-400-600"    ]);
+    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-600-800"    ][histset.first],  1E3 * _xs["WLN-LO-600-800"    ] / _sum["WLN18-LO-600-800"    ]);
+    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-800-1200"   ][histset.first],  1E3 * _xs["WLN-LO-800-1200"   ] / _sum["WLN18-LO-800-1200"   ]);
+    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-1200-2500"  ][histset.first],  1E3 * _xs["WLN-LO-1200-2500"  ] / _sum["WLN18-LO-1200-2500"  ]);
+    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-2500-Inf"   ][histset.first],  1E3 * _xs["WLN-LO-2500-Inf"   ] / _sum["WLN18-LO-2500-Inf"   ]);
+
+  }
+  
+  ///////  DY  /////////
+
   _sum["ZLL18-LO-400-600-TOT"    ] =  _sum["ZLL18-LO-400-600"    ] + _sum["ZLL18-LO-400-600-ext1"];
 
-  for (auto const& histset : _cloned_hists["ZLL18-LO-70-100"]){
-    
+  //1D
+  for (auto const& histset : _cloned_hists["ZLL18-LO-70-100"]){   
     _cloned_hists["ZLL18-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "ZLL18-LO_" + histset.first );   
     _cloned_hists["ZLL18-LO"][ histset.first ] ->Reset();
     _cloned_hists["ZLL18-LO"][ histset.first ]->Add( _cloned_hists["ZLL18-LO-70-100"     ][histset.first], 1E3*  _xs["ZLL-LO-70-100"     ] / _sum["ZLL18-LO-70-100"     ]);
@@ -1068,9 +1085,7 @@ void HiggsPlotting::CombineHistograms(){
   }
 
   //2D
-
   for (auto const& histset : _cloned_hists2D["ZLL18-LO-70-100"]){
-
     _cloned_hists2D["ZLL18-LO"][ histset.first ] = (TH2D*) histset.second->Clone( "ZLL18-LO_" + histset.first );   
     _cloned_hists2D["ZLL18-LO"][ histset.first ] ->Reset();
     _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-70-100"     ][histset.first], 1E3*  _xs["ZLL-LO-70-100"     ] / _sum["ZLL18-LO-70-100"     ]);
@@ -1087,8 +1102,8 @@ void HiggsPlotting::CombineHistograms(){
 
   ///////  Z NU NU  /////////  
 
+  //1D
   for (auto const& histset : _cloned_hists["ZNN18-LO-100-200"]){
-    
     _cloned_hists["ZNN18-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "ZNN18-LO_" + histset.first );   
     _cloned_hists["ZNN18-LO"][ histset.first ] ->Reset();
     _cloned_hists["ZNN18-LO"][ histset.first ]->Add( _cloned_hists["ZNN18-LO-100-200"    ][histset.first], 1E3* _xs["ZNN-LO-100-200"    ] / _sum["ZNN18-LO-100-200"    ]);
@@ -1098,14 +1113,10 @@ void HiggsPlotting::CombineHistograms(){
     _cloned_hists["ZNN18-LO"][ histset.first ]->Add( _cloned_hists["ZNN18-LO-800-1200"   ][histset.first], 1E3* _xs["ZNN-LO-800-1200"   ] / _sum["ZNN18-LO-800-1200"   ]);
     _cloned_hists["ZNN18-LO"][ histset.first ]->Add( _cloned_hists["ZNN18-LO-1200-2500"  ][histset.first], 1E3* _xs["ZNN-LO-1200-2500"  ] / _sum["ZNN18-LO-1200-2500"  ]);
     _cloned_hists["ZNN18-LO"][ histset.first ]->Add( _cloned_hists["ZNN18-LO-2500-Inf"   ][histset.first], 1E3* _xs["ZNN-LO-2500-Inf"   ] / _sum["ZNN18-LO-2500-Inf"   ]);
-
   }
 
-
   //2D
-
   for (auto const& histset : _cloned_hists2D["ZNN18-LO-100-200"]){
-
     _cloned_hists2D["ZNN18-LO"][ histset.first ] = (TH2D*) histset.second->Clone( "ZNN18-LO_" + histset.first );   
     _cloned_hists2D["ZNN18-LO"][ histset.first ] ->Reset();
     _cloned_hists2D["ZNN18-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN18-LO-100-200"    ][histset.first], 1E3* _xs["ZNN-LO-100-200"    ] / _sum["ZNN18-LO-100-200"    ]);
@@ -1115,49 +1126,13 @@ void HiggsPlotting::CombineHistograms(){
     _cloned_hists2D["ZNN18-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN18-LO-800-1200"   ][histset.first], 1E3* _xs["ZNN-LO-800-1200"   ] / _sum["ZNN18-LO-800-1200"   ]);
     _cloned_hists2D["ZNN18-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN18-LO-1200-2500"  ][histset.first], 1E3* _xs["ZNN-LO-1200-2500"  ] / _sum["ZNN18-LO-1200-2500"  ]);
     _cloned_hists2D["ZNN18-LO"][ histset.first ]->Add( _cloned_hists2D["ZNN18-LO-2500-Inf"   ][histset.first], 1E3* _xs["ZNN-LO-2500-Inf"   ] / _sum["ZNN18-LO-2500-Inf"   ]);
-
   }
 
-
-  ///////  W  /////////
-
-  for (auto const& histset : _cloned_hists["WLN18-LO-70-100"]){ 
-    
-    _cloned_hists["WLN18-LO"][ histset.first ] = (TH1D*) histset.second->Clone( "WLN18-LO_" + histset.first );   
-    _cloned_hists["WLN18-LO"][ histset.first ] ->Reset();
-    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-70-100"     ][histset.first],  1E3 * _xs["WLN-LO-70-100"     ] / _sum["WLN18-LO-70-100"     ]);
-    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-100-200"    ][histset.first],  1E3 * _xs["WLN-LO-100-200"    ] / _sum["WLN18-LO-100-200"    ]);
-    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-200-400"    ][histset.first],  1E3 * _xs["WLN-LO-200-400"    ] / _sum["WLN18-LO-200-400"    ]);
-    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-400-600"    ][histset.first],  1E3 * _xs["WLN-LO-400-600"    ] / _sum["WLN18-LO-400-600"    ]);
-    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-600-800"    ][histset.first],  1E3 * _xs["WLN-LO-600-800"    ] / _sum["WLN18-LO-600-800"    ]);
-    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-800-1200"   ][histset.first],  1E3 * _xs["WLN-LO-800-1200"   ] / _sum["WLN18-LO-800-1200"   ]);
-    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-1200-2500"  ][histset.first],  1E3 * _xs["WLN-LO-1200-2500"  ] / _sum["WLN18-LO-1200-2500"  ]);
-    _cloned_hists["WLN18-LO"][ histset.first ]->Add( _cloned_hists["WLN18-LO-2500-Inf"   ][histset.first],  1E3 * _xs["WLN-LO-2500-Inf"   ] / _sum["WLN18-LO-2500-Inf"   ]);
-
-  }
-
-  //2D
-
-  for (auto const& histset : _cloned_hists2D["WLN18-LO-70-100"]){ 
-    
-    _cloned_hists2D["WLN18-LO"][ histset.first ] = (TH2D*) histset.second->Clone( "WLN18-LO_" + histset.first );   
-    _cloned_hists2D["WLN18-LO"][ histset.first ] ->Reset();
-    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-70-100"     ][histset.first],  1E3 * _xs["WLN-LO-70-100"     ] / _sum["WLN18-LO-70-100"     ]);
-    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-100-200"    ][histset.first],  1E3 * _xs["WLN-LO-100-200"    ] / _sum["WLN18-LO-100-200"    ]);
-    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-200-400"    ][histset.first],  1E3 * _xs["WLN-LO-200-400"    ] / _sum["WLN18-LO-200-400"    ]);
-    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-400-600"    ][histset.first],  1E3 * _xs["WLN-LO-400-600"    ] / _sum["WLN18-LO-400-600"    ]);
-    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-600-800"    ][histset.first],  1E3 * _xs["WLN-LO-600-800"    ] / _sum["WLN18-LO-600-800"    ]);
-    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-800-1200"   ][histset.first],  1E3 * _xs["WLN-LO-800-1200"   ] / _sum["WLN18-LO-800-1200"   ]);
-    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-1200-2500"  ][histset.first],  1E3 * _xs["WLN-LO-1200-2500"  ] / _sum["WLN18-LO-1200-2500"  ]);
-    _cloned_hists2D["WLN18-LO"][ histset.first ]->Add( _cloned_hists2D["WLN18-LO-2500-Inf"   ][histset.first],  1E3 * _xs["WLN-LO-2500-Inf"   ] / _sum["WLN18-LO-2500-Inf"   ]);
-
-  }
-  
 
 }
 
 
-
+//Evaluate the uncertainties on the 1D k-factors
 void HiggsPlotting::EvaluateUncertainties(){
 
   std::vector<TString> sets = {"Pt","LHEPt"};

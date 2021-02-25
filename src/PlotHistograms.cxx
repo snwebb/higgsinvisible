@@ -10,25 +10,17 @@ int main( int argc, char ** argv ){
 
   gErrorIgnoreLevel = 2000;
 
+  higgs->LoadAllHistograms(); //Load histograms into memory
 
-  higgs->LoadAllHistograms();
+  higgs->Rebin(); //Rebin them where appropriate
 
-  higgs->Rebin();
+  higgs->CombineHistograms(); //Combine the histograms from the sub-samples based on their cross-section weight
 
+  higgs->EvaluateUncertainties(); //Evaluate the uncertainties on the 1D histograms
+  higgs->EvaluateUncertainties2D(); //Evaluate the uncertainties on the 2D histograms
 
-
-
-
-
-  higgs->CombineHistograms();
-
-
-  higgs->EvaluateUncertainties();
-  higgs->EvaluateUncertainties2D();
-
-  higgs->PlotAllHistograms();
-  higgs->MakeTar();
-  //  delete higgs;
+  higgs->PlotAllHistograms(); //Plot the histograms
+  higgs->MakeTar(); //Make a tarball of the plots
 
   return 0;
 

@@ -16,7 +16,11 @@ The code should work with most versions of `ROOT` and/or `CMSSW`. It has only be
 
 To compile simply type: `make`
 
-The code is then split into two parts. The initial program called `FillHistograms` is run like:
+The code is then split into two parts, first filling the histograms, and then plotting them and producing the k-factor files.
+
+## Filling the histograms
+
+The initial program called `FillHistograms` is run like:
 
 -  `FillHistograms --filein path_to_input_root_file --fileout path_to_output_root_file`
 
