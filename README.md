@@ -70,4 +70,4 @@ Then there are 3 files each for the VTR and MTR (labelled VBF) VBF-analyses:
 -  `2Dkfactor_VBF_wjet.root`
 
 There is a post-processing stage for these files, which is performed by a second repository: https://github.com/snwebb/kfactors.
-This is necessary due to missing uncertainty values in some samples, as well as the need to produce an input for `FAST` that does not cause a crash 
+This is necessary due to missing uncertainty values in some samples, as well as the need to produce an input for `FAST` that does not cause a crash.
