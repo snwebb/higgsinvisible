@@ -1,7 +1,6 @@
 #include "HiggsPlotting.h"
 
 HiggsPlotting::HiggsPlotting( CmdLine * cmd ){
-
   _cmd = cmd;
   _origDir = gDirectory ;
   TH1::SetDefaultSumw2();  
@@ -1091,7 +1090,6 @@ void HiggsPlotting::EvaluateUncertainties(){
     for ( auto syst : systplots ){      
       if ( syst == "gen_jetpt0" && histoset != "non-VBF") continue;
       
-
       ////////////////////////////////////////////
       //                                        //
       //           SCALE UNCERTAINTIES          //
@@ -1173,7 +1171,6 @@ void HiggsPlotting::EvaluateUncertainties(){
       _cloned_hists["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
       _cloned_hists["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
       
-
       ////////    W    ////////
       
       for ( int i = 1;i<_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
@@ -1238,9 +1235,6 @@ void HiggsPlotting::EvaluateUncertainties(){
       _cloned_hists["WZ-LO"][ histoset + "_" + syst + "_PDF_Up" ]->Divide(_cloned_hists["ZLL-LO"][ histoset + "_" + syst ]);
       _cloned_hists["WZ-LO"][ histoset + "_" + syst + "_PDF_Down" ]->Divide(_cloned_hists["ZLL-LO"][ histoset + "_" + syst ]);
       
-
-
-
       //Create the final PDF Up and PDF Down systematic histograms for the NLO samples
       _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]=(TH1D*)_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
       _cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]=(TH1D*)_cloned_hists["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
@@ -1266,997 +1260,539 @@ void HiggsPlotting::EvaluateUncertainties(){
       }
     }
   }
-
- 
 }
 
 
-
-
-
-
+//Evaluate the uncertainties on the 2D k-factors
 void HiggsPlotting::EvaluateUncertainties2D(){
 
-  //  std::vector<TString> sets = {"Pt","LHEPt"};
-  std::vector<TString> sets = {"LHEPt"};
-  for ( auto setname : sets  ){
-    
-    std::vector<TString> histoSets = { "Default" , "Default_VTR","non-VBF"};
-    //std::vector<TString> histoSets = { "Default"};
-    for ( auto histoset : histoSets ){
-      std::vector<std::string> systplots = {"gen_boson_pt_gen_mjj", "gen_boson_pt_gen_boson_eta"};
-      if ( histoset == "non-VBF" ) systplots = {"gen_boson_pt_gen_jetpt0", "gen_boson_pt_gen_jet_multiplicity"};
-      for ( auto syst : systplots ){
+  std::vector<TString> histoSets = { "Default" , "Default_VTR","non-VBF"};
 
-	for ( int i = 0;i<9;i++){
-	  if ( i ==4 ) continue;
-	}  
+  for ( auto histoset : histoSets ){
+    std::vector<std::string> systplots = {"gen_boson_pt_gen_mjj", "gen_boson_pt_gen_boson_eta"};
+    if ( histoset == "non-VBF" ) systplots = {"gen_boson_pt_gen_jetpt0", "gen_boson_pt_gen_jet_multiplicity"};
+
+    for ( auto syst : systplots ){
+
+      ////////////////////////////////////////////
+      //                                        //
+      //           SCALE UNCERTAINTIES          //
+      //                                        //
+      ////////////////////////////////////////////
 	
-	std::vector<TString> list = {"1","3","5","7"};
-	if ( setname == "LHEPt" )
-	  list = {"1","3","4","6"};
-	if ( setname == "Pt" )
-	  list = {"1","3","5","7"};
+      std::vector<TString> list = {"1","3","4","6"}; //Labels for renormalisation and factorisation scales up and down
 	
-	for ( auto &j : list ) {
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleUncorrelated_" + setname + j);
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleCorrelated_" + setname + j);
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleZup_" + setname + j);
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleWup_" + setname + j);
+      for ( auto &j : list ) {
+	_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleUncorrelated_LHEPt" + j);
+	_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleCorrelated_LHEPt" + j);
+	_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleZup_LHEPt" + j);
+	_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleWup_LHEPt" + j);
 
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleFlavourSeparated_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleFlavourSeparated_" + setname + j);
-
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleLightCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleLightCorrelated_" + setname + j);
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedW_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleHeavyUncorrelatedW_" + setname + j);
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedZ_" + j ] = (TH2D*) _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->Clone("WZ-ScaleHeavyUncorrelatedZ_" + setname + j);
-
-	  _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-LO"][ histoset + "_" + syst ]->Clone("WZ-ScaleUncorrelated_" + setname + j);
-	  _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-LO"][ histoset + "_" + syst  ]->Clone("WZ-ScaleCorrelated_" + setname + j);
-	  _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH2D*) _cloned_hists2D["WLN-LO"][ histoset + "_" + syst  ]->Clone("WZ-ScaleZup_" + setname + j);
-	  _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH2D*) _cloned_hists2D["WLN-LO"][ histoset + "_" + syst ]->Clone("WZ-ScaleWup_" + setname + j);
+	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-LO"][ histoset + "_" + syst ]->Clone("WZ-ScaleUncorrelated_LHEPt" + j);
+	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN-LO"][ histoset + "_" + syst  ]->Clone("WZ-ScaleCorrelated_LHEPt" + j);
+	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH2D*) _cloned_hists2D["WLN-LO"][ histoset + "_" + syst  ]->Clone("WZ-ScaleZup_LHEPt" + j);
+	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH2D*) _cloned_hists2D["WLN-LO"][ histoset + "_" + syst ]->Clone("WZ-ScaleWup_LHEPt" + j);
 
 
-	  _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst ]->Clone("WZ16-ScaleUncorrelated_" + setname + j);
-	  _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst  ]->Clone("WZ16-ScaleCorrelated_" + setname + j);
-	  _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH2D*) _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst  ]->Clone("WZ16-ScaleZup_" + setname + j);
-	  _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH2D*) _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst ]->Clone("WZ16-ScaleWup_" + setname + j);
-	  _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst ]->Clone("WZ18-ScaleUncorrelated_" + setname + j);
-	  _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst  ]->Clone("WZ18-ScaleCorrelated_" + setname + j);
-	  _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH2D*) _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst  ]->Clone("WZ18-ScaleZup_" + setname + j);
-	  _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH2D*) _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst ]->Clone("WZ18-ScaleWup_" + setname + j);
+	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst ]->Clone("WZ16-ScaleUncorrelated_LHEPt" + j);
+	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst  ]->Clone("WZ16-ScaleCorrelated_LHEPt" + j);
+	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH2D*) _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst  ]->Clone("WZ16-ScaleZup_LHEPt" + j);
+	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH2D*) _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst ]->Clone("WZ16-ScaleWup_LHEPt" + j);
 
+	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst ]->Clone("WZ18-ScaleUncorrelated_LHEPt" + j);
+	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ] = (TH2D*) _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst  ]->Clone("WZ18-ScaleCorrelated_LHEPt" + j);
+	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ] = (TH2D*) _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst  ]->Clone("WZ18-ScaleZup_LHEPt" + j);
+	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ] = (TH2D*) _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst ]->Clone("WZ18-ScaleWup_LHEPt" + j);
 
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Reset();
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Reset();
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->Reset();
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->Reset();
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleFlavourSeparated_" + j ]->Reset();
+	_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Reset();
+	_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Reset();
+	_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleWup_" + j ]->Reset();
+	_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleZup_" + j ]->Reset();
 	  
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleLightCorrelated_" + j ]->Reset();
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedW_" + j ]->Reset();
-	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedZ_" + j ]->Reset();
-	  
-	  _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
 
-	  _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
 
-	  _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
-	  _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleWup_" + j ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
+	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_ScaleZup_" + j ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
 	  
-	  TString nominal = "";
-	  TString nominal_heavy = "_HeavyQuark";
-	  TString nominal_light = "_NoHeavyQuark";
-	  if ( histoset == "Pt" ) nominal = "_Scale_4";
-	  for ( int i = 1;i<_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetNbinsX()+1;i++){      
-	    for ( int k = 1;k<_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetNbinsY()+1;k++){      
+	TString nominal = "";
+
+	for ( int i = 1;i<_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + nominal ]->GetNbinsX()+1;i++){      
+	  for ( int k = 1;k<_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + nominal ]->GetNbinsY()+1;k++){      
 	      
-	      double r = 1;
-	      if ( _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_4" ]->GetBinContent(i,k) != 0 ){
+	    double r = 1;
+	    if ( _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_4" ]->GetBinContent(i,k) != 0 ){
 	      
-		double wu = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_" + j ]->GetBinContent(i,k);
-		double zu = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_" + j ]->GetBinContent(i,k);
-		double wnom = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetBinContent(i,k);
-		double znom = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal ]->GetBinContent(i,k);	    
+	      double wu = _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_" + j ]->GetBinContent(i,k);
+	      double zu = _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_Scale_" + j ]->GetBinContent(i,k);
+	      double wnom = _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + nominal ]->GetBinContent(i,k);
+	      double znom = _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + nominal ]->GetBinContent(i,k);	    
 
-		// double wu_heavy = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_HeavyQuark_" + j ]->GetBinContent(i,k);
-		// double zu_heavy = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_HeavyQuark_" + j ]->GetBinContent(i,k);
-		// double wnom_heavy = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal_heavy ]->GetBinContent(i,k);
-		// double znom_heavy = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal_heavy ]->GetBinContent(i,k);	    
+	      r = wnom / znom;
+	      double r_zup = (wnom/2) / zu;
+	      double r_wup = wu / (znom/2);
 		
-		// double wu_light = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_Scale_NoHeavyQuark_" + j ]->GetBinContent(i,k);
-		// double zu_light = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_Scale_NoHeavyQuark_" + j ]->GetBinContent(i,k);
-		// double wnom_light = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + nominal_light ]->GetBinContent(i,k);
-		// double znom_light = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + nominal_light ]->GetBinContent(i,k);	    
-		
-		r = wnom / znom;
-		double r_zup = (wnom/2) / zu;
-		double r_wup = wu / (znom/2);
-		
-		double val_uncorrelated = 1;
-		double val_correlated = 1;
-		double val_zup = 1;
-		double val_wup = 1;
-		// double val_light_correlated = 1;
-		// double val_heavy_uncorrelated = 1;
+	      double val_uncorrelated = 1;
+	      double val_correlated = 1;
+	      double val_zup = 1;
+	      double val_wup = 1;
 
-		// double val_heavy_uncorrelated_w = 1;
-		// double val_heavy_uncorrelated_z = 1;
-
-		// double val_flavour_separated = 1;
-
-		// double r_light = wnom_light / znom_light;
-		// double r_heavy = wnom_heavy / znom_heavy;
-		// double r_heavy_zup = (wnom_heavy/2) / zu_heavy;
-		// double r_heavy_wup = wu_heavy / (znom_heavy/2);
-
-		if ( j == "1" || j == "3" ){
-		  val_uncorrelated = 1 - ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r; 
-		  val_correlated = ((wu/zu) / r);
-		  val_zup = ((wnom/(zu*2)) / r);
-		  val_wup = (((2*wu)/znom) / r);
-
-		  // // val_light_correlated = ((wu_light/zu_light) / r_light) - 1;
-		  // // val_heavy_uncorrelated = ( std::sqrt( std::pow(r_heavy_wup-r_heavy,2) + std::pow(r_heavy_zup-r_heavy,2) ) ) / r_heavy; 
-		  // // val_flavour_separated = 1 + std::sqrt(val_light_correlated*val_light_correlated + val_heavy_uncorrelated*val_heavy_uncorrelated);
-		  // val_light_correlated = ((wu_light+wnom_heavy/2)/(zu_light+znom_heavy/2)) / r ;
-		  // val_heavy_uncorrelated_w = ((wnom_light/2+wu_heavy)/(znom_light/2+znom_heavy/2)) / r ;
-		  // val_heavy_uncorrelated_z = ((wnom_light/2+wnom_heavy/2)/(znom_light/2+zu_heavy)) / r ;
-
-		}
-		else{
-		  val_uncorrelated = 1 + ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r;
-		  val_correlated = ((wu/zu) / r);
-		  val_zup = ((wnom/(zu*2)) / r);
-		  val_wup = (((2*wu)/znom) / r);
-
-		  // // val_light_correlated = ((wu_light/zu_light) / r_light) - 1;
-		  // // val_heavy_uncorrelated = ( std::sqrt( std::pow(r_heavy_wup-r_heavy,2) + std::pow(r_heavy_zup-r_heavy,2) ) ) / r_heavy; 
-		  // // val_flavour_separated = 1 - std::sqrt(val_light_correlated*val_light_correlated + val_heavy_uncorrelated*val_heavy_uncorrelated);
-
-		  // val_light_correlated = ((wu_light+wnom_heavy/2)/(zu_light+znom_heavy/2)) / r ;
-		  // val_heavy_uncorrelated_w = ((wnom_light/2+wu_heavy)/(znom_light/2+znom_heavy/2)) / r ;
-		  // val_heavy_uncorrelated_z = ((wnom_light/2+wnom_heavy/2)/(znom_light/2+zu_heavy)) / r ;
-
-		}
-		
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, k, val_uncorrelated );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, k, val_correlated );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, k, val_zup );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, k, val_wup );
-
-		// _cloned_hists2D["WZ16-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, k, val_uncorrelated );
-		// _cloned_hists2D["WZ16-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, k, val_correlated );
-		// _cloned_hists2D["WZ16-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, k, val_zup );
-		// _cloned_hists2D["WZ16-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, k, val_wup );
-		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleFlavourSeparated_" + j ]->SetBinContent(i, k, val_flavour_separated );
-		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleLightCorrelated_" + j ]->SetBinContent(i, k, val_light_correlated );
-		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedW_" + j ]->SetBinContent(i, k, val_heavy_uncorrelated_w );
-		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedZ_" + j ]->SetBinContent(i, k, val_heavy_uncorrelated_z );
-		
+	      if ( j == "1" || j == "3" ){
+		val_uncorrelated = 1 - ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r; 
+		val_correlated = ((wu/zu) / r);
+		val_zup = ((wnom/(zu*2)) / r);
+		val_wup = (((2*wu)/znom) / r);
 	      }
 	      else{
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, k, 1 );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, k, 1 );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, k, 1 );
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, k, 1 );
-
-		// _cloned_hists2D["WZ16-NLO-" + setname][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, k, 1 );
-		// _cloned_hists2D["WZ16-NLO-" + setname][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, k, 1 );
-		// _cloned_hists2D["WZ16-NLO-" + setname][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, k, 1 );
-		// _cloned_hists2D["WZ16-NLO-" + setname][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, k, 1 );
-		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleFlavourSeparated_" + j ]->SetBinContent(i, k, 1 );
-		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleLightCorrelated_" + j ]->SetBinContent(i, k, 1 );
-		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedW_" + j ]->SetBinContent(i, k, 1 );
-		// _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_ScaleHeavyUncorrelatedZ_" + j ]->SetBinContent(i, k, 1 );
-
+		val_uncorrelated = 1 + ( std::sqrt( std::pow(r_wup-r,2) + std::pow(r_zup-r,2) ) ) / r;
+		val_correlated = ((wu/zu) / r);
+		val_zup = ((wnom/(zu*2)) / r);
+		val_wup = (((2*wu)/znom) / r);
 	      }
-	      
+		
+	      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, k, val_uncorrelated );
+	      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, k, val_correlated );
+	      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, k, val_zup );
+	      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, k, val_wup );
+		
 	    }
+	    else{
+	      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleUncorrelated_" + j ]->SetBinContent(i, k, 1 );
+	      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleCorrelated_" + j ]->SetBinContent(i, k, 1 );
+	      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleZup_" + j ]->SetBinContent(i, k, 1 );
+	      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_ScaleWup_" + j ]->SetBinContent(i, k, 1 );
+
+	    }
+	      
 	  }
 	}
+      }
 
-	//PDF uncertainty
-	_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_WLN");
-	_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_ZLL");
-	_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_ZNN");
-	_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_WZ");
+      ////////////////////////////////////////////
+      //                                        //
+      //            PDF UNCERTAINTIES           //
+      //                                        //
+      ////////////////////////////////////////////
 
-	_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
-	_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
-	_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
-	_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
+      _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_WLN");
+      _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_ZLL");
+      _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_ZNN");
+      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ] = (TH2D*)_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->Clone( histoset + "_gen_boson_LHEPt_PDF_SD_WZ");
 
-	if ( setname == "Pt" ){                 
-	  
-	  _cloned_hists2D["Zero"][ "Zero" ] = (TH2D*)_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->Clone( "Zero");
-	  
-	  
-	  for ( int i = 1;i<_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    for ( int k = 1;k<_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
-	    
-	      _cloned_hists2D["Zero"][ "Zero" ]->SetBinContent(i,k,0);
-	      _cloned_hists2D["Zero"][ "Zero" ]->SetBinError(i,k,0);
-	
-	      double sum = 0;
-	      double sum2 = 0;
-	      for ( int j = 0; j < 100; j++){
-		sum += _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k);
-		sum2 += std::pow(_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k),2);
-	      }
-	      double sd_pdf = std::sqrt( (sum2/100) - (sum/100)*(sum/100) );
-	    
-	      double sd_alphas = (_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_101" ]->GetBinContent(i,k) - _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_100" ]->GetBinContent(i,k))/2;
-	      double sd =  std::sqrt( sd_pdf*sd_pdf + sd_alphas*sd_alphas );
-	  
-	      if ( _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
-		_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
-	    }
-	  }
-	  for ( int i = 1;i<_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    for ( int k = 1;k<_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
-	      double sum = 0;
-	      double sum2 = 0;
-	      for ( int j = 0; j < 100; j++){
-		sum += _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k);
-		sum2 += std::pow(_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k),2);
-	      }
-	    
-	      double sd_pdf = std::sqrt( (sum2/100) - (sum/100)*(sum/100) );
-	      double sd_alphas = (_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_100" ]->GetBinContent(i,k) - _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_101" ]->GetBinContent(i,k))/2;
-	      double sd =  std::sqrt( sd_pdf*sd_pdf + sd_alphas*sd_alphas );
-	      
-	      if ( _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
-		_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
-	    }
-	  }
-	  for ( int i = 1;i<_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    for ( int k = 1;k<_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
-	    
-	      double sum = 0;
-	      double sum2 = 0;
-	      for ( int j = 0; j < 100; j++){
-		sum += _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i) / _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k);
-		sum2 += std::pow(_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k),2);
-	    }
-	    
-	    double sd_pdf = std::sqrt( (sum2/100) - (sum/100)*(sum/100) );
-	    double sd_alphas = (_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_101" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_101" ]->GetBinContent(i,k) - _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_100" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_100" ]->GetBinContent(i,k))/2;
-	    double sd =  std::sqrt( sd_pdf*sd_pdf + sd_alphas*sd_alphas );
-	    
-	    
-	    if ( _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i) != 0 )    
-	      //	  _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,sd/(_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i)));
-	      _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
-	    //	_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinError(i,0);
-	    }
-	  }
-	}else if ( setname == "LHEPt" ){                 
-	  
-	  for ( int i = 1;i<_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    for ( int k = 1;k<_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
-	      double sum2_pdf = 0;
-	      for ( int j = 1; j < 31; j++){	    
-		sum2_pdf += std::pow( 2*_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k) - 2*_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k), 2);
-	      }
-	      double sd_alphas = 2*(_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k) - _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k))/2;
-	    
-	      double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
-	      
-	      if ( _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
-		_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
-	    }
-	  }
+      _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
+      _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
+      _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
+      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Reset();
 
-	  for ( int i = 1;i<_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    for ( int k = 1;k<_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
-	      double sum2_pdf = 0;
-	      for ( int j = 1; j < 31; j++){
-		sum2_pdf += std::pow( 2*_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k) - 2*_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k), 2);
-	      }
-	      double sd_alphas = 2*(_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k) - _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k))/2;
-	      double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
-	      if ( _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
-		_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
-	    } 
-	  }
-	  for ( int i = 1;i<_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    for ( int k = 1;k<_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
-	      double sum2_pdf = 0;
-	      for ( int j = 1; j < 31; j++){
-		sum2_pdf += std::pow( 2*_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k) - 2*_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k), 2);
-	      }
-	      double sd_alphas = 2*(_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k) - _cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k))/2;
-	      double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
-	      if ( _cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
-		_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
-	    } 
-	  }
-	  
-	  for ( int i = 1;i<_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
-	    for ( int k = 1;k<_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
-	      double sum2_pdf = 0;
-	      for ( int j = 1; j < 31; j++){
-		sum2_pdf += std::pow( _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k) - _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k), 2);
-	      }
-	      double sd_alphas = (_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k) - _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k))/2;
-	      double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
-	      if ( _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
-		_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
-	    }
-	  }
+      ////////    W    ////////
 
+      for ( int i = 1;i<_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
+	for ( int k = 1;k<_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
+	  double sum2_pdf = 0;
+	  for ( int j = 1; j < 31; j++){	    
+	    sum2_pdf += std::pow( 2*_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k) - 2*_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k), 2);
+	  }
+	  double sd_alphas = 2*(_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k) - _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k))/2;
+	  
+	  double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
+	  
+	  if ( _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
+	    _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
 	}
+      }
 
-	_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up_WZ"));
-	_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down_WZ"));
-	
-	
-	_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["ZNN-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZNN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["ZNN-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZNN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      ////////    DY    ////////
+      
+      for ( int i = 1;i<_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
+	for ( int k = 1;k<_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
+	  double sum2_pdf = 0;
+	  for ( int j = 1; j < 31; j++){
+	    sum2_pdf += std::pow( 2*_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k) - 2*_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k), 2);
+	  }
+	  double sd_alphas = 2*(_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k) - _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k))/2;
+	  double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
+	  if ( _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
+	    _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
+	} 
+      }
 
-	_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["ZNN16-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZNN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["ZNN16-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZNN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Down"));
+      ////////     ZNN     ////////
 
-	_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Down"));
-	_cloned_hists2D["ZNN18-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZNN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["ZNN18-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZNN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Down"));
 
-	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      for ( int i = 1;i<_cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
+	for ( int k = 1;k<_cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
+	  double sum2_pdf = 0;
+	  for ( int j = 1; j < 31; j++){
+	    sum2_pdf += std::pow( 2*_cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k) - 2*_cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k), 2);
+	  }
+	  double sd_alphas = 2*(_cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k) - _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k))/2;
+	  double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
+	  if ( _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
+	    _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
+	} 
+      }
+
+      ////////     W/Z     ////////
+      
+      for ( int i = 1;i<_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsX()+1;i++){
+	for ( int k = 1;k<_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetNbinsY()+1;k++){
+	  double sum2_pdf = 0;
+	  for ( int j = 1; j < 31; j++){
+	    sum2_pdf += std::pow( _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_" + std::to_string(j) ]->GetBinContent(i,k) - _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_0" ]->GetBinContent(i,k), 2);
+	  }
+	  double sd_alphas = (_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_32" ]->GetBinContent(i,k) - _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_31" ]->GetBinContent(i,k))/2;
+	  double sd =  std::sqrt( sum2_pdf + sd_alphas*sd_alphas );
+	  if ( _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k) != 0 )    
+	    _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->SetBinContent(i,k,sd);
+	}
+      }
+      
+      //Create dummy PDF up and down histograms for the LO samples, which are just set to the central values (for simplicity)
+            
+      _cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["ZLL-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["ZLL-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["ZNN-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZNN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["ZNN-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZNN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+
+      _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["ZNN16-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZNN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["ZNN16-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZNN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "16_" + syst + "_PDF_SD_Down"));
+
+      _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["ZNN18-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZNN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["ZNN18-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZNN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "18_" + syst + "_PDF_SD_Down"));
+
+      _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
 
       _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_PDF_Up" ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
       _cloned_hists2D["WZ-LO"][ histoset + "_" + syst + "_PDF_Down" ]->Divide(_cloned_hists2D["ZLL-LO"][ histoset + "_" + syst ]);
 
-	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN16-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
 
       _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_PDF_Up" ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
       _cloned_hists2D["WZ16-LO"][ histoset + "_" + syst + "_PDF_Down" ]->Divide(_cloned_hists2D["ZLL16-LO"][ histoset + "_" + syst ]);
 
-	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
-	_cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN18-LO"][ histoset + "_" + syst + "" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
 
       _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_PDF_Up" ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
       _cloned_hists2D["WZ18-LO"][ histoset + "_" + syst + "_PDF_Down" ]->Divide(_cloned_hists2D["ZLL18-LO"][ histoset + "_" + syst ]);
-	
-	for ( int i = 1;i<_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetNbinsX()+1;i++){
-	  for ( int k = 1;k<_cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetNbinsY()+1;k++){
+
+      //Create the final PDF Up and PDF Down systematic histograms for the NLO samples
+      _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up"));
+      _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down"));
+      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]=(TH2D*)_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Up_WZ"));
+      _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]=(TH2D*)_cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->Clone((histoset + "_" + syst + "_PDF_SD_Down_WZ"));
+		
+      //Fill those histograms with the correct values (to mirror the format for the scale uncertainties, i.e. uncertainty histogram is central_val+sigma_deviation)	
+      for ( int i = 1;i<_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetNbinsX()+1;i++){
+	for ( int k = 1;k<_cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetNbinsY()+1;k++){
 	    
-	    double centralw = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k);
-	    double centralz = _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k);
-	    double centralznn = _cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k);
-	    double centralwz = _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "" ]->GetBinContent(i,k);
+	  double centralw = _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k);
+	  double centralz = _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k);
+	  double centralznn = _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k);
+	  double centralwz = _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k)/_cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "" ]->GetBinContent(i,k);
 	    
-	    _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i,k, centralw + _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
-	    _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i,k, centralw - _cloned_hists2D["WLN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
-	    _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i,k, centralz + _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
-	    _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i,k, centralz - _cloned_hists2D["ZLL-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
-	    _cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i,k, centralznn + _cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
-	    _cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i,k, centralznn - _cloned_hists2D["ZNN-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
-	    _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i,k, centralwz + _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
-	    _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i,k, centralwz - _cloned_hists2D["WZ-NLO-" + setname][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
+	  _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i,k, centralw + _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
+	  _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i,k, centralw - _cloned_hists2D["WLN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
+	  _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i,k, centralz + _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
+	  _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i,k, centralz - _cloned_hists2D["ZLL-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
+	  _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i,k, centralznn + _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
+	  _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i,k, centralznn - _cloned_hists2D["ZNN-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
+	  _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Up" ]->SetBinContent(i,k, centralwz + _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
+	  _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_Down" ]->SetBinContent(i,k, centralwz - _cloned_hists2D["WZ-NLO-LHEPt"][ histoset + "_" + syst + "_PDF_SD" ]->GetBinContent(i,k)   );
 	    
-	  }
 	}
       }
     }
-  }
-   
+  }     
 }
 
-
-
-
-
-
-
-
-
+//Plot the various generator-level control distributions and evaluate the 1D and 2D k-factors
 void HiggsPlotting::PlotAllHistograms(){
 
   Plotter plotter(_cmd, _helper);
+  
+  //By default some histograms are also saved to a .ROOT file, as well as being plotted as .png or .pdf
+  std::string filename = "ROOT_histograms.root";
 
-  std::string filename = "Znn_studies.root";
-
+  //Loop over all LO DY samples, plot the histograms, and save to the .ROOT file 
+  //(skipping the PDF and Scale uncertainty plots, which are dummy anyway)
   for (auto const& histset : _cloned_hists["ZLL-LO"]){
     if ( histset.first.SubString("PDF_") != "" ) continue;
     if ( histset.first.SubString("Scale_") != "" ) continue;
     plotter.Draw( histset.second , "", "ZLL-LO-" + histset.first );
     plotter.Draw( histset.second , "", "ZLL-LO-" + histset.first, true );
-
     plotter.SaveToFile(histset.second ,histset.first, filename, "ZLL-LO" );
   }
 
+  //Do the same for the LO ZNN samples
   for (auto const& histset : _cloned_hists["ZNN-LO"]){
     if ( histset.first.SubString("PDF_") != "" ) continue;
     if ( histset.first.SubString("Scale_") != "" ) continue;
     plotter.Draw( histset.second , "", "ZNN-LO-" + histset.first );
     plotter.Draw( histset.second , "", "ZNN-LO-" + histset.first, true );
-
     plotter.SaveToFile(histset.second ,histset.first, filename, "ZNN-LO" );
   }
 
-  for (auto const& histset : _cloned_hists["ZLL16-LO"]){
-    if ( histset.first.SubString("PDF_") != "" ) continue;
-    if ( histset.first.SubString("Scale_") != "" ) continue;
-    plotter.Draw( histset.second , "", "ZLL16-LO-" + histset.first );
-    plotter.Draw( histset.second , "", "ZLL16-LO-" + histset.first, true );
-  }
-
-  for (auto const& histset : _cloned_hists["ZNN16-LO"]){
-    if ( histset.first.SubString("PDF_") != "" ) continue;
-    if ( histset.first.SubString("Scale_") != "" ) continue;
-    plotter.Draw( histset.second , "", "ZNN16-LO-" + histset.first );
-    plotter.Draw( histset.second , "", "ZNN16-LO-" + histset.first, true );
-  }
-
-  for (auto const& histset : _cloned_hists["ZLL18-LO"]){
-    if ( histset.first.SubString("PDF_") != "" ) continue;
-    if ( histset.first.SubString("Scale_") != "" ) continue;
-    plotter.Draw( histset.second , "", "ZLL18-LO-" + histset.first );
-    plotter.Draw( histset.second , "", "ZLL18-LO-" + histset.first, true );
-  }
-
-  for (auto const& histset : _cloned_hists["ZNN18-LO"]){
-    if ( histset.first.SubString("PDF_") != "" ) continue;
-    if ( histset.first.SubString("Scale_") != "" ) continue;
-    plotter.Draw( histset.second , "", "ZNN18-LO-" + histset.first );
-    plotter.Draw( histset.second , "", "ZNN18-LO-" + histset.first, true );
-  }
-
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-100-200"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZNN-LO-100-200" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-200-400"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZNN-LO-200-400" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-400-600"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZNN-LO-400-600" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-600-800"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZNN-LO-600-800" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-800-1200"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZNN-LO-800-1200" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-1200-2500"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZNN-LO-1200-2500" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-2500-Inf"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZNN-LO-2500-Inf" );
-
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-100-200"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZLL-LO-100-200" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-200-400"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZLL-LO-200-400" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-400-600"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZLL-LO-400-600" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-600-800"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZLL-LO-600-800" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-800-1200"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZLL-LO-800-1200" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-1200-2500"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZLL-LO-1200-2500" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-2500-Inf"]["All_LHE_HT"] ,"All_LHE_HT", filename, "ZLL-LO-2500-Inf" );
-
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-100-200"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZNN-LO-100-200" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-200-400"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZNN-LO-200-400" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-400-600"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZNN-LO-400-600" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-600-800"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZNN-LO-600-800" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-800-1200"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZNN-LO-800-1200" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-1200-2500"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZNN-LO-1200-2500" );
-  plotter.SaveToFile(_cloned_hists["ZNN-LO-2500-Inf"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZNN-LO-2500-Inf" );
-
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-100-200"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZLL-LO-100-200" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-200-400"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZLL-LO-200-400" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-400-600"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZLL-LO-400-600" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-600-800"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZLL-LO-600-800" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-800-1200"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZLL-LO-800-1200" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-1200-2500"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZLL-LO-1200-2500" );
-  plotter.SaveToFile(_cloned_hists["ZLL-LO-2500-Inf"]["All_gen_boson_pt"] ,"All_gen_boson_pt", filename, "ZLL-LO-2500-Inf" );
-
-  for (auto const& histset : _cloned_hists["ZLL-NLO"]){
-    if ( histset.first.SubString("PDF_") != "" ) continue;
-    plotter.Draw( histset.second , "", "ZLL-NLO-" + histset.first );
-
-    plotter.SaveToFile(histset.second , histset.first, filename, "ZLL-NLO" );
-  }
-
-  for (auto const& histset : _cloned_hists["ZLL-NLO"]){
-    if ( histset.first == "Default_gen_boson_pt" || histset.first == "Default_gen_mjj" ){
-      plotter.DrawRatio( histset.second , _cloned_hists["ZLL-LO"][ histset.first ], "", "Ratio-ZLL-" + histset.first );
-    }
-  }  
-    
+  //Do the same for the LO W samples
   for (auto const& histset : _cloned_hists["WLN-LO"]){
     if ( histset.first.SubString("PDF_") != "" ) continue;
     if ( histset.first.SubString("Scale_") != "" ) continue;
     plotter.Draw( histset.second , "", "WLN-LO-" + histset.first );
     plotter.Draw( histset.second , "", "WLN-LO-" + histset.first, true );
   }
-  for (auto const& histset : _cloned_hists["WLN16-LO"]){
-    if ( histset.first.SubString("PDF_") != "" ) continue;
-    if ( histset.first.SubString("Scale_") != "" ) continue;
-    plotter.Draw( histset.second , "", "WLN16-LO-" + histset.first );
-    plotter.Draw( histset.second , "", "WLN16-LO-" + histset.first, true );
-  }
-  for (auto const& histset : _cloned_hists["WLN18-LO"]){
-    if ( histset.first.SubString("PDF_") != "" ) continue;
-    if ( histset.first.SubString("Scale_") != "" ) continue;
-    plotter.Draw( histset.second , "", "WLN18-LO-" + histset.first );
-    plotter.Draw( histset.second , "", "WLN18-LO-" + histset.first, true );
-  }
-  for (auto const& histset : _cloned_hists["WLN-NLO"]){
-    if ( histset.first.SubString("Scale_") != "" ) continue;
-    if ( histset.first.SubString("PDF_")!= "" ) continue;
-    plotter.Draw( histset.second , "", "WLN-NLO-" + histset.first );
-  }
-  for (auto const& histset : _cloned_hists["WLN-NLO-Pt"]){
-    if ( histset.first.SubString("PDF_")!= "" ) continue;
-    if ( histset.first.SubString("Scale_") != "" ) continue;
-    plotter.Draw( histset.second , "", "WLN-NLO-Pt-" + histset.first );
-    plotter.Draw( histset.second , "", "WLN-NLO-Pt-" + histset.first,true );
-  }
-  for (auto const& histset : _cloned_hists["ZLL-NLO-Pt"]){
 
-    if ( histset.first.SubString("PDF_")!= "" ) continue;
-    plotter.Draw( histset.second , "", "ZLL-NLO-Pt-" + histset.first );
-    plotter.Draw( histset.second , "", "ZLL-NLO-Pt-" + histset.first,true );
-  }
-  
+  //Do the same for the NLO W samples
   for (auto const& histset : _cloned_hists["WLN-NLO-LHEPt"]){
-    //    if ( histset.first.SubString("Scale_") != "" ) continue;
     if ( histset.first.SubString("PDF_")!= "" ) continue;
-
     plotter.Draw( histset.second , "", "WLN-NLO-LHEPt-" + histset.first );
     plotter.Draw( histset.second , "", "WLN-NLO-LHEPt-" + histset.first,true );
   }
-  for (auto const& histset : _cloned_hists["ZLL-NLO-LHEPt"]){
 
+  //Do the same for the NLO DY samples
+  for (auto const& histset : _cloned_hists["ZLL-NLO-LHEPt"]){
     if ( histset.first.SubString("PDF_")!= "" ) continue;
     plotter.Draw( histset.second , "", "ZLL-NLO-LHEPt-" + histset.first );
     plotter.Draw( histset.second , "", "ZLL-NLO-LHEPt-" + histset.first,true );
     plotter.SaveToFile(histset.second , histset.first, filename, "ZLL-NLO-LHEPt" );
   }
-  for (auto const& histset : _cloned_hists["ZNN-NLO-LHEPt"]){
 
+  //Do the same for the NLO ZNN samples
+  for (auto const& histset : _cloned_hists["ZNN-NLO-LHEPt"]){
     if ( histset.first.SubString("PDF_")!= "" ) continue;
     plotter.Draw( histset.second , "", "ZNN-NLO-LHEPt-" + histset.first );
     plotter.Draw( histset.second , "", "ZNN-NLO-LHEPt-" + histset.first,true );
     plotter.SaveToFile(histset.second , histset.first, filename, "ZNN-NLO-LHEPt" );
   }
 
-  for (auto const& histset : _cloned_hists["WLN-NLO"]){
-    if ( histset.first == "Default_gen_boson_pt" || histset.first == "Default_gen_mjj"){
-      plotter.DrawRatio( histset.second , _cloned_hists["WLN-LO"][ histset.first ], "", "Ratio-WLN-" + histset.first );
-    }
-  }
+
+  /////////////////////////////////////////////////
+  //                                             //
+  //            EVALUATE THE K-FACTORS           //
+  //                                             //
+  /////////////////////////////////////////////////
 
 
   //// LHE PT k-factors
-  std::vector<TString> sets = {"LHEPt","Pt"};
-  //    std::vector<TString> sets = {"LHEPt"};
   std::vector<TString> processes = {"WLN","ZLL","ZNN"};
-
   std::vector<TString> analyses = {"vbf", "nonvbf", "VTR"};
-  //   std::vector<TString> analyses = {"nonvbf"};
 
+  //1D k-factors. Kept here as useful tools for understanding, but not eventually used in the analysis
   for ( auto analysis : analyses  ){
     for ( auto process : processes  ){
-      for ( auto setname : sets  ){
 
-	if ( process == "ZNN" && setname == "Pt" ) continue;
+      ////////////////////////////////
+      //Select the correct histograms for the correct analysis and set the correct names for the output histograms, based on the analysis in question
 
-	for (auto const& histset : _cloned_hists[ process + "-NLO-" + setname]){
-	  std::string hist = std::string(histset.first);
-	  if (analysis == "nonvbf" && hist.find("non-VBF")==std::string::npos){
-	    continue;
-	  }
-	  if (analysis == "VTR" && !(hist.find("VTR")!=std::string::npos && hist.find("gen_boson_pt")!=std::string::npos)){
-	    continue;
-	  }
-	  if (analysis == "vbf"     
-
-	      && !((hist.find("MJJ")!=std::string::npos||(hist.find("Default")!=std::string::npos&&hist.find("Default_VTR")==std::string::npos)) && hist.find("gen_boson_pt")!=std::string::npos)){
-
-	    continue;
-	  }
-	  //	if ( (hist.find("MJJ")!=std::string::npos||hist.find("Default")!=std::string::npos) && hist.find("gen_boson_pt")!=std::string::npos){
-	  if (hist.find("PDF")!=std::string::npos && hist.find("PDF_Up")==std::string::npos && hist.find("PDF_Down")==std::string::npos) continue;
-
-	  //temporary add back LO errors qwerty
-	  // for (int i = 1;i<_cloned_hists[process+"-LO"][ histset.first ]->GetNbinsX()+1;i++)    
-	  //   _cloned_hists[process+"-LO"][ histset.first ]->SetBinError(i,0);
-	  std::string savename = "";
-
-	  if ( analysis == "vbf" ){
-	    savename = "kfactor_vbf_mjj_";
-	    if ( hist.find("MJJ-200-500_gen_boson_pt" )!=std::string::npos ) savename += "200_500";
-	    if ( hist.find("MJJ-500-1000_gen_boson_pt" )!=std::string::npos ) savename += "500_1000";
-	    if ( hist.find("MJJ-1000-1500_gen_boson_pt" )!=std::string::npos ) savename += "1000_1500";
-	    if ( hist.find("MJJ-1500-5000_gen_boson_pt" )!=std::string::npos ) savename += "1500_5000";
-	    if ( hist.find("Default_gen_boson_pt" )!=std::string::npos ) savename = "kfactor_vbf_inclusive";
-	  }
-	  else if ( analysis == "nonvbf" ){
-
-	    savename = "kfactor_nonvbf_";
-	    if ( hist.find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
-	    if ( hist.find("gen_jetpt0")!=std::string::npos) savename += "gen_jetp0";
-
-	  }
-	  else if ( analysis == "VTR" ){
-
-	    savename = "kfactor_VTR_";
-	    if ( hist.find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
-
-	  }
-	  std::string systname = "kfactors_shape";
-	  
-	  if ( setname == "LHEPt" ){
-	    if ( hist.find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-	    else if ( hist.find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-	    else if ( hist.find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
-	    else if ( hist.find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
-	    else if (  hist.find("Scale" )!=std::string::npos ) continue;
-	    if ( hist.find("Scale" )!=std::string::npos ) histset.second->Scale(2);
-	  }
-	  if ( setname == "Pt" ){
-	    if ( hist.find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-	    else if ( hist.find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-	    else if ( hist.find("Scale_5" )!=std::string::npos ) systname += "_Fact_Up";
-	    else if ( hist.find("Scale_7" )!=std::string::npos ) systname += "_Renorm_Up";
-	    else if (  hist.find("Scale" )!=std::string::npos ) continue;
-	  }
-	  
-	  
-	  if ( hist.find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
-	  else if ( hist.find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
-	  
-	  //Get smoothed histos
-	  //std::cout << histset.second->GetName() << " - " << _cloned_hists[process+"-LO"][ histset.first ]->GetName() << " - " << process << " - " << setname << " - " << histset.first << std::endl;
-	  TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-"+setname+"-" + histset.first );
-	  //	  TH1D * ratio_zll_over_znn = 0;
-	  
-	  // if ( process == "ZNN" ){
-	  //   ratio_zll_over_znn = plotter.DrawRatio( histset.second , _cloned_hists["ZLL-LO"][ histset.first ], "", "Ratio-"+process+"-"+setname+"-" + histset.first );
-	  // }
-
-	  // if ( process == "WLN" && setname ==  "LHEPt" && histset.first == "MJJ-200-500_gen_boson_pt"){
-	  //   std::cout << "HERE" << std::endl;
-	  //   plotter.SaveToFile( ratio, "VBF-MJJ-200-500" , "NLO_plots" , "OrigRatio");
-	  //	  }
-
-	  //TH1D * histo_smoothed =  (TH1D*)ratio->Clone( process+"-NLO-" + setname + "_" +  histset.first + "_smoothed" );
-	  //TH1D * histo_fit =  (TH1D*)ratio->Clone( process+"-NLO-" + setname + "_" +  histset.first + "_fit" );
-	  //	  TH1D * histo_fit2 =  (TH1D*)ratio->Clone( process+"-NLO-" + setname + "_" +  histset.first + "_fit2" );
-	  //histo_smoothed->Smooth(1,"");
-	  
-	  //double split = 190;
-	  //	  double split = 370;
-	  //	  double split = 190;
-
-	  //ratio->GetXaxis()->SetRange(2,15);
-	  //	  split	= ratio->GetBinLowEdge(ratio->GetMaximumBin()+1);
-	  //	  ratio->GetXaxis()->SetRange(1,ratio->GetNbinsX());
-	  //	  double split = 120;
-	  //	  double start = 40;
-	  //	  double start = 40;
-	  // double split1 = 170;
-	  // double split2 = 300;
-	  // if ( hist.find("Scale")!=std::string::npos )
-	  //   start = 150;
-	  // TF1 * pol3 = new TF1("pol3","pol3",start,split);
-	  // TF1 * pol2 = new TF1("pol2","pol2",start,split);
-	  // TF1 * pol22 = new TF1("pol22","pol2",start,split);
-	  // TF1 * pol23 = new TF1("pol23","pol2",start,split);
-	  // TF1 * landau = new TF1("landau","landau",start,split);
-	  // TF1 * pol32 = new TF1("pol32","pol3",split,1050);
-	  // TF1 * pol0 = new TF1("pol0","pol0",split,1050);     
-
-	  //	  TF1 * polcomb = new TF1("Fit", "(x<="+TString(std::to_string(split))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split))+")*([3]+[4]*x+[5]*x*x+[6]*x*x*x)", start, 1100);
-
-	  //	  TF1 * pol_nonvbf_pt = new TF1("NonVBFFitPt", "pol2",200, 1050);
-	  //	  double split_nonvbf = 200;
-	  //	  TF1 * pol_nonvbf_jetpt = new TF1("NonVBFFitLeadingJet","(x<"+TString(std::to_string(split_nonvbf))+")*([0]+[1]*x+[2]*x*x) + (x>"+TString(std::to_string(split_nonvbf))+")*([3]+[4]*x+[5]*x*x)", start, 1050);
-	  
-	  // if (  analysis == "vbf" ){
-	  //   ratio->Fit(polcomb, "RQ"); 
-	  //   ratio->Fit(polcomb, "RQ"); 
-	  // }
-	  // else if ( analysis == "nonvbf" ){
-	  //   if ( hist.find("gen_boson_pt")!=std::string::npos){
-	  //     ratio->Fit(pol_nonvbf_pt, "LRQ"); 
-	  //   }
-	  //   else if ( hist.find("gen_jetpt0")!=std::string::npos) {
-	  //     ratio->Fit(pol_nonvbf_jetpt, "LRQ"); 
-	  //   }
-	  // }
-	  std::string saveprocess = "zjet";
-	  std::string saveanalysis = "VBF";
-	  if ( process == "WLN" ) saveprocess = "wjet";
-	  if ( process == "ZNN" ) saveprocess = "znn";
-	  if ( process == "WZ" ) saveprocess = "wz";
-	  if ( analysis == "nonvbf" ) saveanalysis = "nonVBF";
-	  if ( analysis == "VTR" ) saveanalysis = "VTR";
-	  if ( setname == "LHEPt" ){	
-	    plotter.SaveToFile(ratio, savename, "kfactor_"+saveanalysis+"_"+saveprocess, systname );
-	    
-	    // if ( process == "ZNN" )
-	    //   plotter.SaveToFile(ratio_zll_over_znn, savename, "kfactor_"+saveanalysis+"_"+saveprocess + "_zll", systname );
-	  }
-	  else if ( setname == "Pt" ){
-	    plotter.SaveToFile(ratio, savename, "PtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );
-	    //	    plotter.SaveToFile(histo_smoothed, savename+"_smoothed", "PtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );	  
-	    //	    if ( hist.find("Scale")==std::string::npos  ){
-	      //	      plotter.SaveToFile(histo_fit, savename+"_fit", "PtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );	  
-	    //	      plotter.SaveToFile(polcomb, savename+"_fitfunc", "PtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );
-	    //	    }
-	  }
+      for (auto const& histset : _cloned_hists[ process + "-NLO-LHEPt"]){
+	std::string hist = std::string(histset.first);
+	if (analysis == "nonvbf" && hist.find("non-VBF")==std::string::npos){
+	  continue;
 	}
-      }
+
+	if (analysis == "VTR" && !(hist.find("VTR")!=std::string::npos && hist.find("gen_boson_pt")!=std::string::npos)){
+	  continue;
+	}
+	
+	if (analysis == "vbf"     
+	      && !((hist.find("MJJ")!=std::string::npos||(hist.find("Default")!=std::string::npos&&hist.find("Default_VTR")==std::string::npos)) && hist.find("gen_boson_pt")!=std::string::npos)){
+	    continue;
+	}
+
+	if (hist.find("PDF")!=std::string::npos && hist.find("PDF_Up")==std::string::npos && hist.find("PDF_Down")==std::string::npos) continue;
+
+	std::string savename = "";
+	
+	if ( analysis == "vbf" ){
+	  savename = "kfactor_vbf_mjj_";
+	  if ( hist.find("MJJ-200-500_gen_boson_pt" )!=std::string::npos ) savename += "200_500";
+	  if ( hist.find("MJJ-500-1000_gen_boson_pt" )!=std::string::npos ) savename += "500_1000";
+	  if ( hist.find("MJJ-1000-1500_gen_boson_pt" )!=std::string::npos ) savename += "1000_1500";
+	  if ( hist.find("MJJ-1500-5000_gen_boson_pt" )!=std::string::npos ) savename += "1500_5000";
+	  if ( hist.find("Default_gen_boson_pt" )!=std::string::npos ) savename = "kfactor_vbf_inclusive";
+	}
+	else if ( analysis == "nonvbf" ){
+	  savename = "kfactor_nonvbf_";
+	  if ( hist.find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
+	  if ( hist.find("gen_jetpt0")!=std::string::npos) savename += "gen_jetp0";
+	}
+	else if ( analysis == "VTR" ){
+	  savename = "kfactor_VTR_";
+	  if ( hist.find("gen_boson_pt")!=std::string::npos) savename += "boson_pt";
+	  }
+	
+	std::string systname = "kfactors_shape";	  
+	if ( hist.find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
+	else if ( hist.find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
+	else if ( hist.find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
+	else if ( hist.find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
+	else if (  hist.find("Scale" )!=std::string::npos ) continue;
+	if ( hist.find("Scale" )!=std::string::npos ) histset.second->Scale(2); //To correct for the factor 2 bug in the generator samples
+	
+	if ( hist.find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
+	else if ( hist.find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
+	
+
+	std::string saveprocess = "zjet";
+	std::string saveanalysis = "VBF";
+	if ( process == "WLN" ) saveprocess = "wjet";
+	if ( process == "ZNN" ) saveprocess = "znn";
+	if ( process == "WZ" ) saveprocess = "wz";
+	if ( analysis == "nonvbf" ) saveanalysis = "nonVBF";
+	if ( analysis == "VTR" ) saveanalysis = "VTR";
+
+	////////////////////////////////
+	
+	//Calculate the k-factor ("ratio") and save it to file
+	
+	TH1D * ratio = plotter.DrawRatio( histset.second , _cloned_hists[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-LHEPt-" + histset.first );
+	
+	plotter.SaveToFile(ratio, savename, "kfactor_"+saveanalysis+"_"+saveprocess, systname );
+      }      
     }
   }
-
-  //2D  
+  
+  //2D k-factors, the main set of k-factors used in the analysis
   processes = {"WLN","ZLL","ZNN","WZ"};
   for ( auto analysis : analyses  ){
     for ( auto process : processes  ){
-      for ( auto setname : sets  ){
-	if ( process == "ZNN" && setname == "Pt" ) continue;
-	//2D copy for now
-	for (auto const& histset : _cloned_hists2D[ process + "-NLO-" + setname]){
-	  std::string hist = std::string(histset.first);
 
-	  if (analysis == "nonvbf" && hist.find("non-VBF")==std::string::npos){
+      ////////////////////////////////
+      //Select the correct histograms for the correct analysis and set the correct names for the output histograms, based on the analysis in question
+
+      for (auto const& histset : _cloned_hists2D[ process + "-NLO-LHEPt"]){
+	std::string hist = std::string(histset.first);	
+	if (analysis == "nonvbf" && hist.find("non-VBF")==std::string::npos){
 	    continue;
-	  }
-	  if (analysis == "VTR" && !(hist.find("VTR")!=std::string::npos && (hist.find("gen_boson_pt_gen_mjj")!=std::string::npos||hist.find("gen_boson_pt_gen_boson_eta")!=std::string::npos))){
-	    continue;
-	  }
-	  if (analysis == "vbf"     
-	      && !((hist.find("Default")!=std::string::npos&&hist.find("Default_VTR")==std::string::npos) && (hist.find("gen_boson_pt_gen_mjj")!=std::string::npos||hist.find("gen_boson_pt_gen_boson_eta")!=std::string::npos))){
-	    continue;
-	  }
+	}
 
-	  if ( hist.find("Heavy")!=std::string::npos ) {
-	    continue;
-	  }
+	if (analysis == "VTR" && !(hist.find("VTR")!=std::string::npos && (hist.find("gen_boson_pt_gen_mjj")!=std::string::npos||hist.find("gen_boson_pt_gen_boson_eta")!=std::string::npos))){
+	  continue;
+	}
 
-	  if (hist.find("PDF")!=std::string::npos && hist.find("PDF_Up")==std::string::npos && hist.find("PDF_Down")==std::string::npos) continue;
+	if (analysis == "vbf"     
+	    && !((hist.find("Default")!=std::string::npos&&hist.find("Default_VTR")==std::string::npos) && (hist.find("gen_boson_pt_gen_mjj")!=std::string::npos||hist.find("gen_boson_pt_gen_boson_eta")!=std::string::npos))){
+	  continue;
+	}
+	
+	if (hist.find("PDF")!=std::string::npos && hist.find("PDF_Up")==std::string::npos && hist.find("PDF_Down")==std::string::npos) continue;
+	
+	std::string savename = "";
+	
+	if ( analysis == "vbf" ){
+	  savename = "kfactor_vbf";
+	}
+	else if ( analysis == "nonvbf" ){
+	  savename = "kfactor_nonvbf";
+	}
+	else if ( analysis == "VTR" ){
+	  savename = "kfactor_VTR";
+	}
 
-	  std::string savename = "";
-
-	  if ( analysis == "vbf" ){
-	    savename = "kfactor_vbf";
-	  }
-	  else if ( analysis == "nonvbf" ){
-	    savename = "kfactor_nonvbf";
-	  }
-	  else if ( analysis == "VTR" ){
-	    savename = "kfactor_VTR";
-	  }
-	  std::string systname = "kfactors_shape";
+	std::string systname = "kfactors_shape";
+	
+	
+	if ( hist.find("Scale" )!=std::string::npos ){
+	  if ( hist.find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
+	  else if ( hist.find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
+	  else if ( hist.find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
+	  else if ( hist.find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
+	  else continue;
+	  histset.second->Scale(2); //To correct for the factor 2 bug in the generator samples
+	}	  
 	  
-	  if ( setname == "LHEPt" ){
-	    if ( hist.find("Scale" )!=std::string::npos ){
+	if ( hist.find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
+	else if ( hist.find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
 
-	      if ( hist.find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-	      else if ( hist.find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-	      else if ( hist.find("Scale_4" )!=std::string::npos ) systname += "_Fact_Up";
-	      else if ( hist.find("Scale_6" )!=std::string::npos ) systname += "_Renorm_Up";
-	      else continue;
-	      	      
-	      histset.second->Scale(2);
+	std::string saveprocess = "zjet";
+	std::string saveanalysis = "VBF";
+	if ( process == "WLN" ) saveprocess = "wjet";
+	if ( process == "ZNN" ) saveprocess = "znn";
+	if ( process == "WZ" ) saveprocess = "wz";
+	if ( analysis == "nonvbf" ) {
+	  saveanalysis = "nonVBF";
+	  if (hist.find("jet_multiplicity")!=std::string::npos)
+	    saveanalysis = "nonVBF_njet";
+	}
+	else{
+	  if (hist.find("gen_boson_eta")!=std::string::npos)
+	    saveanalysis = saveanalysis + "_gen_boson_eta";
+	}
 
-	    }
-	  
-	  }
-	  if ( setname == "Pt" ){
-	    if ( hist.find("Scale_1" )!=std::string::npos ) systname += "_Renorm_Down";
-	    else if ( hist.find("Scale_3" )!=std::string::npos ) systname += "_Fact_Down";
-	    else if ( hist.find("Scale_5" )!=std::string::npos ) systname += "_Fact_Up";
-	    else if ( hist.find("Scale_7" )!=std::string::npos ) systname += "_Renorm_Up";
-	    else if (  hist.find("Scale" )!=std::string::npos ) continue;
-	  }
-	  
-	  
-	  if ( hist.find("PDF_Up" )!=std::string::npos ) systname += "_PDF_Up";
-	  else if ( hist.find("PDF_Down" )!=std::string::npos ) systname += "_PDF_Down";
-	  
-	  TH2D * ones = (TH2D*)histset.second->Clone("ones");
-	  for (int nx = 0;nx<ones->GetNbinsX()+1;nx++){
-	    for (int ny = 0;ny<ones->GetNbinsY()+1;ny++){
-	      ones->SetBinContent(nx,ny,1);
-	      ones->SetBinError(nx,ny,0);
-	    }
-	  }
-	  
-	  TH2D * ratio = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-"+setname+"-" + histset.first );
-	  TH2D * ratio16 = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"16-LO"][ histset.first ], "", "Ratio-"+process+"16-"+setname+"-" + histset.first );
-	  TH2D * ratio18 = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"18-LO"][ histset.first ], "", "Ratio-"+process+"18-"+setname+"-" + histset.first );
-	  TH2D * ratio_zll_over_znn = 0;
-	  if ( process == "ZNN" ){
-	    TH2D * scaled_hist = (TH2D*)_cloned_hists2D["ZLL-NLO-LHEPt"][ histset.first ]->Clone( "ZLL-NLO-LHEPt" + histset.first + "_scaled" );
-	    scaled_hist->Scale(1.98);
-	    ratio_zll_over_znn = plotter.DrawRatio( scaled_hist , _cloned_hists2D[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-"+setname+"-" + histset.first );
+	////////////////////////////////
+	
+	//Calculate the k-factor ("ratio") and save it to file.
+	//The k-factors are also evaluated using the 2016 and 2018 LO samples	
+	//Another k-factor is evaluted (ratio_zll_over_znn) where the NLO DY sample (x1.98) is divided by the LO ZNN sample (as a cross-check)
 
-	  }
-
-	  std::string saveprocess = "zjet";
-	  std::string saveanalysis = "VBF";
-	  if ( process == "WLN" ) saveprocess = "wjet";
-	  if ( process == "ZNN" ) saveprocess = "znn";
-	  if ( process == "WZ" ) saveprocess = "wz";
-	  if ( analysis == "nonvbf" ) {
-	    saveanalysis = "nonVBF";
-	    if (hist.find("jet_multiplicity")!=std::string::npos)
-	      saveanalysis = "nonVBF_njet";
-	  }
-	  else{
-	    if (hist.find("gen_boson_eta")!=std::string::npos)
-	      saveanalysis = saveanalysis + "_gen_boson_eta";
-	  }
-	  if ( analysis == "VTR" ) saveanalysis = "VTR";
-	  if ( setname == "LHEPt" ){	
-	    //std::cout << savename << " - " << saveanalysis << " - " << saveprocess << " - " << systname << std::endl;
+	TH2D * ratio = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-LHEPt-" + histset.first );
+	TH2D * ratio16 = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"16-LO"][ histset.first ], "", "Ratio-"+process+"16-LHEPt-" + histset.first );
+	TH2D * ratio18 = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"18-LO"][ histset.first ], "", "Ratio-"+process+"18-LHEPt-" + histset.first );
+	TH2D * ratio_zll_over_znn = 0;
+	if ( process == "ZNN" ){
+	  TH2D * scaled_hist = (TH2D*)_cloned_hists2D["ZLL-NLO-LHEPt"][ histset.first ]->Clone( "ZLL-NLO-LHEPt" + histset.first + "_scaled" );
+	  scaled_hist->Scale(1.98);
+	  ratio_zll_over_znn = plotter.DrawRatio( scaled_hist , _cloned_hists2D[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-LHEPt-" + histset.first );  
+	}
+	
+	if ( analysis == "VTR" ) saveanalysis = "VTR";
 	    plotter.SaveToFile(ratio, savename, "2Dkfactor_"+saveanalysis+"_"+saveprocess, systname );
 	    plotter.SaveToFile(ratio16, savename, "2Dkfactor16_"+saveanalysis+"_"+saveprocess, systname );
 	    plotter.SaveToFile(ratio18, savename, "2Dkfactor18_"+saveanalysis+"_"+saveprocess, systname );
-	    if ( process == "ZNN" )
+	    if ( process == "ZNN" ){
 	      plotter.SaveToFile(ratio_zll_over_znn, savename, "2Dkfactor_"+saveanalysis+"_"+saveprocess + "_zll", systname );
-	  }
-	  else if ( setname == "Pt" ){
-	    plotter.SaveToFile(ratio, savename, "2DPtBinned_kfactor_"+saveanalysis+"_" + saveprocess, systname );
-	  }
+	    }
 	}
-      }
+
     }
   }
   
-
-
-  std::vector< TH1D*> z_mjj = {_cloned_hists["ZLL-LO"]["Default_gen_mjj"], _cloned_hists["ZLL-NLO-Pt"]["Default_gen_mjj"]};
-  std::vector< TH1D*> w_mjj = {_cloned_hists["WLN-LO"]["Default_gen_mjj"], _cloned_hists["WLN-NLO-Pt"]["Default_gen_mjj"]};
-
-  std::vector< TH1D*> z = {_cloned_hists["ZLL-LO"]["Default_gen_boson_pt"], _cloned_hists["ZLL-NLO-Pt"]["Default_gen_boson_pt"]};
-  std::vector< TH1D*> w = {_cloned_hists["WLN-LO"]["Default_gen_boson_pt"], _cloned_hists["WLN-NLO-Pt"]["Default_gen_boson_pt"]};
+  //Some further interesting comparison plots, but not relevant for the main k-factor production
 
   std::vector< TH1D*> zlhe = {_cloned_hists["ZLL-LO"]["Default_gen_boson_pt"], _cloned_hists["ZLL-NLO-LHEPt"]["Default_gen_boson_pt"]};
   std::vector< TH1D*> wlhe = {_cloned_hists["WLN-LO"]["Default_gen_boson_pt"], _cloned_hists["WLN-NLO-LHEPt"]["Default_gen_boson_pt"]};
-
-  std::vector< TH1D*> zerr = {_cloned_hists["Zero"][ "Zero" ],_cloned_hists["ZLL-NLO-Pt"][ "Default_gen_boson_pt_PDF_SD" ]};
-  std::vector< TH1D*> werr = {_cloned_hists["Zero"][ "Zero" ],_cloned_hists["WLN-NLO-Pt"][ "Default_gen_boson_pt_PDF_SD" ]};
-
-  std::vector< TH1D*> z_orig = {_cloned_hists["ZLL-LO"]["Default_gen_boson_pt"], _cloned_hists["ZLL-NLO"]["Default_gen_boson_pt"]};
-  std::vector< TH1D*> w_orig = {_cloned_hists["WLN-LO"]["Default_gen_boson_pt"], _cloned_hists["WLN-NLO"]["Default_gen_boson_pt"]};
-
-
-  std::vector< TH1D*> lo = {_cloned_hists["ZLL-LO"]["Default_gen_boson_pt"], _cloned_hists["WLN-LO"]["Default_gen_boson_pt"]};
-  std::vector< TH1D*> nlo = {_cloned_hists["ZLL-NLO"]["Default_gen_boson_pt"], _cloned_hists["WLN-NLO"]["Default_gen_boson_pt"]};
-
-  
-std::vector< TString > zleg = {"LO", "NLO"};
-  std::vector< TString > loleg = {"z", "w"};
-
-  std::vector< TH1D*> z_scale, z_pdf, z_scale_LHEPt;
-  std::vector< TString> z_scaleleg, z_pdfleg;
-  std::vector< TH1D*> w_scale, w_pdf, w_scale_LHEPt;
-  std::vector< TH1D*> wz_scale, wz_pdf, wz_scale_LHEPt, wz_scale_LHEPt_Correlated, wz_scale_LHEPt_Zup, wz_scale_LHEPt_Wup;
-  std::vector< TString> w_scaleleg = {"Renorm Down", "Fact Down", "Fact Up", "Renorm Up", "PDFUp", "PDFDown"};
-  std::vector< TString> wz_scaleleg = {"Renorm Down", "Fact Down", "Fact Up", "Renorm Up"};
-  std::vector< TString> w_pdfleg;
-  std::vector<TH2D*> wz_scale_LHEPt2D,  wz_scale_LHEPt2D_Correlated, wz_scale_LHEPt2D_Zup, wz_scale_LHEPt2D_Wup, wz_pdf_LHEPt2D, wz_scale_LHEPt2D_FlavourSeparated;
-  std::vector<TH2D*> wz_scale_LHEPt2D_FlavourSeparated_Light,wz_scale_LHEPt2D_FlavourSeparated_HeavyW,wz_scale_LHEPt2D_FlavourSeparated_HeavyZ;
-  std::vector<TH2D*> w_scale_HeavyFlavour;
-  std::vector<TH2D*> z_scale_HeavyFlavour;
-  std::vector<TH2D*> w_scale_LightFlavour;
-  std::vector<TH2D*> z_scale_LightFlavour;
-  //  std::vector<TString> sets = {"Pt","LHEPt"};
-
-  w_scale_HeavyFlavour.push_back( _cloned_hists2D["WLN-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_HeavyQuark" ]);
-  z_scale_HeavyFlavour.push_back( _cloned_hists2D["ZLL-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_HeavyQuark" ]);
-  w_scale_LightFlavour.push_back( _cloned_hists2D["WLN-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_NoHeavyQuark" ]);
-  z_scale_LightFlavour.push_back( _cloned_hists2D["ZLL-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_NoHeavyQuark" ]);
-
+  std::vector< TH1D*>  wz_scale_LHEPt;
+  std::vector<TH2D*> wz_scale_LHEPt2D;
   for ( int i = 0;i<9;i++){
-    if ( i == 1 || i == 3 || i == 5 || i == 7 ){
-      w_scale.push_back( _cloned_hists["WLN-NLO-Pt"][ "Default_gen_boson_pt_Scale_" + std::to_string(i) ]);
-      z_scale.push_back( _cloned_hists["ZLL-NLO-Pt"][ "Default_gen_boson_pt_Scale_" + std::to_string(i) ]);
-      wz_scale.push_back( _cloned_hists["WZ-NLO-Pt"][ "Default_gen_boson_pt_ScaleUncorrelated_" + std::to_string(i) ]);
-    }
     if ( i == 1 || i == 3 || i == 4 || i == 6 ){
-      w_scale_LHEPt.push_back( _cloned_hists["WLN-NLO-LHEPt"][ "Default_gen_boson_pt_Scale_" + std::to_string(i) ]);
-      z_scale_LHEPt.push_back( _cloned_hists["ZLL-NLO-LHEPt"][ "Default_gen_boson_pt_Scale_" + std::to_string(i) ]);
       wz_scale_LHEPt.push_back( _cloned_hists["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_ScaleUncorrelated_" + std::to_string(i) ]);
-      wz_scale_LHEPt_Correlated.push_back( _cloned_hists["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_ScaleCorrelated_" + std::to_string(i) ]);
-      wz_scale_LHEPt_Wup.push_back( _cloned_hists["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_ScaleWup_" + std::to_string(i) ]);
-      wz_scale_LHEPt_Zup.push_back( _cloned_hists["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_ScaleZup_" + std::to_string(i) ]);
-
       wz_scale_LHEPt2D.push_back( _cloned_hists2D["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_ScaleUncorrelated_" + std::to_string(i) ]);
-      wz_scale_LHEPt2D_Correlated.push_back( _cloned_hists2D["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_ScaleCorrelated_" + std::to_string(i) ]);
-      wz_scale_LHEPt2D_Wup.push_back( _cloned_hists2D["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_ScaleWup_" + std::to_string(i) ]);
-      wz_scale_LHEPt2D_Zup.push_back( _cloned_hists2D["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_ScaleZup_" + std::to_string(i) ]);
-      wz_scale_LHEPt2D_FlavourSeparated.push_back( _cloned_hists2D["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_ScaleFlavourSeparated_" + std::to_string(i) ]);
-
-      wz_scale_LHEPt2D_FlavourSeparated_Light.push_back( _cloned_hists2D["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_ScaleLightCorrelated_" + std::to_string(i) ]);
-      wz_scale_LHEPt2D_FlavourSeparated_HeavyW.push_back( _cloned_hists2D["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_ScaleHeavyUncorrelatedW_" + std::to_string(i) ]);
-      wz_scale_LHEPt2D_FlavourSeparated_HeavyZ.push_back( _cloned_hists2D["WZ-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_ScaleHeavyUncorrelatedZ_" + std::to_string(i) ]);
-
-      w_scale_HeavyFlavour.push_back( _cloned_hists2D["WLN-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_Scale_HeavyQuark_" + std::to_string(i) ]);
-      z_scale_HeavyFlavour.push_back( _cloned_hists2D["ZLL-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_Scale_HeavyQuark_" + std::to_string(i) ]);
-      w_scale_LightFlavour.push_back( _cloned_hists2D["WLN-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_Scale_NoHeavyQuark_" + std::to_string(i) ]);
-      z_scale_LightFlavour.push_back( _cloned_hists2D["ZLL-NLO-LHEPt"][ "Default_gen_boson_pt_gen_mjj_Scale_NoHeavyQuark_" + std::to_string(i) ]);
     }   
   }
 
-  
-  w_scale.push_back( _cloned_hists["WLN-NLO-Pt"][ "Default_gen_boson_pt_PDF_SD_Up" ]);
-  w_scale.push_back( _cloned_hists["WLN-NLO-Pt"][ "Default_gen_boson_pt_PDF_SD_Down" ]);
-  w_scale_LHEPt.push_back( _cloned_hists["WLN-NLO-LHEPt"][ "Default_gen_boson_pt_PDF_SD_Up" ]);
-  w_scale_LHEPt.push_back( _cloned_hists["WLN-NLO-LHEPt"][ "Default_gen_boson_pt_PDF_SD_Down" ]);
-
-  z_scale.push_back( _cloned_hists["ZLL-NLO-Pt"][ "Default_gen_boson_pt_PDF_SD_Up" ]);
-  z_scale.push_back( _cloned_hists["ZLL-NLO-Pt"][ "Default_gen_boson_pt_PDF_SD_Down" ]);
-  z_scale_LHEPt.push_back( _cloned_hists["ZLL-NLO-LHEPt"][ "Default_gen_boson_pt_PDF_SD_Up" ]);
-  z_scale_LHEPt.push_back( _cloned_hists["ZLL-NLO-LHEPt"][ "Default_gen_boson_pt_PDF_SD_Down" ]);
-  
-  wz_scale.push_back( _cloned_hists["WZ-NLO-Pt"][ "Default_gen_boson_pt_PDF_SD_Up" ]);
-  wz_scale.push_back( _cloned_hists["WZ-NLO-Pt"][ "Default_gen_boson_pt_PDF_SD_Down" ]);
-
-
   plotter.SetLegendXY( 0.65, 0.5, 0.75, 0.8 );
-
+  std::vector< TString > zleg = {"LO", "NLO"};
   plotter.Draw( zlhe , zleg, "z-lhept" , true, true);
   plotter.Draw( wlhe , zleg, "w-lhept" , true, true);
 
-  
-  Plotter plotter_uncertainties(_cmd, _helper);
-  
-  plotter_uncertainties.SetRangeUser( 0.7, 1.2 );
-  plotter_uncertainties.SetLegendXY( 0.5, 0.12, 0.8, 0.32 );
-
-  w_scale_LHEPt[0]->SetTitle(";Boson p_{T}; d#sigma^{W}/dp_{T} variation");
-  z_scale_LHEPt[0]->SetTitle(";Boson p_{T}; d#sigma^{Z}/dp_{T} variation");
-  wz_scale_LHEPt[0]->SetTitle(";Boson p_{T}; d#sigma^{W}/dp_{T} / d#sigma^{Z}/dp _{T} variation");
-  wz_scale_LHEPt_Correlated[0]->SetTitle(";Boson p_{T}; d#sigma^{W}/dp_{T} / d#sigma^{Z}/dp _{T} variation");
-  wz_scale_LHEPt_Wup[0]->SetTitle(";Boson p_{T}; d#sigma^{W}/dp_{T} / d#sigma^{Z}/dp _{T} variation");
-  wz_scale_LHEPt_Zup[0]->SetTitle(";Boson p_{T}; d#sigma^{W}/dp_{T} / d#sigma^{Z}/dp _{T} variation");
-
-
-
-  plotter_uncertainties.SetLegendXY( 0.5, 0.12, 0.8, 0.32 );
-  
-  std::vector<TString> wuncert = {"W-Renorm-Down","W-Fact-Down","W-Fact-Up", "W-Renorm-Up", "W-PDF-Up", "W-PDF-Down"};
-  std::vector<TString> zuncert = {"Z-Renorm-Down","Z-Fact-Down","Z-Fact-Up", "Z-Renorm-Up", "Z-PDF-Up", "Z-PDF-Down"};
-
-
   std::vector<TString> wzuncert = {"WZRatioUncorr-Renorm-Down","WZRatioUncorr-Fact-Down","WZRatioUncorr-Fact-Up", "WZRatioUncorr-Renorm-Up"};
-  std::vector<TString> wzuncert_corr = {"WZRatioCorr-Renorm-Down","WZRatioCorr-Fact-Down","WZRatioCorr-Fact-Up", "WZRatioCorr-Renorm-Up"};
-  std::vector<TString> wzuncert_wup = {"WZRatioWup-Renorm-Down","WZRatioWup-Fact-Down","WZRatioWup-Fact-Up", "WZRatioWup-Renorm-Up"};
-  std::vector<TString> wzuncert_zup = {"WZRatioZup-Renorm-Down","WZRatioZup-Fact-Down","WZRatioZup-Fact-Up", "WZRatioZup-Renorm-Up"};
-  std::vector<TString> wzuncert_flavourseparated = {"WZRatioFlavourSep-Renorm-Down","WZRatioFlavourSep-Fact-Down","WZRatioFlavourSep-Fact-Up", "WZRatioFlavourSep-Renorm-Up"};
-
-
-  std::vector<TString> wuncert_flav = {"W-Nominal","W-Renorm-Down","W-Fact-Down","W-Fact-Up", "W-Renorm-Up"};
-  std::vector<TString> zuncert_flav = {"Z-Nominal","Z-Renorm-Down","Z-Fact-Down","Z-Fact-Up", "Z-Renorm-Up"};
-  
   plotter.SaveToFile( wz_scale_LHEPt, wzuncert,"wz-ratio-uncertainty","kfactors_shape");
-
   plotter.SaveToFile( wz_scale_LHEPt2D, wzuncert,"2D-wz-ratio-uncertainty","kfactors_shape");
-  
-  
-  for ( int i = 0;i<102;i++){
-    z_pdf.push_back( _cloned_hists["ZLL-NLO-Pt"][ "Default_gen_boson_pt_PDF_" + std::to_string(i) ]);
-    z_pdfleg.push_back( TString(std::to_string(i) ));
-  }   
-
-
+ 
 
 
 }

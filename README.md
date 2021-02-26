@@ -39,4 +39,35 @@ Finally when all jobs are completed you need to run:
 
 This will merge (`hadd`) all individual `ROOT` output files, so there is exactly one for each initial dataset. Note that `merge.py` merges the same files that are listed in `submit.py` (i.e. it imports the list of datasets from `submit.py`).
 
+##Plotting the Histograms
 
+The main function for plotting the histograms is contained within `src/PlotHistograms.cxx`, which creates a class of `HiggsPlotting` (the code of which is contained within `src/HiggsPlotting` -- this contains the bulk of the functions).
+
+The code is run like:
+
+-- `./PlotHistograms --outdir path_to_output_directory`
+
+Aside from some control distributions, contained within `path_to_output_directory/log and path_to_output_directory/linear`, the k-factors are output within `path_to_output_directory`.
+
+The relevant output files for the analysis are as follows:
+
+For the non-VBF analysis there are 6 files:
+-  `2Dkfactor_nonVBF_znn.root`
+-  `2Dkfactor_nonVBF_zjet.root`
+-  `2Dkfactor_nonVBF_wjet.root`
+
+-  `2Dkfactor_nonVBF_njet_znn.root`
+-  `2Dkfactor_nonVBF_njet_zjet.root`
+-  `2Dkfactor_nonVBF_njet_wjet.root`
+
+Then there are 3 files each for the VTR and MTR (labelled VBF) VBF-analyses:
+-  `2Dkfactor_VTR_znn.root`
+-  `2Dkfactor_VTR_zjet.root`
+-  `2Dkfactor_VTR_wjet.root`
+
+-  `2Dkfactor_VBF_znn.root`
+-  `2Dkfactor_VBF_zjet.root`
+-  `2Dkfactor_VBF_wjet.root`
+
+There is a post-processing stage for these files, which is performed by a second repository: https://github.com/snwebb/kfactors.
+This is necessary due to missing uncertainty values in some samples, as well as the need to produce an input for `FAST` that does not cause a crash 
