@@ -4,9 +4,9 @@ import commands
 import math, time
 import sys
 
-outputpath = "/vols/cms/snwebb/InvisibleOutput/" #where the output will be stored
-cmsswdir = "/home/hep/snwebb/invisible/CMSSW_9_4_10/src" #where the CMSSW release you are using is stored
-analysisdir = "/home/hep/snwebb/invisible/analysis" #where the analysis code is stored
+outputpath = "/vols/cms/bek07/CHIP/output/kfactors/" #where the output will be stored
+cmsswdir = "/vols/cms/bek07/CHIP/CMSSW_10_1_7/src" #where the CMSSW release you are using is stored
+analysisdir = "/vols/cms/bek07/CHIP/sam-kfactor-higgsinvisible" #where the analysis code is stored
 
 InputDirList = [ 
 
@@ -288,6 +288,7 @@ def main():
             fout.write("trap \"echo SIGTERM seen\" SIGTERM\n")
             fout.write("trap \"echo SIGXCPU seen\" SIGXCPU\n")
 
+            fout.write("source /vols/grid/cms/setup.sh\n")
             fout.write("cd " + cmsswdir + "\n")
             fout.write("eval `scramv1 runtime -sh`\n")
             fout.write("cd "+analysisdir+"\n")
