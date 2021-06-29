@@ -4,7 +4,7 @@
  Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2021-02-24 14:48:27 (snwebb)>
+// Time-stamp: <2021-06-25 15:22:07 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -28,22 +28,26 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
   //The histograms are stored in a 2D map, either called _cloned_hists (for 1D histograms) or _cloned_hists2D (for 2D histograms)
 
   //Bin definitions for histograms with variable bin widths
-  double mjjbins[7] = {0,200,500,1000,1500,2000,5000};
+  //  double mjjbins[7] = {0,200,500,1000,1500,2000,5000};
+  double mjjbins[9] = {200,400,600,900,1200,1500,2000,2700,3500};
+  int nmjjbins = 8;
   double vtrmjjbins[4] = {0,600,900,5000};
   double jetptbins[5] = {0,200,400,600,1200};
   double njetbins[8] = {-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5};
-  double ptbins[15] = {0, 40, 80, 120, 160, 200, 240, 280, 320, 400, 520, 640, 760, 880,1100}; //andreas's binnings
+  //  double ptbins[15] = {0, 40, 80, 120, 160, 200, 240, 280, 320, 400, 520, 640, 760, 880,1100}; //andreas's binnings
+  double ptbins[10] = {200, 240, 260, 280, 300, 340, 400, 500, 740, 1000}; //andreas's binnings
+  int nptbins = 9;
   double etabins[7] = {0,0.5,1.0,1.5,2.0,3.0,5.0};
 
   if ( name.find("Default")!=std::string::npos ||  name == "All"){
 
     if ( name == "Default_VTR" ){
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,3,vtrmjjbins);  
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta" ] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta").c_str(), ";Boson p_{T};Boson #eta", 14, ptbins, 6, etabins);  
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,3,vtrmjjbins);  
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta" ] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta").c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
     }
     else{
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,6,mjjbins);  
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta" ] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta").c_str(), ";Boson p_{T};Boson #eta", 14, ptbins, 6, etabins);  
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,nmjjbins,mjjbins);  
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta" ] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta").c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
     }
 
     _cloned_hists[ name ] [ "gen_dilep_pt_bare" ] = new TH1D ( (name + "_gen_dilep_pt_bare").c_str(), ";Di lep p_{T};Number of Events", 120,0,1200 );  
@@ -93,21 +97,21 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
 
     if ( name == "Default_VTR" ){
       for ( int i = 0;i<9;i++){
-	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,3,vtrmjjbins);  
-	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_Scale_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", 14, ptbins, 6, etabins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,3,vtrmjjbins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_Scale_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
       }
       for ( int i = 0;i<102;i++){
-	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14,ptbins,3,vtrmjjbins );  
-	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_PDF_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", 14, ptbins, 6, etabins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins ,ptbins,3,vtrmjjbins );  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_PDF_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
       }
     }else{
       for ( int i = 0;i<9;i++){
-	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14, ptbins,6,mjjbins);  
-	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_Scale_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", 14, ptbins, 6, etabins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,nmjjbins,mjjbins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_Scale_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
       }
       for ( int i = 0;i<102;i++){
-	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", 14,ptbins,6,mjjbins );  
-	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_PDF_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", 14, ptbins, 6, etabins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,nmjjbins,mjjbins );  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_PDF_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
       }
     }
   }
@@ -116,20 +120,20 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
 
     _cloned_hists[ name ] [ "gen_boson_pt" ] = new TH1D ( (name + "_gen_boson_pt").c_str(), ";Boson p_{T};Number of Events", 120,0,1200 );  
     _cloned_hists[ name ] [ "gen_jetpt0" ] = new TH1D ( (name + "_gen_jetpt0").c_str(), ";jet 0 p_{T};Number of Events", 120,0,1200 );  
-    _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0" ] = new TH2D ( (name + "_gen_boson_pt_gen_jetpt0").c_str(), ";Boson p_{T};jet 0 p_{T}", 14, ptbins,4,jetptbins);  
-    _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity" ] = new TH2D ( (name + "_gen_boson_pt_gen_jet_multiplicity").c_str(), ";Boson p_{T};n jet", 14, ptbins, 7, njetbins);  
+    _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0" ] = new TH2D ( (name + "_gen_boson_pt_gen_jetpt0").c_str(), ";Boson p_{T};jet 0 p_{T}", nptbins, ptbins,4,jetptbins);  
+    _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity" ] = new TH2D ( (name + "_gen_boson_pt_gen_jet_multiplicity").c_str(), ";Boson p_{T};n jet", nptbins, ptbins, 7, njetbins);  
 
     for ( int i = 0;i<9;i++){
       _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] = new TH1D ( (name + "_gen_boson_pt_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Number of Events", 120,0,1200 );  
       _cloned_hists[ name ] [ "gen_jetpt0_Scale_"+std::to_string(i) ] = new TH1D ( (name + "_gen_jetpt0_Scale_" + std::to_string(i) ).c_str(), ";jet 0 p_{T};Number of Events", 120,0,1200 );  
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_jetpt0_Scale_"+std::to_string(i)).c_str(), ";Boson p_{T};jet 0 p_{T}", 14, ptbins,4,jetptbins);  
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_jet_multiplicity_Scale_"+std::to_string(i)).c_str(), ";Boson p_{T};n jet", 14, ptbins, 7, njetbins);
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_jetpt0_Scale_"+std::to_string(i)).c_str(), ";Boson p_{T};jet 0 p_{T}", nptbins, ptbins,4,jetptbins);  
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_jet_multiplicity_Scale_"+std::to_string(i)).c_str(), ";Boson p_{T};n jet", nptbins, ptbins, 7, njetbins);
     }
     for ( int i = 0;i<102;i++){
       _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] = new TH1D ( (name + "_gen_boson_pt_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Number of Events", 120,0,1200 );  
       _cloned_hists[ name ] [ "gen_jetpt0_PDF_"+std::to_string(i) ] = new TH1D ( (name + "_gen_jetpt0_PDF_" + std::to_string(i) ).c_str(), ";jet 0 p_{T};Number of Events", 120,0,1200 );  
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_jetpt0_PDF_"+std::to_string(i)).c_str(), ";Boson p_{T};jet 0 p_{T}", 14, ptbins,4,jetptbins);  
-      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_jet_multiplicity_PDF_"+std::to_string(i)).c_str(), ";Boson p_{T};n jet 0", 14, ptbins, 7, njetbins);
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jetpt0_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_jetpt0_PDF_"+std::to_string(i)).c_str(), ";Boson p_{T};jet 0 p_{T}", nptbins, ptbins,4,jetptbins);  
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_jet_multiplicity_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_jet_multiplicity_PDF_"+std::to_string(i)).c_str(), ";Boson p_{T};n jet 0", nptbins, ptbins, 7, njetbins);
     }
      
    
@@ -501,14 +505,14 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
       bool cut2 = false;
       bool cut3 = false;
       bool cut4 = false;
-      bool cut10 = false;
+      //      bool cut10 = false;
 
       if ( GenJet_pt_or.size() > 1 ){
 	cut1 = ( GenJet_pt_or[0] > 80 );
 	cut2 = ( GenJet_pt_or[1] > 40 );
 	cut3 = ( (GenJet_eta_or[0] *  GenJet_eta_or[1]) < 0 );
 	cut4 = ( std::abs(GenJet_eta_or[0]) < 5 && std::abs(GenJet_eta_or[1])< 5 );
-	cut10 = ( std::abs(GenJet_eta_or[0]) < 3.0 || std::abs(GenJet_eta_or[1]) < 3.0  );      //Remove HF-HF events
+	//	cut10 = ( std::abs(GenJet_eta_or[0]) < 3.0 || std::abs(GenJet_eta_or[1]) < 3.0  );      //Remove HF-HF events
       }
 
       bool cut5 = ( pass_mindphi_jetbos);
@@ -517,7 +521,7 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
       bool cut8 = ( _event_variables["gen_detajj"] > 1 );
       bool cut9 = ( _zll ? (_event_variables["gen_boson_mass"] > 60 && _event_variables["gen_boson_mass"] < 120 ) : true );
 
-      if ( cut1 && cut2 && cut3 && cut4 && cut5 && cut6 && cut7 && cut8 && cut9 && cut10){
+      if ( cut1 && cut2 && cut3 && cut4 && cut5 && cut6 && cut7 && cut8 && cut9){
 	passcut = true;
       }
 
@@ -528,14 +532,14 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
       bool cut2 = false;
       bool cut3 = false;
       bool cut4 = false;
-      bool cut10 = false;
+      //      bool cut10 = false;
 
       if ( GenJet_pt_or.size() > 1 ){
 	cut1 = ( GenJet_pt_or[0] > 140 );
 	cut2 = ( GenJet_pt_or[1] > 70 );
 	cut3 = ( (GenJet_eta_or[0] *  GenJet_eta_or[1]) < 0 );
-	cut4 = (std::abs(GenJet_eta_or[0]) < 5 && std::abs(GenJet_eta_or[1]) < 5 ) ;
-	cut10 =  (  std::abs(GenJet_eta_or[0]) < 3.0 || std::abs(GenJet_eta_or[1]) < 3.0 );//Remove HF-HF events
+	cut4 = ( std::abs(GenJet_eta_or[0]) < 5 && std::abs(GenJet_eta_or[1]) < 5 ) ;
+	//	cut10 =  (  std::abs(GenJet_eta_or[0]) < 3.0 || std::abs(GenJet_eta_or[1]) < 3.0 );//Remove HF-HF events
       }
 
       bool cut5 = ( pass_mindphi_jetbos_1p8 );
@@ -543,7 +547,7 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
       bool cut8 = ( _event_variables["gen_detajj"] > 1 );
       bool cut9 = ( _zll ? (_event_variables["gen_boson_mass"] > 60 && _event_variables["gen_boson_mass"] < 120 ) : true );
 
-      if ( cut1 && cut2 && cut3 && cut4 && cut5 && cut6 && cut8 && cut9 && cut10){
+      if ( cut1 && cut2 && cut3 && cut4 && cut5 && cut6 && cut8 && cut9){
 	passcut = true;
       }
 
