@@ -4,7 +4,7 @@
  Imperial College
 ***************************************************************************/
 
-// Time-stamp: <2021-06-25 15:22:07 (snwebb)>
+// Time-stamp: <2021-07-15 09:52:51 (snwebb)>
 
 #include "HiggsInvisible.h"
 
@@ -28,25 +28,29 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
   //The histograms are stored in a 2D map, either called _cloned_hists (for 1D histograms) or _cloned_hists2D (for 2D histograms)
 
   //Bin definitions for histograms with variable bin widths
-  //  double mjjbins[7] = {0,200,500,1000,1500,2000,5000};
-  double mjjbins[9] = {200,400,600,900,1200,1500,2000,2700,3500};
-  int nmjjbins = 8;
+  double mjjbins[7] = {0,200,500,1000,1500,2000,5000};
+  double mjjbins_a[9] = {200,400,600,900,1200,1500,2000,2700,3500};
+  int nmjjbins_a = 8;
+  int nmjjbins = 6;
   double vtrmjjbins[4] = {0,600,900,5000};
   double jetptbins[5] = {0,200,400,600,1200};
   double njetbins[8] = {-0.5,0.5,1.5,2.5,3.5,4.5,5.5,6.5};
-  //  double ptbins[15] = {0, 40, 80, 120, 160, 200, 240, 280, 320, 400, 520, 640, 760, 880,1100}; //andreas's binnings
-  double ptbins[10] = {200, 240, 260, 280, 300, 340, 400, 500, 740, 1000}; //andreas's binnings
-  int nptbins = 9;
+  double ptbins[15] = {0, 40, 80, 120, 160, 200, 240, 280, 320, 400, 520, 640, 760, 880,1100}; //andreas's binnings
+  double ptbins_a[10] = {200, 240, 260, 280, 300, 340, 400, 500, 740, 1000}; //andreas's binnings
+  int nptbins = 14;
+  int nptbins_a = 9;
   double etabins[7] = {0,0.5,1.0,1.5,2.0,3.0,5.0};
 
   if ( name.find("Default")!=std::string::npos ||  name == "All"){
 
     if ( name == "Default_VTR" ){
       _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,3,vtrmjjbins);  
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_a").c_str(), ";Boson p_{T};M_{jj}", nptbins_a, ptbins_a,3,vtrmjjbins);  
       _cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta" ] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta").c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
     }
     else{
       _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj").c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,nmjjbins,mjjbins);  
+      _cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a" ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_a").c_str(), ";Boson p_{T};M_{jj}", nptbins_a, ptbins_a,nmjjbins_a,mjjbins_a);  
       _cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta" ] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta").c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
     }
 
@@ -59,6 +63,7 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
     _cloned_hists[ name ] [ "gen_dphijj" ] = new TH1D ( (name + "_gen_dphijj").c_str(), ";#Delta#phi_{jj};Number of Events", 50,0, M_PI );  
     _cloned_hists[ name ] [ "gen_mindphi_jetmet" ] = new TH1D ( (name + "_gen_mindphi_jetmet").c_str(), ";min-#Delta#phi(j,p_{T}^{V});Number of Events", 50,0, M_PI );  
     _cloned_hists[ name ] [ "LHE_HT" ] = new TH1D ( (name + "_LHE_HT").c_str(), ";HT;Number of Events",5000,0,5000);  
+    _cloned_hists[ name ] [ "LHE_Vpt" ] = new TH1D ( (name + "_LHE_Vpt").c_str(), ";LHE Vp_{T};Number of Events",5000,0,5000);  
     _cloned_hists[ name ] [ "gen_weight" ] = new TH1D ( (name + "_gen_weight").c_str(), ";weight;Number of Events",100,-100000,100000);  
     _cloned_hists[ name ] [ "gen_jetpt0" ] = new TH1D ( (name + "_gen_jetpt0").c_str(), ";jet 0 p_{T};Number of Events", 300,0,600 );  
     _cloned_hists[ name ] [ "n_jets" ] = new TH1D ( (name + "_n_jets").c_str(), ";nJets;Number of Events", 10,-0.5,9.5 );  
@@ -98,19 +103,23 @@ void HiggsInvisible::LoadHistoTemplates( std::string name ){
     if ( name == "Default_VTR" ){
       for ( int i = 0;i<9;i++){
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,3,vtrmjjbins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_a_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins_a, ptbins_a,3,vtrmjjbins);  
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_Scale_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
       }
       for ( int i = 0;i<102;i++){
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins ,ptbins,3,vtrmjjbins );  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_a_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins_a ,ptbins_a, 3, vtrmjjbins );  
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_PDF_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
       }
     }else{
       for ( int i = 0;i<9;i++){
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,nmjjbins,mjjbins);  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a_Scale_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_a_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins_a, ptbins_a,nmjjbins_a,mjjbins_a);  
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_Scale_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_Scale_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
       }
       for ( int i = 0;i<102;i++){
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins, ptbins,nmjjbins,mjjbins );  
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a_PDF_"+std::to_string(i) ] = new TH2D ( (name + "_gen_boson_pt_gen_mjj_a_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};M_{jj}", nptbins_a, ptbins_a,nmjjbins_a,mjjbins_a );  
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_PDF_"+std::to_string(i)] = new TH2D ( (name + "_gen_boson_pt_gen_boson_eta_PDF_" + std::to_string(i) ).c_str(), ";Boson p_{T};Boson #eta", nptbins, ptbins, 6, etabins);  
       }
     }
@@ -155,6 +164,7 @@ void HiggsInvisible::FillAllHists( std::string name ){
 
       if ( name == "Default" || name == "Default_VTR"){
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj" ] -> Fill( _event_variables["gen_boson_pt"], _event_variables["gen_mjj"], weight );
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a" ] -> Fill( _event_variables["gen_boson_pt"], _event_variables["gen_mjj"], weight );
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta" ] -> Fill( _event_variables["gen_boson_pt"], std::abs(_event_variables["gen_boson_eta"]), weight );
       }
     }
@@ -165,6 +175,7 @@ void HiggsInvisible::FillAllHists( std::string name ){
     _cloned_hists[ name ] [ "gen_dphijj" ] -> Fill( _event_variables["gen_dphijj"], weight );
     _cloned_hists[ name ] [ "gen_mindphi_jetmet" ] -> Fill( gen_mindphi_jetmet, weight );
     _cloned_hists[ name ] [ "LHE_HT" ] -> Fill( LHE_HT, weight );
+    _cloned_hists[ name ] [ "LHE_Vpt" ] -> Fill( LHE_Vpt, weight );
     _cloned_hists[ name ] [ "gen_weight" ] -> Fill( genWeight );
     _cloned_hists[ name ] [ "gen_dressed_lepton_eta" ] -> Fill( GenDressedLepton_eta[0], genWeight );
     _cloned_hists[ name ] [ "gen_dressed_lepton_pt" ] -> Fill( GenDressedLepton_pt[0], genWeight );
@@ -198,6 +209,7 @@ void HiggsInvisible::FillAllHists( std::string name ){
       _cloned_hists[ name ] [ "gen_boson_pt_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], scaled_weight );
       if ( name.find("Default")!=std::string::npos){
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"],  _event_variables["gen_mjj"],scaled_weight );
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"],  _event_variables["gen_mjj"],scaled_weight );
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_Scale_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"],  std::abs(_event_variables["gen_boson_eta"]),scaled_weight );
       }
     }
@@ -213,6 +225,7 @@ void HiggsInvisible::FillAllHists( std::string name ){
       _cloned_hists[ name ] [ "gen_boson_pt_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], scaled_weight );
       if ( name.find("Default")!=std::string::npos){
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], _event_variables["gen_mjj"], scaled_weight );
+	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_mjj_a_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], _event_variables["gen_mjj"], scaled_weight );
 	_cloned_hists2D[ name ] [ "gen_boson_pt_gen_boson_eta_PDF_"+std::to_string(i) ] -> Fill( _event_variables["gen_boson_pt"], std::abs(_event_variables["gen_boson_eta"]), scaled_weight );
       }
     }
@@ -515,7 +528,7 @@ bool HiggsInvisible::CalculateCuts( std::string name ){
 	//	cut10 = ( std::abs(GenJet_eta_or[0]) < 3.0 || std::abs(GenJet_eta_or[1]) < 3.0  );      //Remove HF-HF events
       }
 
-      bool cut5 = ( pass_mindphi_jetbos);
+      bool cut5 = ( pass_mindphi_jetbos );
       bool cut6 = ( _event_variables["gen_dphijj"] < 1.5 );
       bool cut7 = ( _event_variables["gen_mjj"] > 200 );
       bool cut8 = ( _event_variables["gen_detajj"] > 1 );

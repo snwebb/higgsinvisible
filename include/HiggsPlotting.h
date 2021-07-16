@@ -41,12 +41,15 @@ class HiggsPlotting{
   std::vector<std::string> _HistoSets;
 
   typedef std::map< TString, TH1D* > histmap;
+  typedef std::map< TString, THStack* > stackmap;
   typedef std::map< TString, TH2D* > histmap2D;
   typedef std::map< TString, histmap > clonemap;
+  typedef std::map< TString, stackmap > clonestackmap;
   typedef std::map< TString, histmap2D > clonemap2D;
   typedef std::map< std::string, double > doublemap;
 
   clonemap _cloned_hists;
+  clonestackmap _stacked_hists;
   clonemap2D _cloned_hists2D;
 
   Helpers _helper;

@@ -103,6 +103,7 @@ void HiggsInvisible::Loop( ){
   fChain->SetBranchStatus("gen_mindphi_jetmet",1);
   fChain->SetBranchStatus("LHE_Njets",1);
   fChain->SetBranchStatus("LHE_HT",1);
+  fChain->SetBranchStatus("LHE_Vpt",1);
 
   fChain->SetBranchStatus("GenJet_pt",1);
   fChain->SetBranchStatus("GenJet_eta",1);
