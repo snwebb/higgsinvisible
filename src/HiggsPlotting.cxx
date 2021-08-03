@@ -134,6 +134,7 @@ void HiggsPlotting::LoadAllHistograms(){
   filenames[ "ZLL16-LO-2500-Inf" ] = "MC_DYJetsToLL16_M-50_HT-2500ToInf.root";
 
   //LO Z JETS 2016
+
   filenames[ "ZNN16-LO-100-200" ] = "MC_ZJetsToNuNu16_HT-100To200.root";
   filenames[ "ZNN16-LO-100-200-ext1" ] = "MC_ZJetsToNuNu16_HT-100To200-ext1.root";
   filenames[ "ZNN16-LO-200-400" ] = "MC_ZJetsToNuNu16_HT-200To400.root";
@@ -147,34 +148,68 @@ void HiggsPlotting::LoadAllHistograms(){
   filenames[ "ZNN16-LO-2500-Inf" ] = "MC_ZJetsToNuNu16_HT-2500ToInf.root";
 
   //LO W JETS 2018
-  filenames[ "WLN18-LO-70-100" ] = "MC_WJetsToLNu18_HT-70To100.root";
-  filenames[ "WLN18-LO-100-200" ] = "MC_WJetsToLNu18_HT-100To200.root";
-  filenames[ "WLN18-LO-200-400" ] = "MC_WJetsToLNu18_HT-200To400.root";
-  filenames[ "WLN18-LO-400-600" ] = "MC_WJetsToLNu18_HT-400To600.root";
-  filenames[ "WLN18-LO-600-800" ] = "MC_WJetsToLNu18_HT-600To800.root";
-  filenames[ "WLN18-LO-800-1200" ] = "MC_WJetsToLNu18_HT-800To1200.root";
-  filenames[ "WLN18-LO-1200-2500" ] = "MC_WJetsToLNu18_HT-1200To2500.root";
-  filenames[ "WLN18-LO-2500-Inf" ] = "MC_WJetsToLNu18_HT-2500ToInf.root";
+  //NEW SAMPLES
+
+  filenames[ "WLN18-LO-70-100" ] = "crab_WJetsToLNu_HT-70To100_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "WLN18-LO-100-200" ] = "crab_WJetsToLNu_HT-100To200_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "WLN18-LO-200-400" ] = "crab_WJetsToLNu_HT-200To400_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "WLN18-LO-400-600" ] = "crab_WJetsToLNu_HT-400To600_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "WLN18-LO-600-800" ] = "crab_WJetsToLNu_HT-600To800_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "WLN18-LO-800-1200" ] = "crab_WJetsToLNu_HT-800To1200_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "WLN18-LO-1200-2500" ] = "crab_WJetsToLNu_HT-1200To2500_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "WLN18-LO-2500-Inf" ] = "crab_WJetsToLNu_HT-2500ToInf_lathomas.root";
+
+  //OLD SAMPLES
+  // filenames[ "WLN18-LO-70-100" ] = "MC_WJetsToLNu18_HT-70To100.root";
+  // filenames[ "WLN18-LO-100-200" ] = "MC_WJetsToLNu18_HT-100To200.root";
+  // filenames[ "WLN18-LO-200-400" ] = "MC_WJetsToLNu18_HT-200To400.root";
+  // filenames[ "WLN18-LO-400-600" ] = "MC_WJetsToLNu18_HT-400To600.root";
+  // filenames[ "WLN18-LO-600-800" ] = "MC_WJetsToLNu18_HT-600To800.root";
+  // filenames[ "WLN18-LO-800-1200" ] = "MC_WJetsToLNu18_HT-800To1200.root";
+  // filenames[ "WLN18-LO-1200-2500" ] = "MC_WJetsToLNu18_HT-1200To2500.root";
+  // filenames[ "WLN18-LO-2500-Inf" ] = "MC_WJetsToLNu18_HT-2500ToInf.root";
 
   //LO DY JETS 2018
-  filenames[ "ZLL18-LO-70-100" ] = "MC_DYJetsToLL18_M-50_HT-70to100.root";
-  filenames[ "ZLL18-LO-100-200" ] = "MC_DYJetsToLL18_M-50_HT-100to200.root";
-  filenames[ "ZLL18-LO-200-400" ] = "MC_DYJetsToLL18_M-50_HT-200to400.root";
-  filenames[ "ZLL18-LO-400-600" ] = "MC_DYJetsToLL18_M-50_HT-400to600.root";
-  filenames[ "ZLL18-LO-400-600-ext1" ] = "MC_DYJetsToLL18_M-50_HT-400to600-ext1.root";
-  filenames[ "ZLL18-LO-600-800" ] = "MC_DYJetsToLL18_M-50_HT-600to800.root";
-  filenames[ "ZLL18-LO-800-1200" ] = "MC_DYJetsToLL18_M-50_HT-800to1200.root";
-  filenames[ "ZLL18-LO-1200-2500" ] = "MC_DYJetsToLL18_M-50_HT-1200to2500.root";
-  filenames[ "ZLL18-LO-2500-Inf" ] = "MC_DYJetsToLL18_M-50_HT-2500toInf.root";
+
+  //NEW SAMPLES
+  filenames[ "ZLL18-LO-70-100" ] = "crab_DYJetsToLL_M-50_HT-70to100_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZLL18-LO-100-200" ] = "crab_DYJetsToLL_M-50_HT-100to200_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZLL18-LO-200-400" ] = "crab_DYJetsToLL_M-50_HT-200to400_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZLL18-LO-400-600" ] = "crab_DYJetsToLL_M-50_HT-400to600_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZLL18-LO-600-800" ] = "crab_DYJetsToLL_M-50_HT-600to800_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZLL18-LO-800-1200" ] = "crab_DYJetsToLL_M-50_HT-800to1200_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZLL18-LO-1200-2500" ] = "crab_DYJetsToLL_M-50_HT-1200to2500_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZLL18-LO-2500-Inf" ] = "crab_DYJetsToLL_M-50_HT-2500toInf_RunIISummer20UL18NanoAODv2.root";
+
+  //OLD SAMPLES
+  // filenames[ "ZLL18-LO-70-100" ] = "MC_DYJetsToLL18_M-50_HT-70to100.root";
+  // filenames[ "ZLL18-LO-100-200" ] = "MC_DYJetsToLL18_M-50_HT-100to200.root";
+  // filenames[ "ZLL18-LO-200-400" ] = "MC_DYJetsToLL18_M-50_HT-200to400.root";
+  // filenames[ "ZLL18-LO-400-600" ] = "MC_DYJetsToLL18_M-50_HT-400to600.root";
+  // filenames[ "ZLL18-LO-400-600-ext1" ] = "MC_DYJetsToLL18_M-50_HT-400to600-ext1.root";
+  // filenames[ "ZLL18-LO-600-800" ] = "MC_DYJetsToLL18_M-50_HT-600to800.root";
+  // filenames[ "ZLL18-LO-800-1200" ] = "MC_DYJetsToLL18_M-50_HT-800to1200.root";
+  // filenames[ "ZLL18-LO-1200-2500" ] = "MC_DYJetsToLL18_M-50_HT-1200to2500.root";
+  // filenames[ "ZLL18-LO-2500-Inf" ] = "MC_DYJetsToLL18_M-50_HT-2500toInf.root";
 
   //LO Z JETS 2018
-  filenames[ "ZNN18-LO-100-200" ] = "MC_ZJetsToNuNu18_HT-100To200.root";
-  filenames[ "ZNN18-LO-200-400" ] = "MC_ZJetsToNuNu18_HT-200To400.root";
-  filenames[ "ZNN18-LO-400-600" ] = "MC_ZJetsToNuNu18_HT-400To600.root";
-  filenames[ "ZNN18-LO-600-800" ] = "MC_ZJetsToNuNu18_HT-600To800.root";
-  filenames[ "ZNN18-LO-800-1200" ] = "MC_ZJetsToNuNu18_HT-800To1200.root";
-  filenames[ "ZNN18-LO-1200-2500" ] = "MC_ZJetsToNuNu18_HT-1200To2500.root";
-  filenames[ "ZNN18-LO-2500-Inf" ] = "MC_ZJetsToNuNu18_HT-2500ToInf.root";
+  //NEW SAMPLES
+  filenames[ "ZNN18-LO-100-200" ] = "crab_ZJetsToNuNu_HT-100To200_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZNN18-LO-200-400" ] = "crab_ZJetsToNuNu_HT-200To400_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZNN18-LO-400-600" ] = "crab_ZJetsToNuNu_HT-400To600_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZNN18-LO-600-800" ] = "crab_ZJetsToNuNu_HT-600To800_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZNN18-LO-800-1200" ] = "crab_ZJetsToNuNu_HT-800To1200_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZNN18-LO-1200-2500" ] = "crab_ZJetsToNuNu_HT-1200To2500_RunIISummer20UL18NanoAODv2.root";
+  filenames[ "ZNN18-LO-2500-Inf" ] = "crab_ZJetsToNuNu_HT-2500ToInf_RunIISummer20UL18NanoAODv2.root";
+
+  //OLD SAMPLES
+  // filenames[ "ZNN18-LO-100-200" ] = "MC_ZJetsToNuNu18_HT-100To200.root";
+  // filenames[ "ZNN18-LO-200-400" ] = "MC_ZJetsToNuNu18_HT-200To400.root";
+  // filenames[ "ZNN18-LO-400-600" ] = "MC_ZJetsToNuNu18_HT-400To600.root";
+  // filenames[ "ZNN18-LO-600-800" ] = "MC_ZJetsToNuNu18_HT-600To800.root";
+  // filenames[ "ZNN18-LO-800-1200" ] = "MC_ZJetsToNuNu18_HT-800To1200.root";
+  // filenames[ "ZNN18-LO-1200-2500" ] = "MC_ZJetsToNuNu18_HT-1200To2500.root";
+  // filenames[ "ZNN18-LO-2500-Inf" ] = "MC_ZJetsToNuNu18_HT-2500ToInf.root";
 
   //NLO W 1 JET
 
@@ -1197,6 +1232,17 @@ void HiggsPlotting::CombineHistograms(){
 
   //Use same cross section as for 2017
 
+  if (NEW_SAMPLES){
+    _sum["WLN18-LO-70-100"    ] = 66365798;
+    _sum["WLN18-LO-100-200"    ] = 66195407;
+    _sum["WLN18-LO-200-400"    ] = 56866171;
+    _sum["WLN18-LO-400-600"    ] = 7545618;
+    _sum["WLN18-LO-600-800"    ] = 7556181;
+    _sum["WLN18-LO-800-1200"    ] = 7418726;
+    _sum["WLN18-LO-1200-2500"    ] = 6855219;
+    _sum["WLN18-LO-2500-Inf"    ] = 24432;
+  }
+
   ///////  W  /////////
 
   //1D
@@ -1230,7 +1276,19 @@ void HiggsPlotting::CombineHistograms(){
   
   ///////  DY  /////////
 
-  _sum["ZLL18-LO-400-600-TOT"    ] =  _sum["ZLL18-LO-400-600"    ] + _sum["ZLL18-LO-400-600-ext1"];
+  if (NEW_SAMPLES){
+    _sum["ZLL18-LO-70-100"    ] = 18793272;
+    _sum["ZLL18-LO-100-200"    ] = 26542246;
+    _sum["ZLL18-LO-200-400"    ] = 18884012;
+    _sum["ZLL18-LO-400-600-TOT"    ] = 8908406;
+    _sum["ZLL18-LO-600-800"    ] = 7722744;
+    _sum["ZLL18-LO-800-1200"    ] = 7242741;
+    _sum["ZLL18-LO-1200-2500"    ] = 6748689;
+    _sum["ZLL18-LO-2500-Inf"    ] = 1978203;
+  }
+  else{
+    _sum["ZLL18-LO-400-600-TOT"    ] =  _sum["ZLL18-LO-400-600"    ] + _sum["ZLL18-LO-400-600-ext1"];
+  }
 
   //1D
   for (auto const& histset : _cloned_hists["ZLL18-LO-70-100"]){   
@@ -1240,7 +1298,10 @@ void HiggsPlotting::CombineHistograms(){
     _cloned_hists["ZLL18-LO"][ histset.first ]->Add( _cloned_hists["ZLL18-LO-100-200"    ][histset.first], 1E3*  _xs["ZLL-LO-100-200"    ] / _sum["ZLL18-LO-100-200"    ]);
     _cloned_hists["ZLL18-LO"][ histset.first ]->Add( _cloned_hists["ZLL18-LO-200-400"    ][histset.first], 1E3*  _xs["ZLL-LO-200-400"    ] / _sum["ZLL18-LO-200-400"    ]);
     _cloned_hists["ZLL18-LO"][ histset.first ]->Add( _cloned_hists["ZLL18-LO-400-600"    ][histset.first], 1E3*  _xs["ZLL-LO-400-600"    ] / _sum["ZLL18-LO-400-600-TOT"    ]);
+    if (!NEW_SAMPLES){
     _cloned_hists["ZLL18-LO"][ histset.first ]->Add( _cloned_hists["ZLL18-LO-400-600-ext1"][histset.first], 1E3* _xs["ZLL-LO-400-600"] / _sum["ZLL18-LO-400-600-TOT"]);
+    }
+
     _cloned_hists["ZLL18-LO"][ histset.first ]->Add( _cloned_hists["ZLL18-LO-600-800"    ][histset.first], 1E3*  _xs["ZLL-LO-600-800"    ] / _sum["ZLL18-LO-600-800"    ]);
     _cloned_hists["ZLL18-LO"][ histset.first ]->Add( _cloned_hists["ZLL18-LO-800-1200"   ][histset.first], 1E3*  _xs["ZLL-LO-800-1200"   ] / _sum["ZLL18-LO-800-1200"   ]);
     _cloned_hists["ZLL18-LO"][ histset.first ]->Add( _cloned_hists["ZLL18-LO-1200-2500"  ][histset.first], 1E3*  _xs["ZLL-LO-1200-2500"  ] / _sum["ZLL18-LO-1200-2500"  ]); 
@@ -1256,7 +1317,9 @@ void HiggsPlotting::CombineHistograms(){
     _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-100-200"    ][histset.first], 1E3*  _xs["ZLL-LO-100-200"    ] / _sum["ZLL18-LO-100-200"    ]);
     _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-200-400"    ][histset.first], 1E3*  _xs["ZLL-LO-200-400"    ] / _sum["ZLL18-LO-200-400"    ]);
     _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-400-600"    ][histset.first], 1E3*  _xs["ZLL-LO-400-600"    ] / _sum["ZLL18-LO-400-600-TOT"    ]);
-    _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-400-600-ext1"][histset.first], 1E3* _xs["ZLL-LO-400-600"] / _sum["ZLL18-LO-400-600-TOT"]);
+    if (!NEW_SAMPLES){
+      _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-400-600-ext1"][histset.first], 1E3* _xs["ZLL-LO-400-600"] / _sum["ZLL18-LO-400-600-TOT"]);
+    }
     _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-600-800"    ][histset.first], 1E3*  _xs["ZLL-LO-600-800"    ] / _sum["ZLL18-LO-600-800"    ]);
     _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-800-1200"   ][histset.first], 1E3*  _xs["ZLL-LO-800-1200"   ] / _sum["ZLL18-LO-800-1200"   ]);
     _cloned_hists2D["ZLL18-LO"][ histset.first ]->Add( _cloned_hists2D["ZLL18-LO-1200-2500"  ][histset.first], 1E3*  _xs["ZLL-LO-1200-2500"  ] / _sum["ZLL18-LO-1200-2500"  ]); 
@@ -1265,6 +1328,16 @@ void HiggsPlotting::CombineHistograms(){
 
 
   ///////  Z NU NU  /////////  
+
+  if (NEW_SAMPLES){
+    _sum["ZNN18-LO-100-200"    ] = 29002455;
+    _sum["ZNN18-LO-200-400"    ] = 23490705;
+    _sum["ZNN18-LO-400-600"    ] = 20667047;
+    _sum["ZNN18-LO-600-800"    ] = 5907865;
+    _sum["ZNN18-LO-800-1200"    ] = 2144959;
+    _sum["ZNN18-LO-1200-2500"    ] = 375241;
+    _sum["ZNN18-LO-2500-Inf"    ] = 268224;
+  }
 
   //1D
   for (auto const& histset : _cloned_hists["ZNN18-LO-100-200"]){
@@ -1970,27 +2043,34 @@ void HiggsPlotting::PlotAllHistograms(){
 	
 	//Calculate the k-factor ("ratio") and save it to file.
 	//The k-factors are also evaluated using the 2016 and 2018 LO samples	
-	//Another k-factor is evaluted (ratio_zll_over_znn) where the NLO DY sample (x1.98) is divided by the LO ZNN sample (as a cross-check)
-
+	//Another k-factor may be evaluted (ratio_zll_over_znn) where the NLO DY sample (x1.98) is divided by the LO ZNN sample (as a cross-check)
 	TH2D * ratio = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-LHEPt-" + histset.first );
 	TH2D * ratio16 = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"16-LO"][ histset.first ], "", "Ratio-"+process+"16-LHEPt-" + histset.first );
 	TH2D * ratio18 = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"18-LO"][ histset.first ], "", "Ratio-"+process+"18-LHEPt-" + histset.first );
-	TH2D * ratio_zll_over_znn = 0;
-	if ( process == "ZNN" ){
-	  TH2D * scaled_hist = (TH2D*)_cloned_hists2D["ZLL-NLO-LHEPt"][ histset.first ]->Clone( "ZLL-NLO-LHEPt" + histset.first + "_scaled" );
-	  scaled_hist->Scale(1.98);
-	  ratio_zll_over_znn = plotter.DrawRatio( scaled_hist , _cloned_hists2D[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-LHEPt-" + histset.first );  
-	}
+
+	//23.07.2021 - Change such that the default (2017) k-factor is set to 1 and the uncertainty is evaluated relative to the NLO baseline
+	//	TH2D * ratio = plotter.DrawRatio( histset.second , _cloned_hists2D[process+"-NLO-LHEPt"][ histset.first ], "", "Ratio-"+process+"-LHEPt-" + histset.first );
+
+	// TH2D * ratio_zll_over_znn = 0;
+	// if ( process == "ZNN" ){
+	//   TH2D * scaled_hist = (TH2D*)_cloned_hists2D["ZLL-NLO-LHEPt"][ histset.first ]->Clone( "ZLL-NLO-LHEPt" + histset.first + "_scaled" );
+	//   scaled_hist->Scale(1.98);
+	//   ratio_zll_over_znn = plotter.DrawRatio( scaled_hist , _cloned_hists2D[process+"-LO"][ histset.first ], "", "Ratio-"+process+"-LHEPt-" + histset.first );  
+	// }
 	
 	if ( analysis == "VTR" ) saveanalysis = "VTR";
 	plotter.SaveToFile(ratio, savename, "2Dkfactor_"+saveanalysis+"_"+saveprocess, systname );
 	plotter.SaveToFile(_cloned_hists2D[process+"-LO"][ histset.first ], "LO", "2Dkfactor_"+saveanalysis+"_"+saveprocess, systname );
 	plotter.SaveToFile(histset.second, "NLO", "2Dkfactor_"+saveanalysis+"_"+saveprocess, systname );
 	plotter.SaveToFile(ratio16, savename, "2Dkfactor16_"+saveanalysis+"_"+saveprocess, systname );
+
 	plotter.SaveToFile(ratio18, savename, "2Dkfactor18_"+saveanalysis+"_"+saveprocess, systname );
-	if ( process == "ZNN" ){
-	  plotter.SaveToFile(ratio_zll_over_znn, savename, "2Dkfactor_"+saveanalysis+"_"+saveprocess + "_zll", systname );
-	}
+	plotter.SaveToFile(_cloned_hists2D[process+"18-LO"][ histset.first ], "LO", "2Dkfactor18_"+saveanalysis+"_"+saveprocess, systname );
+	plotter.SaveToFile(histset.second, "NLO", "2Dkfactor_"+saveanalysis+"_"+saveprocess, systname );
+
+	// if ( process == "ZNN" ){
+	//   plotter.SaveToFile(ratio_zll_over_znn, savename, "2Dkfactor_"+saveanalysis+"_"+saveprocess + "_zll", systname );
+	// }
       }
       
     }

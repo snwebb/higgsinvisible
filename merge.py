@@ -10,7 +10,7 @@ print
 print 'START'
 print 
 
-OutputDirList = [ outputpath + i.split("/")[2] for i in InputDirList ]
+OutputDirList = [ outputpath + i.split("/")[3] for i in InputDirList ]
 
 for outdir in OutputDirList :
    os.system("hadd -f " + outputpath + "/Merged/" + outdir.split("/")[5] + ".root " + outdir + "/root/*root" )  

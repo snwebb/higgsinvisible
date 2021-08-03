@@ -1,4 +1,4 @@
-# VBF invisible k-factor producer
+## VBF invisible k-factor producer
 
 ## Introduction
 
@@ -39,7 +39,7 @@ Finally when all jobs are completed you need to run:
 
 This will merge (`hadd`) all individual `ROOT` output files, so there is exactly one for each initial dataset. Note that `merge.py` merges the same files that are listed in `submit.py` (i.e. it imports the list of datasets from `submit.py`).
 
-##Plotting the Histograms
+## Plotting the Histograms
 
 The main function for plotting the histograms is contained within `src/PlotHistograms.cxx`, which creates a class of `HiggsPlotting` (the code of which is contained within `src/HiggsPlotting` -- this contains the bulk of the functions).
 
