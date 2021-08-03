@@ -45,7 +45,7 @@ The main function for plotting the histograms is contained within `src/PlotHisto
 
 The code is run like:
 
--- `./PlotHistograms --outdir path_to_output_directory`
+- `./PlotHistograms --outdir path_to_output_directory`
 
 Aside from some control distributions, contained within `path_to_output_directory/log and path_to_output_directory/linear`, the k-factors are output within `path_to_output_directory`.
 
